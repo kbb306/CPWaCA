@@ -8,3 +8,8 @@ class mainWindow:
         self.keybutton.pack(side=tk.RIGHT, padx=5)
         self.syncbutton = tk.Button(root,text="Force Update")
         self.syncbutton.pack(side=tk.RIGHT,padx=5)
+
+if __name__ == "__main__":
+    root = tk.Tk()
+    app = mainWindow(root)
+    root.mainloop()
