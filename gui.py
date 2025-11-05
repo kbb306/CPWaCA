@@ -4,3 +4,6 @@ class mainWindow:
         self.root = root
         self.root.title("Calendar Parser Without a Cool Acronym")
         self.root.geometry("400x300")
+        self.keybutton = tk.Button(root,text="Connect Accounts")
+        self.keybutton.pack(side=tk.RIGHT, padx=5)
+        
