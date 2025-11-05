@@ -9,6 +9,10 @@ class mainWindow:
         self.syncbutton = tk.Button(root,text="Force Update")
         self.syncbutton.pack(side=tk.RIGHT,padx=5)
 
+    def syncwindow(self):
+        syncwin = tk.Toplevel(self.root)
+
+        
 if __name__ == "__main__":
     root = tk.Tk()
     app = mainWindow(root)
