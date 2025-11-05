@@ -6,4 +6,5 @@ class mainWindow:
         self.root.geometry("400x300")
         self.keybutton = tk.Button(root,text="Connect Accounts")
         self.keybutton.pack(side=tk.RIGHT, padx=5)
-        
+        self.syncbutton = tk.Button(root,text="Force Update")
+        self.syncbutton.pack(side=tk.RIGHT,padx=5)
