@@ -10,9 +10,18 @@ class mainWindow:
         self.syncbutton.pack(side=tk.RIGHT,padx=5)
 
     def connwindow(self):
-        connwin = tk.Toplevel(self.root)
-        connwin.title("Account Settings")
-
+       self.connwin = tk.Toplevel(self.root)
+       self.connwin.title("Account Settings")
+       self.Gprompt = tk.Label(self.connwin,text="Enter Google API key:")
+       self.Gprompt.pack(pady=5)
+       self.Gentry = tk.Entry(self.connwin)
+       self.Gentry.pack(pady=5)
+       self.Cprompt = tk.Label(self.connwin, text="Enter canvas API key:")
+       self.Cprompt.pack(pady=5)
+       self.Centry = tk.Entry(self.connwin)
+       self.Centry.pack(pady=5)
+       tk.Button(self.connwin,text="Submit",command=self.APIin).pack(pady=10)
+       tk.Button(self.connwin,text="Close",command=self.connwin.destroy).pack(pady=10)
 
 
 if __name__ == "__main__":
