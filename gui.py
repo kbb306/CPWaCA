@@ -4,10 +4,14 @@ class mainWindow:
         self.root = root
         self.root.title("Calendar Parser Without a Cool Acronym")
         self.root.geometry("400x300")
-        self.keybutton = tk.Button(root,text="Connect Accounts")
+        self.keybutton = tk.Button(root,text="Connect Accounts",command=self.connwindow())
         self.keybutton.pack(side=tk.RIGHT, padx=5)
         self.syncbutton = tk.Button(root,text="Force Update")
         self.syncbutton.pack(side=tk.RIGHT,padx=5)
+        self.alertbutton = tk.Button(root,text="Alert Settings",command=self.alertsettings())
+        self.alertbutton.pack(root,pady=5)
+        self.custbutton = tk.Button(root,text="Customize Spreadsheet")
+        self.custbutton.pack(root,side=tk.LEFT,padx=10)
 
     def connwindow(self):
        self.connwin = tk.Toplevel(self.root)
