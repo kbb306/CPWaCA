@@ -26,7 +26,7 @@ class mainWindow:
     def alertsettings(self):
         self.alertwin = tk.Toplevel(self.root)
         self.alertwin.title("Alert Settings")
-        
+        self.toggle = tk.Button(self.alertwin,text="Toggle alerts on/off").pack(pady=5)
     
 
 
