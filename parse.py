@@ -49,6 +49,8 @@ class Assignment():
         self.uid = uuid.uuid4()
         self.name = assignment
         self.dueDate = date
+        self.course = course
+        self.id = ID
     def alert(self):
         date = datetime.date.today()
         if self.dueDate - date < threshold: #This should be a global variable, probably pulled from a settings file?
