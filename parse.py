@@ -4,11 +4,13 @@ import sheets_update_values
 import sheets_get_values
 # Note: Do we need tkinter imported here to create a window,or can we get it from the gui.py file that imports this one?
 class Reader():
-    def __init__(self,outFile,inAPI,outAPI):
+    def __init__(self,inAPI,outAPI,outFile=None,):
         self.inAPI = inAPI
         self.outAPI = outAPI
         self.outFile = outFile
         self.masterList = []
+        if outFile is None:
+            pass #Use horrible Goggle APIs to create a new Sheets file
     def _import(self):
          #This is where I need your Canvas API wizardry
          self.parse(inFile)
@@ -17,7 +19,9 @@ class Reader():
         #Google API wizardry goes here
         pass
     
-
+    def sync(self):
+        self._import()
+        self.export()
 
     def parse(self,file):
         with open(file, 'r') as f:
