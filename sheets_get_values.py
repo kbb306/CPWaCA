@@ -15,7 +15,7 @@ limitations under the License.
 """
 
 # [START sheets_get_values]
-import google.auth
+import authorize
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 
@@ -27,7 +27,7 @@ def get_values(spreadsheet_id, range_name):
   TODO(developer) - See https://developers.google.com/identity
   for guides on implementing OAuth2 for the application.
   """
-  creds, _ = google.auth.default()
+  creds, _ = authorize.authcheck()
   # pylint: disable=maybe-no-member
   try:
     service = build("sheets", "v4", credentials=creds)
