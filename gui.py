@@ -30,7 +30,12 @@ class mainWindow:
     def alertsettings(self):
         self.alertwin = tk.Toplevel(self.root)
         self.alertwin.title("Alert Settings")
-        self.toggle = tk.Button(self.alertwin,text="Toggle alerts on/off").pack(pady=5)
+        self.toggle = tk.Button(self.alertwin,text="Toggle alerts on/off")
+        self.thresholdPrompt = tk.Label(self.alertwin,text="Enter alert threshold (Days until due)")
+        self.threshold = tk.Entry(self.alertwin)
+        self.toggle.pack(pady=5)
+        self.thresholdPrompt.pack(pady=5)
+        self.threshold.pack(pady=5)
     
 
 
