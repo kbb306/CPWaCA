@@ -1,5 +1,7 @@
 import uuid
 import datetime
+import sheets_update_values
+import sheets_get_values
 # Note: Do we need tkinter imported here to create a window,or can we get it from the gui.py file that imports this one?
 class Reader():
     def __init__(self,outFile,inAPI,outAPI):
