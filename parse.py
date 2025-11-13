@@ -24,7 +24,8 @@ class Reader():
     
     def sync(self):
         self._import()
-        self.compare(self.readToEnd(),self.masterList,"uid","uid",False,"self.masterList.append(each2)")
+        self.compare(self.readToEnd(),self.masterList,"uid","uid",False,
+                     "self.masterList.append(each2)")
         self.export()
 
 
