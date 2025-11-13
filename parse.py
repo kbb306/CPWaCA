@@ -25,7 +25,7 @@ class Reader():
                 else:
                     valueFound = False
                 if not valueFound:
-                    sheets_append_values.append_values(self.outFile,"A5:F5","USER_ENTERED",[])
+                    sheets_append_values.append_values(self.outFile,"A5:F5","USER_ENTERED",[each.course,each.assignment])
     
     def sync(self):
         self._import()
@@ -45,7 +45,7 @@ class Reader():
         for i in range(row - 1):
             result = sheets_get_values.get_values(self.outFile,(("A").join(i).join("F").join(i)))
             arglist = result.get("values",[])
-            new = Assignment(arglist[0],arglist[1],arglist[3],arglist[4],arglist[5])
+            new = Assignment(arglist[0],arglist[1],arglist[2],arglist[3],arglist[4],arglist[5])
             results.append(new)
         return results
 
@@ -56,7 +56,7 @@ class Reader():
             if each == "BEGIN:VEVENT":
                 for key,value in each.split(":",1):
                     if (key == "END"):
-                        thing = Assignment(course,assignment,status,date)
+                        thing = Assignment(course,assignment,status,daysLeft,date)
                         self.masterList.append(thing)
                     if key == "DTSTAMP":
                         date = value.strip()
@@ -67,14 +67,17 @@ class Reader():
                         backhalf  = value.split("_")[2].split("&")[0]
                         ID = re.sub(r'[^0-9]','',backhalf)
                     status = "Not Started"
+                    daysLeft = date - datetime.date()
 
                 
 class Assignment():
-    def __init__(self,course,assignment,status,date,uid=uuid.uuid4()):
+    def __init__(self,course,assignment,status,daysLeft,date,uid=uuid.uuid4()):
         self.uid = uid
+        self.course = course
         self.name = assignment
         self.dueDate = date
-        self.course = course
+        self.daysLeft = daysLeft
+        self.status = status
     def alert(self):
         date = datetime.date.today()
         if self.dueDate - date < threshold: #This should be a global variable, probably pulled from a settings file?
