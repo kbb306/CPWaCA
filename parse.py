@@ -4,7 +4,7 @@ import sheets_update_values
 import sheets_get_values
 import sheets_append_values #Do not remove, passed as string
 import re
-import requests
+from urllib.request import urlretrieve
 class Reader():
     def __init__(self,inURL,outAPI,outFile=None,):
         self.inURL = inURL
@@ -13,9 +13,13 @@ class Reader():
         self.masterList = []
         if outFile is None:
             pass #Use horrible Goggle APIs to create a new Sheets file
-    def _import(self):
-         
-         self.parse(inFile)
+    def _import(self,url):
+        try:
+            urlretrieve(url,"Schedule.ical")
+        except Exception as e:
+            print("Error downloading file {e}")
+
+        self.parse("Schedule.ical")
     def export(self):
         self.compare(self.masterList,self.readToEnd(),"uid","uid",False,
                      """sheets_append_values.append_values(self.outFile,"A5:F5","USER_ENTERED",[each.course,each.assignment,each.status,each.daysLeft,each.date]""")
@@ -93,8 +97,8 @@ class Assignment():
         self.dueDate = date
         self.daysLeft = daysLeft
         self.status = status
-    def alert(self):
-        if self.daysLeft < threshold: #This should be a global variable, probably pulled from a settings file?
+    def alert(self,threshold):
+        if self.daysLeft < threshold: 
             return self.name
 
     def upDate(self):
