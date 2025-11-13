@@ -2,6 +2,7 @@ import uuid
 import datetime
 import sheets_update_values
 import sheets_get_values
+import sheets_append_values
 import re
 # Note: Do we need tkinter imported here to create a window,or can we get it from the gui.py file that imports this one?
 class Reader():
@@ -15,14 +16,38 @@ class Reader():
     def _import(self):
          #This is where I need your Canvas API wizardry
          self.parse(inFile)
-
     def export(self):
-        #Google API wizardry goes here
-        pass
+        valueFound = False
+        for each in self.masterList:
+            for each2 in self.readToEnd():
+                if each2.uid == each.uid:
+                    valueFound = True
+                else:
+                    valueFound = False
+                if not valueFound:
+                    sheets_append_values.append_values(self.outFile,"A5:F5","USER_ENTERED",[])
     
     def sync(self):
         self._import()
         self.export()
+
+
+
+    def readToEnd(self):
+        row = 1
+        result = sheets_get_values.get_values(self.outFile,(("A").join(row)))
+        value = result.get("values",[])
+        results = []
+        while (value is not None or value != "" ) or (value or value[0]):
+            result = sheets_get_values.get_values(self.outFile,(("A").join(row)))
+            value = result.get("values",[])
+            row = row + 1
+        for i in range(row - 1):
+            result = sheets_get_values.get_values(self.outFile,(("A").join(i).join("F").join(i)))
+            arglist = result.get("values",[])
+            new = Assignment(arglist[0],arglist[1],arglist[4],arglist[5])
+            results.append(new)
+        return results
 
     def parse(self,file):
         with open(file, 'r') as f:
@@ -45,17 +70,16 @@ class Reader():
 
                 
 class Assignment():
-    def __init__(self,course,ID,assignment,date):
-        self.uid = uuid.uuid4()
+    def __init__(self,course,assignment,date,uid=uuid.uuid4()):
+        self.uid = uid
         self.name = assignment
         self.dueDate = date
         self.course = course
-        self.id = ID
     def alert(self):
         date = datetime.date.today()
         if self.dueDate - date < threshold: #This should be a global variable, probably pulled from a settings file?
             self.playAlarm() # Routine to play alarm noise
-
+    
 
 
         
