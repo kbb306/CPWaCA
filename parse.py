@@ -29,6 +29,15 @@ class Reader():
     
     def sync(self):
         self._import()
+        valueFound = False
+        for each in self.readToEnd():
+            for each2 in self.masterList:
+                if each2.uid == each.uid:
+                    valueFound = True
+                else:
+                    valueFound = False
+                if not valueFound:
+                    self.masterList.append(each2)
         self.export()
 
 
