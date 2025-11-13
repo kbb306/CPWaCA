@@ -45,7 +45,7 @@ class Reader():
         for i in range(row - 1):
             result = sheets_get_values.get_values(self.outFile,(("A").join(i).join("F").join(i)))
             arglist = result.get("values",[])
-            new = Assignment(arglist[0],arglist[1],arglist[4],arglist[5])
+            new = Assignment(arglist[0],arglist[1],arglist[3],arglist[4],arglist[5])
             results.append(new)
         return results
 
@@ -56,7 +56,7 @@ class Reader():
             if each == "BEGIN:VEVENT":
                 for key,value in each.split(":",1):
                     if (key == "END"):
-                        thing = Assignment(course,ID,assignment,date)
+                        thing = Assignment(course,assignment,status,date)
                         self.masterList.append(thing)
                     if key == "DTSTAMP":
                         date = value.strip()
@@ -66,11 +66,11 @@ class Reader():
                     elif key == "URL;VALUE=URI":
                         backhalf  = value.split("_")[2].split("&")[0]
                         ID = re.sub(r'[^0-9]','',backhalf)
-
+                    status = "Not Started"
 
                 
 class Assignment():
-    def __init__(self,course,assignment,date,uid=uuid.uuid4()):
+    def __init__(self,course,assignment,status,date,uid=uuid.uuid4()):
         self.uid = uid
         self.name = assignment
         self.dueDate = date
