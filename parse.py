@@ -81,7 +81,7 @@ class Reader():
                         backhalf  = value.split("_")[2].split("&")[0]
                         ID = re.sub(r'[^0-9]','',backhalf)
                     status = "Not Started"
-                    daysLeft = date - datetime.date,today()
+                    daysLeft = date - datetime.date.today()
 
                 
 class Assignment():
