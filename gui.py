@@ -48,12 +48,14 @@ class mainWindow:
         self.threshold.pack(pady=5)
     
     def APIin(self):
-        self.reader = parse.Reader(self.cAPI,self.gAPI,self.DriveFile)
+        self.reader = parse.Reader(self.cURL,self.gAPI,self.DriveFile)
     
     def on_thres_change(sv):
         current = sv.get()
         #This is where I would put the function to change the threshold, IF I HAD ONE!
 
+    def alert():
+        pass
     
 
 

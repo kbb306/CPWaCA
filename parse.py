@@ -5,12 +5,14 @@ import sheets_get_values
 import sheets_append_values #Do not remove, passed as string
 import re
 from urllib.request import urlretrieve
+threshold = 3
 class Reader():
     def __init__(self,inURL,outAPI,outFile=None,):
         self.inURL = inURL
         self.outAPI = outAPI
         self.outFile = outFile
         self.masterList = []
+        
         if outFile is None:
             pass #Use horrible Goggle APIs to create a new Sheets file
     def _import(self,url):
@@ -74,11 +76,13 @@ class Reader():
             if each == "BEGIN:VEVENT":
                 for key,value in each.split(":",1):
                     if (key == "END"):
-                        if ID:
+                        if ID and date:
                             thing = Assignment(course,assignment,status,daysLeft,date)
                             self.masterList.append(thing)
                     if key == "DTSTAMP":
                         date = value.strip()
+                        if date - datetime.date.today() < -(threshold):
+                            date = None
                     elif (key == "SUMMARY"):
                         assignment = value.strip().split("[")[0].strip("[]")
                         course = value.strip().split("[")[1].strip("[]")
@@ -97,7 +101,7 @@ class Assignment():
         self.dueDate = date
         self.daysLeft = daysLeft
         self.status = status
-    def alert(self,threshold):
+    def alert(self):
         if self.daysLeft < threshold: 
             return self.name
 
