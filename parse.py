@@ -94,7 +94,7 @@ class Assignment():
         self.status = status
     def alert(self):
         date = datetime.date.today()
-        if self.dueDate - date < threshold: #This should be a global variable, probably pulled from a settings file?
+        if self.daysLeft < threshold: #This should be a global variable, probably pulled from a settings file?
             self.playAlarm() # Routine to play alarm noise
 
     def upDate(self):
