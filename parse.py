@@ -58,6 +58,21 @@ class Reader():
             results.append(new)
         return results
 
+    def compare(list1,list2,attr,want,func):
+        valueFound = False
+        for each1 in list1:
+            for each2 in list2:
+                attr1 = getattr(each1, attr)
+                attr2 = getattr(each2, attr)
+                if attr2 == attr1:
+                    valueFound = True
+                else:
+                    valueFound = False
+                if valueFound == want:
+                    exec(func)
+
+
+
     def parse(self,file):
         with open(file, 'r') as f:
             rows = f.readlines()
