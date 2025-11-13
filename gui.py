@@ -1,6 +1,9 @@
 import globals
 import tkinter as tk
 import parse
+import schedule
+import time
+from watchpoints import watch
 class mainWindow:
     def __init__(self,root):
         self.root = root
@@ -14,6 +17,8 @@ class mainWindow:
         self.alertbutton.pack(root,pady=5)
         self.custbutton = tk.Button(root,text="Customize Spreadsheet")
         self.custbutton.pack(root,side=tk.LEFT,padx=10)
+        self.datecheck()
+        watch(globals.today,callback=self.onUpdate())
 
     def connwindow(self):
        self.connwin = tk.Toplevel(self.root)
@@ -48,6 +53,9 @@ class mainWindow:
         self.thresholdPrompt.pack(pady=5)
         self.threshold.pack(pady=5)
     
+    def alarm(self):
+        self.popup = tk.Toplevel(root)
+
     def APIin(self):
         self.reader = parse.Reader(self.cURL,self.gAPI,self.DriveFile)
     
@@ -55,9 +63,21 @@ class mainWindow:
         current = sv.get()
         #This is where I would put the function to change the threshold, IF I HAD ONE!
 
-    def alert():
-        pass
-    
+    def datecheck(self):
+        for each in self.reader.masterList:
+            each.upDate()
+            if globals.Alarm:
+                if each.alert() is not None:
+                    self.alarm()
+
+    def daily_check(self):
+        globals.today = globals.datetime.date.today()
+        
+    schedule.every().day().at("09:00").do(daily_check)
+
+    def onUpdate(self):
+        self.daily_check
+        self.reader.sync()
 
 
 if __name__ == "__main__":

@@ -101,10 +101,12 @@ class Assignment():
         self.dueDate = date
         self.daysLeft = daysLeft
         self.status = status
-        
+
     def alert(self):
         if self.daysLeft < globals.threshold: 
             return self.name
+        else:
+            return None
 
     def upDate(self):
         self.daysLeft = self.dueDate - globals.today
