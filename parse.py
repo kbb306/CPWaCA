@@ -17,27 +17,14 @@ class Reader():
          #This is where I need your Canvas API wizardry
          self.parse(inFile)
     def export(self):
-        valueFound = False
-        for each in self.masterList:
-            for each2 in self.readToEnd():
-                if each2.uid == each.uid:
-                    valueFound = True
-                else:
-                    valueFound = False
-                if not valueFound:
-                    sheets_append_values.append_values(self.outFile,"A5:F5","USER_ENTERED",[each.course,each.assignment,each.status,each.daysLeft,each.date])
+        self.compare(self.masterList,self.readToEnd(),"uid","uid",False,
+                     """sheets_append_values.append_values(self.outFile,"A5:F5","USER_ENTERED",[each.course,each.assignment,each.status,each.daysLeft,each.date]""")
+
+        
     
     def sync(self):
         self._import()
-        valueFound = False
-        for each in self.readToEnd():
-            for each2 in self.masterList:
-                if each2.uid == each.uid:
-                    valueFound = True
-                else:
-                    valueFound = False
-                if not valueFound:
-                    self.masterList.append(each2)
+        self.compare(self.readToEnd(),self.masterList,"uid","uid",False,"self.masterList.append(each2)")
         self.export()
 
 
@@ -58,7 +45,7 @@ class Reader():
             results.append(new)
         return results
 
-    def compare(list1,list2,attrone,attrtwo,want,func):
+    def compare(self,list1,list2,attrone,attrtwo,want,func):
         valueFound = False
         for each1 in list1:
             for each2 in list2:
