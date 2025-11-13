@@ -1,3 +1,4 @@
+import globals
 import uuid
 import datetime
 import sheets_update_values
@@ -5,7 +6,6 @@ import sheets_get_values
 import sheets_append_values #Do not remove, passed as string
 import re
 from urllib.request import urlretrieve
-threshold = 3
 class Reader():
     def __init__(self,inURL,outAPI,outFile=None,):
         self.inURL = inURL
@@ -81,7 +81,7 @@ class Reader():
                             self.masterList.append(thing)
                     if key == "DTSTAMP":
                         date = value.strip()
-                        if date - datetime.date.today() < -(threshold):
+                        if date - globals.today < -(globals.threshold):
                             date = None
                     elif (key == "SUMMARY"):
                         assignment = value.strip().split("[")[0].strip("[]")
@@ -90,7 +90,7 @@ class Reader():
                         backhalf  = value.split("_")[2].split("&")[0]
                         ID = re.sub(r'[^0-9]','',backhalf)
                     status = "Not Started"
-                    daysLeft = date - datetime.date.today()
+                    daysLeft = date - globals.today
 
                 
 class Assignment():
@@ -101,12 +101,13 @@ class Assignment():
         self.dueDate = date
         self.daysLeft = daysLeft
         self.status = status
+        
     def alert(self):
-        if self.daysLeft < threshold: 
+        if self.daysLeft < globals.threshold: 
             return self.name
 
     def upDate(self):
-        self.daysLeft = self.dueDate - datetime.date.today()
+        self.daysLeft = self.dueDate - globals.today
     
 
 

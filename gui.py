@@ -1,3 +1,4 @@
+import globals
 import tkinter as tk
 import parse
 class mainWindow:
