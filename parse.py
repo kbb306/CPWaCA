@@ -81,7 +81,7 @@ class Reader():
                         backhalf  = value.split("_")[2].split("&")[0]
                         ID = re.sub(r'[^0-9]','',backhalf)
                     status = "Not Started"
-                    daysLeft = date - datetime.date()
+                    daysLeft = date - datetime.date,today()
 
                 
 class Assignment():
@@ -96,6 +96,9 @@ class Assignment():
         date = datetime.date.today()
         if self.dueDate - date < threshold: #This should be a global variable, probably pulled from a settings file?
             self.playAlarm() # Routine to play alarm noise
+
+    def upDate(self):
+        self.daysLeft = self.dueDate - datetime.date.today()
     
 
 
