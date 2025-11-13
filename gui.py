@@ -19,6 +19,10 @@ class mainWindow:
         self.custbutton.pack(root,side=tk.LEFT,padx=10)
         self.datecheck()
         watch(globals.today,callback=self.onUpdate())
+        schedule.every().day().at("09:00").do(self.daily_check)
+        while True:
+            schedule.run_pending()
+            time.sleep(1)
 
     def connwindow(self):
        self.connwin = tk.Toplevel(self.root)
@@ -73,7 +77,7 @@ class mainWindow:
     def daily_check(self):
         globals.today = globals.datetime.date.today()
         
-    schedule.every().day().at("09:00").do(daily_check)
+   
 
     def onUpdate(self):
         self.daily_check
