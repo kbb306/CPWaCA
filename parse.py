@@ -25,7 +25,7 @@ class Reader():
                 else:
                     valueFound = False
                 if not valueFound:
-                    sheets_append_values.append_values(self.outFile,"A5:F5","USER_ENTERED",[each.course,each.assignment])
+                    sheets_append_values.append_values(self.outFile,"A5:F5","USER_ENTERED",[each.course,each.assignment,each.status,each.daysLeft,each.date])
     
     def sync(self):
         self._import()
