@@ -2,7 +2,7 @@ import uuid
 import datetime
 import sheets_update_values
 import sheets_get_values
-import sheets_append_values
+import sheets_append_values #Do not remove, passed as string
 import re
 # Note: Do we need tkinter imported here to create a window,or can we get it from the gui.py file that imports this one?
 class Reader():
@@ -45,6 +45,8 @@ class Reader():
             new = Assignment(arglist[0],arglist[1],arglist[2],arglist[3],arglist[4],arglist[5])
             results.append(new)
         return results
+    
+    
 
     def compare(self,list1,list2,attrone,attrtwo,want,func):
         valueFound = False
