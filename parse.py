@@ -4,17 +4,17 @@ import sheets_update_values
 import sheets_get_values
 import sheets_append_values #Do not remove, passed as string
 import re
-# Note: Do we need tkinter imported here to create a window,or can we get it from the gui.py file that imports this one?
+import requests
 class Reader():
-    def __init__(self,inAPI,outAPI,outFile=None,):
-        self.inAPI = inAPI
+    def __init__(self,inURL,outAPI,outFile=None,):
+        self.inURL = inURL
         self.outAPI = outAPI
         self.outFile = outFile
         self.masterList = []
         if outFile is None:
             pass #Use horrible Goggle APIs to create a new Sheets file
     def _import(self):
-         #This is where I need your Canvas API wizardry
+         
          self.parse(inFile)
     def export(self):
         self.compare(self.masterList,self.readToEnd(),"uid","uid",False,
@@ -70,8 +70,9 @@ class Reader():
             if each == "BEGIN:VEVENT":
                 for key,value in each.split(":",1):
                     if (key == "END"):
-                        thing = Assignment(course,assignment,status,daysLeft,date)
-                        self.masterList.append(thing)
+                        if ID:
+                            thing = Assignment(course,assignment,status,daysLeft,date)
+                            self.masterList.append(thing)
                     if key == "DTSTAMP":
                         date = value.strip()
                     elif (key == "SUMMARY"):
@@ -94,7 +95,7 @@ class Assignment():
         self.status = status
     def alert(self):
         if self.daysLeft < threshold: #This should be a global variable, probably pulled from a settings file?
-            self.playAlarm() # Routine to play alarm noise
+            return self.name
 
     def upDate(self):
         self.daysLeft = self.dueDate - datetime.date.today()
