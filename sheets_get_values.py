@@ -27,7 +27,7 @@ def get_values(spreadsheet_id, range_name):
   TODO(developer) - See https://developers.google.com/identity
   for guides on implementing OAuth2 for the application.
   """
-  creds, _ = authorize.authcheck()
+  creds = authorize.authcheck()
   # pylint: disable=maybe-no-member
   try:
     service = build("sheets", "v4", credentials=creds)
