@@ -1,4 +1,4 @@
 import datetime
-today = datetime.date.today().day
+today = datetime.date.today()
 Alarm = True
 threshold = 3
