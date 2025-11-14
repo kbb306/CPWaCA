@@ -80,7 +80,7 @@ class mainWindow:
    
 
     def onUpdate(self):
-        self.daily_check
+        self.daily_check()
         self.reader.sync()
 
 
