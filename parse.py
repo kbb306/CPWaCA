@@ -105,12 +105,12 @@ class Reader():
                         datein = value.strip()
                         print("Found date!")
                         date = (datetime.datetime.strptime(datein,"%Y%m%dT%H%M%SZ")).date()
-                        
+                        print((date - globals.today))
                         if (date - globals.today).days < -(globals.threshold):
                             date = None
                             print("Assignment is too overdue, skipping.")
                             foundEv = False
-                            #continue
+                            continue
                         
                     elif (key == "SUMMARY"):
                         assignment = value.strip().split("[")[0].strip("[]")
@@ -121,6 +121,7 @@ class Reader():
                     status = "Not Started"
                     if date is not None:
                         daysLeft = (date - globals.today).days
+                        print(daysLeft)
             except Exception as e:
                 print("Failed to parse", (each.split(":",1)[1]),e,traceback.print_exc())
                 break
