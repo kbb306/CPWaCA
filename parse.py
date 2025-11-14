@@ -82,31 +82,31 @@ class Reader():
             else:
                 foundEv = False
             try:
-                for key,value in each.split(":",1):
-                    if foundEv:
-                        if (key == "END"):
-                            if ID and date:
-                                print("Adding assignment!")
-                                thing = Assignment(course,assignment,status,daysLeft,date)
-                                self.masterList.append(thing)
-                            else: print("Event is not assignment, skipping.")
-                        if key == "DTSTAMP":
-                            date = value.strip()
-                            print("Found date!")
-                            if date - globals.today < -(globals.threshold):
-                                date = None
-                                print("Assignment is too overdue, skipping.")
-                        elif (key == "SUMMARY"):
-                            assignment = value.strip().split("[")[0].strip("[]")
-                            print("Found assignment name!")
-                            course = value.strip().split("[")[1].strip("[]")
-                            print("Foud assignment course!")
-                        elif "#assignment" in key:
-                            half = key.split("&",1)
-                            ID = re.sub(r'[^0-9]','',half)
-                            
-                        status = "Not Started"
-                        daysLeft = datetime.datetime.fromtimestamp(date).day() - globals.today
+                key, value = each.split(":",1)
+                if foundEv:
+                    if (key == "END"):
+                        if ID and date:
+                            print("Adding assignment!")
+                            thing = Assignment(course,assignment,status,daysLeft,date)
+                            self.masterList.append(thing)
+                        else: print("Event is not assignment, skipping.")
+                    if key == "DTSTAMP":
+                        date = value.strip()
+                        print("Found date!")
+                        if date - globals.today < -(globals.threshold):
+                            date = None
+                            print("Assignment is too overdue, skipping.")
+                    elif (key == "SUMMARY"):
+                        assignment = value.strip().split("[")[0].strip("[]")
+                        print("Found assignment name!")
+                        course = value.strip().split("[")[1].strip("[]")
+                        print("Foud assignment course!")
+                    elif "#assignment" in key:
+                        half = key.split("&",1)
+                        ID = re.sub(r'[^0-9]','',half)
+                        
+                    status = "Not Started"
+                    daysLeft = datetime.datetime.fromtimestamp(date).day() - globals.today
             except Exception as e:
                 print("Failed to parse", (each.split(":",1)),e)
                 
