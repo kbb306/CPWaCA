@@ -96,18 +96,21 @@ class Reader():
                         key, value = each.split(":",1)
                     #print(key)
                     if (key == "END"):
-                        if ID and date != 0:
+                        if ID  is not None and date is not None:
                             print("Adding assignment!")
                             thing = Assignment(course,assignment,status,daysLeft,date)
                             self.masterList.append(thing)
                             foundEv = False
                         
                     if key == "DTSTAMP":
-                        date = value.strip()
+                        datein = value.strip()
                         print("Found date!")
-                        if (datetime.datetime.strptime(date,"%Y%m%dT%H%M%SZ") - globals.today).days < -(globals.threshold):
+                        date = datetime.datetime.strptime(datein,"%Y%m%dT%H%M%SZ")
+                        print(date)
+                        if (date - globals.today).days < -(globals.threshold):
                             date = None
                             print("Assignment is too overdue, skipping.")
+                        
                     elif (key == "SUMMARY"):
                         assignment = value.strip().split("[")[0].strip("[]")
                         print("Found assignment name!")
@@ -116,7 +119,7 @@ class Reader():
                         
                     status = "Not Started"
                     if date is not None:
-                        daysLeft = (datetime.datetime.strptime(date,"%Y%m%dT%H%M%SZ") - globals.today).days
+                        daysLeft = (date - globals.today).days
             except Exception as e:
                 print("Failed to parse", (each.split(":",1)[1]),e,traceback.print_exc())
                 break
@@ -126,7 +129,7 @@ class Assignment():
         self.uid = uid
         self.course = course
         self.name = assignment
-        self.dueDate = datetime.datetime.strptime(date,"%Y%m%dT%H%M%SZ")
+        self.dueDate = date
         self.daysLeft = daysLeft
         self.status = status
 
