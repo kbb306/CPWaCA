@@ -82,8 +82,7 @@ class Reader():
                     print("Found event!")
                     foundEv = True
                     date= None
-                
-                    
+  
                 
                 
                 if foundEv:
@@ -91,11 +90,11 @@ class Reader():
                         half = each.split("&",1)[0]
                         ID = re.sub(r'[^0-9]','',half)
                         print("Found course ID:",ID)
-                    elif ":" in each:
+                    if ":" in each:
                         key, value = each.split(":",1)
                     #print(key)
                     if (key == "END"):
-                        if ID  is not None and date is not None:
+                        if (ID  is not None and date is not None) or ID != 1193172:
                             print("Adding assignment!")
                             thing = Assignment(course,assignment,status,daysLeft,date)
                             self.masterList.append(thing)
@@ -113,15 +112,19 @@ class Reader():
                             continue
                         
                     elif (key == "SUMMARY"):
-                        assignment = value.strip().split("[")[0].strip("[]")
-                        print("Found assignment name!")
-                        course = value.strip().split("[")[1].strip("[]")
-                        print("Found assignment course!")
+                        if "[" in value:
+                            assignment = value.strip().split("[")[0].strip("[]")
+                            print("Found assignment name!")
+                            course = value.strip().split("[")[1].strip("[]")
+                            print("Found assignment course!")
+                        else:
+                            print("Not an assignment, skipping")
+                            continue
                         
                     status = "Not Started"
                     if date is not None:
                         daysLeft = (date - globals.today).days
-                        print(daysLeft)
+                        #print(daysLeft)
             except Exception as e:
                 print("Failed to parse", (each.split(":",1)[1]),e,traceback.print_exc())
                 break
