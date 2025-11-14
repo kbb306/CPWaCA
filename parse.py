@@ -71,14 +71,19 @@ class Reader():
                     exec(func)
 
     def deduplicate(self):
-        uids = []
-        dupes =[]
-        for each in self.masterList:
-            if each.uid in uids:
-                dupes.append(each)
-            uids.append(each.uid)
-            dupes.sort(key=lambda x: (x.uid, x.dueDate))
-            
+            todelete =[]
+            groups = [list(g) for _, g in groupby(self.masterList, key=lambda x: x.uid)]
+            for each in groups:
+                each.sort(key=lambda x: (x.duedate))
+                latest = each[-1]
+                for day in each:
+                    if day.dueDate < latest:
+                        todelete.append(day)
+            for each in todelete:
+                ind = self.masterList.index(each)
+                del(self.masterList[ind])
+                
+
 
     
         
