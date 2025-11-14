@@ -30,10 +30,6 @@ class mainWindow:
        self.gAPI = tk.StringVar()
        self.cURL = tk.StringVar()
        self.DriveFile = tk.StringVar()
-       self.Gprompt = tk.Label(self.connwin,text="Enter Google API key:")
-       self.Gprompt.pack(pady=5)
-       self.Gentry = tk.Entry(self.connwin,textvariable=self.gAPI)
-       self.Gentry.pack(pady=5)
        self.Cprompt = tk.Label(self.connwin, text="Enter canvas URL:")
        self.Cprompt.pack(pady=5)
        self.Centry = tk.Entry(self.connwin,textvariable=self.cURL)
@@ -61,7 +57,7 @@ class mainWindow:
         self.popup = tk.Toplevel(root)
 
     def APIin(self):
-        self.reader = parse.Reader(self.cURL,self.gAPI,self.DriveFile)
+        self.reader = parse.Reader(self.cURL.get(),self.DriveFile.get())
     
     def on_thres_change(sv):
         current = sv.get()

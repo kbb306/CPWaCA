@@ -10,7 +10,7 @@ from googleapiclient.errors import HttpError
 SCOPES = ["https://www.googleapis.com/auth/spreadsheets",
           "https://www.googleapis.com/auth/drive"]
 
-# The ID and range of a sample spreadsheet.
+
 
 
 
@@ -34,5 +34,5 @@ def authcheck():
     # Save the credentials for the next run
     with open("token.json", "w") as token:
       token.write(creds.to_json())
-    return creds
+  return creds
  

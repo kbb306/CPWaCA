@@ -8,9 +8,8 @@ import re
 from urllib.request import urlretrieve
 import traceback;
 class Reader():
-    def __init__(self,inURL,outAPI,outFile=None,):
+    def __init__(self,inURL,outFile=None,):
         self.inURL = inURL
-        self.outAPI = outAPI
         self.outFile = outFile
         self.masterList = []
         
@@ -23,8 +22,8 @@ class Reader():
 
         except Exception as e:
             print("Error downloading file:" + e)
-
         self.parse("Schedule.ical")
+
     def export(self):
         self.compare(self.masterList,self.readToEnd(),"uid","uid",False,
                      """sheets_append_values.append_values(self.outFile,"A5:F5","USER_ENTERED",[each.course,each.assignment,each.status,each.daysLeft,each.date]""")
