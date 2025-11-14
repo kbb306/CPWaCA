@@ -90,7 +90,7 @@ class Reader():
                         backhalf  = value.split("_")[2].split("&")[0]
                         ID = re.sub(r'[^0-9]','',backhalf)
                     status = "Not Started"
-                    daysLeft = datetime.datetime.fromtimestamp(date) - globals.today
+                    daysLeft = datetime.datetime.fromtimestamp(date).day() - globals.today
 
                 
 class Assignment():
@@ -109,7 +109,7 @@ class Assignment():
             return None
 
     def upDate(self):
-        self.daysLeft = self.dueDate - globals.today
+        self.daysLeft = self.dueDate.day() - globals.today
     
 
 

@@ -75,7 +75,7 @@ class mainWindow:
                     self.alarm()
 
     def daily_check(self):
-        globals.today = globals.datetime.date.today()
+        globals.today = globals.datetime.date.today().day()
         
    
 
