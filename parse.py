@@ -110,7 +110,7 @@ class Reader():
                             date = None
                             print("Assignment is too overdue, skipping.")
                             foundEv = False
-                            continue
+                            #continue
                         
                     elif (key == "SUMMARY"):
                         assignment = value.strip().split("[")[0].strip("[]")
