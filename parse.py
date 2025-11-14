@@ -7,6 +7,7 @@ import sheets_append_values #Do not remove, passed as string
 import re
 from urllib.request import urlretrieve
 import traceback;
+from itertools import groupby
 class Reader():
     def __init__(self,inURL,outFile=None,):
         self.inURL = inURL
@@ -69,7 +70,19 @@ class Reader():
                 if valueFound == want:
                     exec(func)
 
+    def deduplicate(self):
+        uids = []
+        dupes =[]
+        for each in self.masterList:
+            if each.uid in uids:
+                dupes.append(each)
+            uids.append(each.uid)
+            dupes.sort(key=lambda x: (x.uid, x.dueDate))
+            
 
+    
+        
+        
 
     def parse(self,file):
         foundEv = False
@@ -90,13 +103,16 @@ class Reader():
                         half = each.split("&",1)[0]
                         ID = re.sub(r'[^0-9]','',half)
                         print("Found course ID:",ID)
+                        uid = each.split("#",1)
                     if ":" in each:
                         key, value = each.split(":",1)
                     #print(key)
                     if (key == "END"):
-                        if (ID  is not None and date is not None) or ID != 1193172:
+                        if (ID  is not None and date is not None): 
+                            if ID == 1193172:
+                                continue
                             print("Adding assignment!")
-                            thing = Assignment(course,assignment,status,daysLeft,date)
+                            thing = Assignment(course,assignment,status,daysLeft,date,uid)
                             self.masterList.append(thing)
                             foundEv = False
                         
@@ -128,9 +144,9 @@ class Reader():
             except Exception as e:
                 print("Failed to parse", (each.split(":",1)[1]),e,traceback.print_exc())
                 break
-                
+            self.deduplicate()    
 class Assignment():
-    def __init__(self,course,assignment,status,daysLeft,date,uid=uuid.uuid4()):
+    def __init__(self,course,assignment,status,daysLeft,date,uid):
         self.uid = uid
         self.course = course
         self.name = assignment
