@@ -101,10 +101,10 @@ class Reader():
                             self.masterList.append(thing)
                             foundEv = False
                         
-                    if key == "DTSTAMP":
+                    if key == "DTSTART;VALUE=DATE;VALUE=DATE":
                         datein = value.strip()
                         print("Found date!")
-                        date = (datetime.datetime.strptime(datein,"%Y%m%dT%H%M%SZ")).date()
+                        date = (datetime.datetime.strptime(datein,"%Y%m%d")).date()
                         print((date - globals.today))
                         if (date - globals.today).days < -(globals.threshold):
                             date = None
