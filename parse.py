@@ -105,7 +105,7 @@ class Reader():
                         datein = value.strip()
                         print("Found date!")
                         date = (datetime.datetime.strptime(datein,"%Y%m%d")).date()
-                        print((date - globals.today))
+                        #print((date - globals.today))
                         if (date - globals.today).days < -(globals.threshold):
                             date = None
                             print("Assignment is too overdue, skipping.")
