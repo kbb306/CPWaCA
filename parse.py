@@ -98,7 +98,7 @@ class Assignment():
         self.uid = uid
         self.course = course
         self.name = assignment
-        self.dueDate = date
+        self.dueDate = datetime.datetime.fromtimestamp(date)
         self.daysLeft = daysLeft
         self.status = status
 
