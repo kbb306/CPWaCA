@@ -82,7 +82,7 @@ class Reader():
                 if each == "BEGIN:VEVENT":
                     print("Found event!")
                     foundEv = True
-                    date= 0
+                    date= None
                 
                     
                 
@@ -105,11 +105,13 @@ class Reader():
                     if key == "DTSTAMP":
                         datein = value.strip()
                         print("Found date!")
-                        date = datetime.datetime.strptime(datein,"%Y%m%dT%H%M%SZ")
-                        print(date)
+                        date = (datetime.datetime.strptime(datein,"%Y%m%dT%H%M%SZ")).date()
+                        
                         if (date - globals.today).days < -(globals.threshold):
                             date = None
                             print("Assignment is too overdue, skipping.")
+                            foundEv = False
+                            continue
                         
                     elif (key == "SUMMARY"):
                         assignment = value.strip().split("[")[0].strip("[]")
