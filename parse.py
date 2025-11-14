@@ -81,7 +81,7 @@ class Reader():
                 foundEv = True
             else:
                 foundEv = False
-                print(each.split(":",1))
+            print(each.split(":",1))
             for key,value in each.split(":",1):
                 if foundEv:
                     if (key == "END"):
