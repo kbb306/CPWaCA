@@ -9,11 +9,11 @@ class mainWindow:
         self.root = root
         self.root.title("Calendar Parser Without a Cool Acronym")
         self.root.geometry("400x300")
-        self.keybutton = tk.Button(root,text="Connect Accounts",command=self.connwindow())
+        self.keybutton = tk.Button(root,text="Connect Accounts",command=self.connwindow)
         self.keybutton.pack(side=tk.RIGHT, padx=5)
-        self.syncbutton = tk.Button(root,text="Force Update" ,command=self.reader.sync())
+        self.syncbutton = tk.Button(root,text="Force Update" ,command=self.sync)
         self.syncbutton.pack(side=tk.RIGHT,padx=5)
-        self.alertbutton = tk.Button(root,text="Alert Settings",command=self.alertsettings())
+        self.alertbutton = tk.Button(root,text="Alert Settings",command=self.alertsettings)
         self.alertbutton.pack(root,pady=5)
         self.custbutton = tk.Button(root,text="Customize Spreadsheet")
         self.custbutton.pack(root,side=tk.LEFT,padx=10)
@@ -77,7 +77,13 @@ class mainWindow:
 
     def onUpdate(self):
         self.daily_check()
-        self.reader.sync()
+        self.sync()
+    
+    def sync(self):
+        try:
+            self.reader.sync()
+        except:
+            print("No reader class yet.")
 
 
 if __name__ == "__main__":
