@@ -14,9 +14,9 @@ class mainWindow:
         self.syncbutton = tk.Button(root,text="Force Update" ,command=self.sync)
         self.syncbutton.pack(side=tk.RIGHT,padx=5)
         self.alertbutton = tk.Button(root,text="Alert Settings",command=self.alertsettings)
-        self.alertbutton.pack(root,pady=5)
+        self.alertbutton.pack(pady=5)
         self.custbutton = tk.Button(root,text="Customize Spreadsheet")
-        self.custbutton.pack(root,side=tk.LEFT,padx=10)
+        self.custbutton.pack(side=tk.LEFT,padx=10)
         self.datecheck()
         watch(globals.today,callback=self.onUpdate())
         schedule.every().day().at("09:00").do(self.daily_check)
@@ -64,11 +64,14 @@ class mainWindow:
         #This is where I would put the function to change the threshold, IF I HAD ONE!
 
     def datecheck(self):
-        for each in self.reader.masterList:
-            each.upDate()
-            if globals.Alarm:
-                if each.alert() is not None:
-                    self.alarm()
+        try:
+            for each in self.reader.masterList:
+                each.upDate()
+                if globals.Alarm:
+                    if each.alert() is not None:
+                        self.alarm()
+        except:
+            self.connwindow()
 
     def daily_check(self):
         globals.today = globals.datetime.date.today()
@@ -84,6 +87,7 @@ class mainWindow:
             self.reader.sync()
         except:
             print("No reader class yet.")
+            self.connwindow()
 
 
 if __name__ == "__main__":
