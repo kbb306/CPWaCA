@@ -39,6 +39,15 @@ class mainWindow:
             self.syncSettings()
             root.destroy()
    
+    def syncSettings(self):
+        for name in globals:
+            try:
+                self.fileFuckery("write","settings.ini","settings",name)
+            except ValueError:
+                self.fileFuckery("write","settings.ini","keys",name)
+            finally:
+                print("Error",name,"not found in globals")
+
     def run_sched(self):
         schedule.run_pending()
         self.root.after(1000, self.run_sched)
