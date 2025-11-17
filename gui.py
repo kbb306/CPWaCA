@@ -2,7 +2,6 @@ import globals
 import tkinter as tk
 import parse
 import schedule
-import time
 from watchpoints import watch
 class mainWindow:
     def __init__(self,root):
@@ -10,7 +9,7 @@ class mainWindow:
         self.root.title("Calendar Parser Without a Cool Acronym")
         self.root.geometry("400x300")
         self.keybutton = tk.Button(root,text="Connect Accounts",command=self.connwindow)
-        self.keybutton.pack(side=tk.RIGHT, padx=5)
+        self.keybutton.pack(side=tk.LEFT, padx=5)
         self.syncbutton = tk.Button(root,text="Force Update" ,command=self.sync)
         self.syncbutton.pack(side=tk.RIGHT,padx=5)
         self.alertbutton = tk.Button(root,text="Alert Settings",command=self.alertsettings)
@@ -21,6 +20,9 @@ class mainWindow:
         watch(globals.today,callback=self.onUpdate())
         schedule.every().day.at("09:00").do(self.daily_check)
         self.run_sched()
+
+    def fileFuckery(self,command,file,lookfor):
+        pass
             
     def run_sched(self):
         schedule.run_pending()
@@ -59,7 +61,17 @@ class mainWindow:
         self.popup = tk.Toplevel(root)
 
     def APIin(self):
-        self.reader = parse.Reader(self.cURL.get(),self.DriveFile.get())
+        cURL = self.cURL.get()
+        DriveFile = self.DriveFile.get()
+        if cURL is None or DriveFile is None:
+            try: 
+                 cURL = self.fileFuckery("read","keys.ini","cURL")
+                 DriveFile = self.fileFuckery("read","keys.ini","DriveFile")
+            except:
+                self.connwindow()
+        self.reader = parse.Reader(cURL,DriveFile)
+        self.fileFuckery("write","keys.ini","cURL")
+        self.fileFuckery("wrire","keys.ini","DriveFile")
     
     def on_thres_change(sv):
         current = sv.get()
@@ -73,7 +85,7 @@ class mainWindow:
                     if each.alert() is not None:
                         self.alarm()
         except:
-            self.connwindow()
+            self.APIin()
 
     def daily_check(self):
         globals.today = globals.datetime.date.today()
@@ -89,7 +101,7 @@ class mainWindow:
             self.reader.sync()
         except:
             print("No reader class yet.")
-            self.connwindow()
+            self.APIin()
 
 
 if __name__ == "__main__":
