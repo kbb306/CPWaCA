@@ -8,6 +8,7 @@ class mainWindow:
     def __init__(self,root):
         self.root = root
         self.root.title("Calendar Parser Without a Cool Acronym")
+        root.protocol("WM_DELETE_WINDOW",self.shutdown)
         self.root.geometry("400x300")
         self.keybutton = tk.Button(root,text="Connect Accounts",command=self.connwindow)
         self.keybutton.pack(side=tk.LEFT, padx=5)
@@ -32,6 +33,11 @@ class mainWindow:
              config[section][lookfor] = changeTo
              with open(file,'w') as f:
                  config.write(f)
+
+    def shutdown(self):
+        if tk.messagebox.askokcancel("Quit","Do you want to quit? This will disable alerts!"):
+            self.syncSettings()
+            root.destroy()
    
     def run_sched(self):
         schedule.run_pending()
