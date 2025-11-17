@@ -3,6 +3,7 @@ import tkinter as tk
 import parse
 import schedule
 from watchpoints import watch
+import configparser
 class mainWindow:
     def __init__(self,root):
         self.root = root
@@ -21,9 +22,17 @@ class mainWindow:
         schedule.every().day.at("09:00").do(self.daily_check)
         self.run_sched()
 
-    def fileFuckery(self,command,file,lookfor):
-        pass
-            
+    def fileFuckery(self,command,file,section,lookfor,changeTo=None):
+         config = configparser.ConfigParser()
+         config.read(file)
+         if command == "read":
+             result = config[section][lookfor]
+             return result
+         elif command == "write":
+             config[section][lookfor] = changeTo
+             with open(file,'w') as f:
+                 config.write(f)
+   
     def run_sched(self):
         schedule.run_pending()
         self.root.after(1000, self.run_sched)
@@ -70,8 +79,8 @@ class mainWindow:
             except:
                 self.connwindow()
         self.reader = parse.Reader(cURL,DriveFile)
-        self.fileFuckery("write","keys.ini","cURL")
-        self.fileFuckery("wrire","keys.ini","DriveFile")
+        self.fileFuckery("write","keys.ini","keys","cURL",cURL)
+        self.fileFuckery("wrire","keys.ini","keys","DriveFile",DriveFile)
     
     def on_thres_change(sv):
         current = sv.get()
