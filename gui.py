@@ -19,10 +19,12 @@ class mainWindow:
         self.custbutton.pack(side=tk.LEFT,padx=10)
         self.datecheck()
         watch(globals.today,callback=self.onUpdate())
-        schedule.every().day().at("09:00").do(self.daily_check)
-        while True:
-            schedule.run_pending()
-            time.sleep(1)
+        schedule.every().day.at("09:00").do(self.daily_check)
+        self.run_sched()
+            
+    def run_sched(self):
+        schedule.run_pending()
+        self.root.after(1000, self.run_sched)
 
     def connwindow(self):
        self.connwin = tk.Toplevel(self.root)
