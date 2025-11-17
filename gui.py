@@ -79,12 +79,13 @@ class mainWindow:
             except:
                 self.connwindow()
         self.reader = parse.Reader(cURL,DriveFile)
-        self.fileFuckery("write","keys.ini","keys","cURL",cURL)
-        self.fileFuckery("wrire","keys.ini","keys","DriveFile",DriveFile)
+        self.fileFuckery("write","settings.ini","keys","cURL",cURL)
+        self.fileFuckery("wrire","settings.ini","keys","DriveFile",DriveFile)
     
-    def on_thres_change(sv):
+    def on_thres_change(self,sv):
         current = sv.get()
-        #This is where I would put the function to change the threshold, IF I HAD ONE!
+        globals.threshold = current
+        self.fileFuckery("write","settings.ini","settings","threshold",globals.threshold)
 
     def datecheck(self):
         try:
