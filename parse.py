@@ -74,11 +74,12 @@ class Reader():
             todelete =[]
             groups = [list(g) for _, g in groupby(self.masterList, key=lambda x: x.uid)]
             for each in groups:
-                each.sort(key=lambda x: (x.dueDate))
-                latest = each[-1].dueDate
-                for day in each:
-                    if day.dueDate < latest:
-                        todelete.append(day)
+                if len(each) > globals.tooMany:
+                    each.sort(key=lambda x: (x.dueDate))
+                    latest = each[-1].dueDate
+                    for day in each:
+                        if day.dueDate < latest:
+                            todelete.append(day)
             for each in todelete:
                 ind = self.masterList.index(each)
                 del(self.masterList[ind])
