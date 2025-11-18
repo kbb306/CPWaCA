@@ -20,8 +20,17 @@ class mainWindow:
         self.custbutton.pack(side=tk.LEFT,padx=10)
         self.datecheck()
         watch(globals.today,callback=self.onUpdate())
+        schedule.every().minutes.at(":30").do({self.sync})
         schedule.every().day.at("09:00").do(self.daily_check)
         self.run_sched()
+
+
+    def sync(self):
+        self.syncSettings()
+        try:
+            self.reader.sync()
+        except:
+            print("Warning, no reader class yet.")
 
     def fileFuckery(self,command,file,section,lookfor,changeTo=None):
          config = configparser.ConfigParser()
@@ -39,14 +48,26 @@ class mainWindow:
             self.syncSettings()
             root.destroy()
    
-    def syncSettings(self):
+    def syncSettings(self,command):
         for name in globals:
+            
+            var = getattr(globals,name)
+     
             try:
-                self.fileFuckery("write","settings.ini","settings",name)
+                self.fileFuckery(command,"settings.ini","settings",name,var)
             except ValueError:
-                self.fileFuckery("write","settings.ini","keys",name)
+                self.fileFuckery(command,"settings.ini","keys",name,var)
             finally:
-                print("Error",name,"not found in globals")
+                raise ValueError("Error",name,"not found in ini")
+            
+        cURL = self.fileFuckery(command,"settings.ini","keys","cURL",self.reader.inURL)
+        DriveFile = self.fileFuckery(command,"settings.ini","keys","DriveFile",self.reader.outFile)
+        if cURL is not None and DriveFile is not None:
+            try:
+                self.reader.inURL = cURL
+                self.reader.outFile = DriveFile
+            except:
+                print("Warning: file vars not set!")
 
     def run_sched(self):
         schedule.run_pending()
