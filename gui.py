@@ -106,8 +106,12 @@ class mainWindow:
         self.popup = tk.Toplevel(root)
 
     def APIin(self):
-        cURL = self.cURL.get()
-        DriveFile = self.DriveFile.get()
+        try: 
+            cURL = self.cURL.get()
+            DriveFile = self.DriveFile.get()
+        except:
+            cURL = None
+            DriveFile = None
         if cURL is None or DriveFile is None:
             try: 
                  cURL = self.fileFuckery("read","keys.ini","cURL")
