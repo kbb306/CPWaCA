@@ -2,6 +2,7 @@ import globals
 import uuid
 import datetime
 import sheets_update_values
+import sheets_create
 import sheets_get_values
 import sheets_append_values #Do not remove, passed as string
 import re
@@ -15,7 +16,7 @@ class Reader():
         self.masterList = []
         
         if outFile is None:
-            pass #Use horrible Goggle APIs to create a new Sheets file
+            sheets_create.create("Calendar")
     def _import(self):
         try:
             urlretrieve(self.inURL,"Schedule.ical")
