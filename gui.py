@@ -20,7 +20,7 @@ class mainWindow:
         self.custbutton.pack(side=tk.LEFT,padx=10)
         self.datecheck()
         watch(globals.today,callback=self.onUpdate)
-        schedule.every().minutes.at(":30").do({self.sync})
+        schedule.every().minutes.at(":30").do(self.sync)
         schedule.every().day.at("09:00").do(self.daily_check)
         self.run_sched()
 
