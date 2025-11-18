@@ -54,16 +54,20 @@ class mainWindow:
     def syncSettings(self, command):
     # Save values TO ini
         if command == "write":
+            self.fileFuckery("write","settings.ini","settings","alarm",globals.Alarm)
             self.fileFuckery("write", "settings.ini", "settings", "threshold", globals.threshold)
             self.fileFuckery("write", "settings.ini", "keys", "cURL", self.reader.inURL)
             self.fileFuckery("write", "settings.ini", "keys", "DriveFile", self.reader.outFile)
 
         # Load values FROM ini
         elif command == "read":
+            Alarm = self.fileFuckery("read","settings.ini","settings","Alarm")
             threshold = self.fileFuckery("read", "settings.ini", "settings", "threshold")
             cURL      = self.fileFuckery("read", "settings.ini", "keys", "cURL")
             DriveFile = self.fileFuckery("read", "settings.ini", "keys", "DriveFile")
-
+            if Alarm:
+                globals.Alarm = Alarm
+                
             if threshold is not None:
                 globals.threshold = int(threshold)
 
