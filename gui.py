@@ -41,7 +41,7 @@ class mainWindow:
              result = config[section][lookfor]
              return result
          elif command == "write":
-             config[section][lookfor] = changeTo
+             config[section][lookfor] = str(changeTo)
              with open(file,'w') as f:
                  config.write(f)
 
