@@ -35,6 +35,8 @@ class mainWindow:
     def fileFuckery(self,command,file,section,lookfor,changeTo=None):
          config = configparser.ConfigParser()
          config.read(file)
+         if section not in config:
+             config.add_section(section)
          if command == "read":
              result = config[section][lookfor]
              return result
@@ -48,26 +50,28 @@ class mainWindow:
             self.syncSettings()
             root.destroy()
    
-    def syncSettings(self,command):
-        for name in globals:
-            
-            var = getattr(globals,name)
-     
-            try:
-                self.fileFuckery(command,"settings.ini","settings",name,var)
-            except ValueError:
-                self.fileFuckery(command,"settings.ini","keys",name,var)
-            finally:
-                raise ValueError("Error",name,"not found in ini")
-            
-        cURL = self.fileFuckery(command,"settings.ini","keys","cURL",self.reader.inURL)
-        DriveFile = self.fileFuckery(command,"settings.ini","keys","DriveFile",self.reader.outFile)
-        if cURL is not None and DriveFile is not None:
-            try:
+    def syncSettings(self, command):
+    # Save values TO ini
+        if command == "write":
+            self.fileFuckery("write", "settings.ini", "settings", "threshold", globals.threshold)
+            self.fileFuckery("write", "settings.ini", "keys", "cURL", self.reader.inURL)
+            self.fileFuckery("write", "settings.ini", "keys", "DriveFile", self.reader.outFile)
+
+        # Load values FROM ini
+        elif command == "read":
+            threshold = self.fileFuckery("read", "settings.ini", "settings", "threshold")
+            cURL      = self.fileFuckery("read", "settings.ini", "keys", "cURL")
+            DriveFile = self.fileFuckery("read", "settings.ini", "keys", "DriveFile")
+
+            if threshold is not None:
+                globals.threshold = int(threshold)
+
+            if cURL:
                 self.reader.inURL = cURL
+
+            if DriveFile:
                 self.reader.outFile = DriveFile
-            except:
-                print("Warning: file vars not set!")
+
 
     def run_sched(self):
         schedule.run_pending()
@@ -114,13 +118,13 @@ class mainWindow:
             DriveFile = None
         if cURL is None or DriveFile is None:
             try: 
-                 cURL = self.fileFuckery("read","keys.ini","cURL")
-                 DriveFile = self.fileFuckery("read","keys.ini","DriveFile")
+                 cURL = self.fileFuckery("read","settings.ini","keys","cURL")
+                 DriveFile = self.fileFuckery("read","settings.ini","keys","DriveFile")
             except:
                 self.connwindow()
         self.reader = parse.Reader(cURL,DriveFile)
         self.fileFuckery("write","settings.ini","keys","cURL",cURL)
-        self.fileFuckery("wrire","settings.ini","keys","DriveFile",DriveFile)
+        self.fileFuckery("write","settings.ini","keys","DriveFile",DriveFile)
     
     def on_thres_change(self,sv):
         current = sv.get()
