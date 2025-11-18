@@ -1,5 +1,6 @@
 import globals
 import tkinter as tk
+import tkinter.messagebox
 import parse
 import schedule
 from watchpoints import watch
