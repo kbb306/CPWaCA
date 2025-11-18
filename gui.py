@@ -48,7 +48,7 @@ class mainWindow:
 
     def shutdown(self):
         if tk.messagebox.askokcancel("Quit","Do you want to quit? This will disable alerts!"):
-            self.syncSettings()
+            self.syncSettings("write")
             root.destroy()
    
     def syncSettings(self, command):
