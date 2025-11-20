@@ -145,7 +145,7 @@ class Reader():
                 break
 
             self.deduplicate()    
-            
+
 class Assignment():
     def __init__(self,course,assignment,status,daysLeft,date,uid):
         self.uid = uid
@@ -163,7 +163,3 @@ class Assignment():
 
     def upDate(self):
         self.daysLeft = (self.dueDate - globals.today).days
-    
-
-
-        
