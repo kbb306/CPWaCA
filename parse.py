@@ -84,12 +84,6 @@ class Reader():
                 ind = self.masterList.index(each)
                 del(self.masterList[ind])
                 
-
-
-    
-        
-        
-
     def parse(self,file):
         foundEv = False
         with open(file, 'r') as f:
@@ -102,8 +96,6 @@ class Reader():
                     foundEv = True
                     date= None
   
-                
-                
                 if foundEv:
                     if "#assignment" in each:
                         half = each.split("&",1)[0]
@@ -147,10 +139,13 @@ class Reader():
                     if date is not None:
                         daysLeft = (date - globals.today).days
                         #print(daysLeft)
+
             except Exception as e:
                 print("Failed to parse", (each.split(":",1)[1]),e,traceback.print_exc())
                 break
+
             self.deduplicate()    
+            
 class Assignment():
     def __init__(self,course,assignment,status,daysLeft,date,uid):
         self.uid = uid

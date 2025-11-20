@@ -10,10 +10,6 @@ from googleapiclient.errors import HttpError
 SCOPES = ["https://www.googleapis.com/auth/spreadsheets",
           "https://www.googleapis.com/auth/drive"]
 
-
-
-
-
 def authcheck():
   
   creds = None

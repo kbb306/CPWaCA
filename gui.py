@@ -25,7 +25,6 @@ class mainWindow:
         schedule.every().day.at("09:00").do(self.daily_check)
         self.run_sched()
 
-
     def sync(self):
         self.syncSettings()
         try:
@@ -76,7 +75,6 @@ class mainWindow:
 
             if DriveFile:
                 self.reader.outFile = DriveFile
-
 
     def run_sched(self):
         schedule.run_pending()
@@ -149,8 +147,6 @@ class mainWindow:
     def daily_check(self):
         globals.today = globals.datetime.date.today()
         
-   
-
     def onUpdate(self):
         self.daily_check()
         self.sync()
@@ -161,7 +157,6 @@ class mainWindow:
         except:
             print("No reader class yet.")
             self.APIin()
-
 
 if __name__ == "__main__":
     root = tk.Tk()
