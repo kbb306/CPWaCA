@@ -15,8 +15,8 @@ class Reader():
         self.outFile = outFile
         self.masterList = []
         
-        if outFile is None:
-            sheets_create.create("Calendar")
+        if self.outFile is None:
+            self.outFile = sheets_create.create("Calendar")
     def _import(self):
         try:
             urlretrieve(self.inURL,"Schedule.ical")
