@@ -1,5 +1,4 @@
 import globals
-import uuid
 import datetime
 import sheets_update_values
 import sheets_create
