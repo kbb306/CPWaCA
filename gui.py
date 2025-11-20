@@ -11,14 +11,23 @@ class mainWindow:
         self.root.title("Calendar Parser Without a Cool Acronym")
         root.protocol("WM_DELETE_WINDOW",self.shutdown)
         self.root.geometry("400x300")
+        self.root.grid_rowconfigure(0, weight=1)
+        self.root.grid_columnconfigure(0, weight=1)
+        self.root.grid_rowconfigure(1, weight=1)
+        self.root.grid_columnconfigure(1, weight=1)
+
         self.keybutton = tk.Button(root,text="Connect Accounts",command=self.connwindow)
-        self.keybutton.pack(side=tk.LEFT, padx=5)
+        self.keybutton.grid(row=0, column=0, sticky="nsew", padx=5, pady=5)
+
         self.syncbutton = tk.Button(root,text="Force Update" ,command=self.sync)
-        self.syncbutton.pack(side=tk.RIGHT,padx=5)
+        self.syncbutton.grid(row=0, column=1, sticky="nsew", padx=5, pady=5)
+
         self.alertbutton = tk.Button(root,text="Alert Settings",command=self.alertsettings)
-        self.alertbutton.pack(pady=5)
+        self.alertbutton.grid(row=1, column=0, sticky="nsew", padx=5, pady=5)
+
         self.custbutton = tk.Button(root,text="Customize Spreadsheet")
-        self.custbutton.pack(side=tk.LEFT,padx=10)
+        self.custbutton.grid(row=1, column=1, sticky="nsew", padx=5, pady=5)
+
         self.datecheck()
         watch(globals.today,callback=self.onUpdate)
         schedule.every().minutes.at(":30").do(self.sync)
