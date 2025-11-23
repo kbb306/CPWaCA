@@ -30,12 +30,12 @@ class mainWindow:
 
         self.datecheck()
         watch(globals.today,callback=self.onUpdate)
-        schedule.every().minutes.at("30:00").do(self.sync)
+        schedule.every().hours.at("00:30").do(self.sync)
         schedule.every().day.at("09:00").do(self.daily_check)
         self.run_sched()
 
     def sync(self):
-        self.syncSettings()
+        self.syncSettings("read")
         try:
             self.reader.sync()
         except:
