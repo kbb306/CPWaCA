@@ -5,6 +5,8 @@ import parse
 import schedule
 from watchpoints import watch
 import configparser
+import threading
+import playsound
 class mainWindow:
     def __init__(self,root):
         self.root = root

@@ -6,3 +6,4 @@ google
 google-api-python-client
 watchpoints
 schedule
+playsound
