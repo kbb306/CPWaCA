@@ -59,7 +59,7 @@ class Reader():
 
     def readToEnd(self):
         results = []
-        row = 1  
+        row = 5  
 
         while True:
             #
@@ -144,7 +144,6 @@ class Reader():
                         half = each.split("&", 1)[0]
                         ID = re.sub(r'[^0-9]', '', half)
                         print("Found course ID:", ID)
-
                         uid = ID
 
                     if ":" in each:
@@ -152,7 +151,7 @@ class Reader():
                     #print(key)
                     if (key == "END"):
                         if (ID  is not None and date is not None): 
-                            if ID == 1193172:
+                            if ID == "1193172":
                                 continue
                             print("Adding assignment!")
                             thing = Assignment(course,assignment,status,daysLeft,date,uid)
