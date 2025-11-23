@@ -157,7 +157,7 @@ class mainWindow:
     def datecheck(self):
         try:
             for each in self.reader.masterList:
-                each.upDate()
+                threading.Thread(target=each.upDate).start()
                 if globals.Alarm:
                     if each.alert() is not None:
                         self.alarm(each.alert())
