@@ -120,8 +120,15 @@ class mainWindow:
         self.thresholdPrompt.pack(pady=5)
         self.threshold.pack(pady=5)
     
-    def alarm(self):
-        self.popup = tk.Toplevel(root)
+    def alarm(self,assignment):
+        def playalarm():
+            try:
+                playsound(alarm.mp3)
+            except Exception as e:
+                print(f"Error playing sound: {e}")
+
+        tk.messagebox.showwarning("Time's running out!",f"Assignment: {assignment[0]} is due in {assignment[1]} days!","OK")
+        threading.Thread(target=playalarm()).start()
 
     def APIin(self):
         try: 
@@ -153,7 +160,7 @@ class mainWindow:
                 each.upDate()
                 if globals.Alarm:
                     if each.alert() is not None:
-                        self.alarm()
+                        self.alarm(each.alert())
         except:
             self.APIin()
 

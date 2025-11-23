@@ -201,7 +201,7 @@ class Assignment():
 
     def alert(self):
         if self.daysLeft <= globals.threshold: 
-            return self.name
+            return self.name,self.daysLeft
         else:
             return None
 
