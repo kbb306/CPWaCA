@@ -123,18 +123,20 @@ class mainWindow:
 
     def APIin(self):
         try: 
-            cURL = self.cURL.get()
-            DriveFile = self.DriveFile.get()
+            cURL = (self.cURL.get() or "").strip()
+            DriveFile = (self.DriveFile.get() or "").strip()
         except:
-            cURL = None
-            DriveFile = None
-        if cURL is None or DriveFile is None:
+            cURL = ""
+            DriveFile = ""
+        if not cURL or not DriveFile:
             try: 
                  cURL = self.fileFuckery("read","settings.ini","keys","cURL")
                  DriveFile = self.fileFuckery("read","settings.ini","keys","DriveFile")
             except:
                 self.connwindow()
-        self.reader = parse.Reader(cURL,DriveFile)
+        fileid = DriveFile or None
+        self.reader = parse.Reader(cURL,fileid)
+        DriveFile = self.reader.outFile
         self.fileFuckery("write","settings.ini","keys","cURL",cURL)
         self.fileFuckery("write","settings.ini","keys","DriveFile",DriveFile)
     
