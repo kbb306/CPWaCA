@@ -41,15 +41,15 @@ class Reader():
 
     def readToEnd(self):
         row = 1
-        result = sheets_get_values.get_values(self.outFile,(("A").join(row)))
+        result = sheets_get_values.get_values(self.outFile,(f"A{row}"))
         value = result.get("values",[])
         results = []
         while (value is not None or value != "" ) or (value or value[0]):
-            result = sheets_get_values.get_values(self.outFile,(("A").join(row)))
+            result = sheets_get_values.get_values(self.outFile,(f"A{row}"))
             value = result.get("values",[])
             row = row + 1
         for i in range(row - 1):
-            result = sheets_get_values.get_values(self.outFile,(("A").join(i).join("F").join(i)))
+            result = sheets_get_values.get_values(self.outFile,(f"A{i}F{i}"))
             arglist = result.get("values",[])
             new = Assignment(arglist[0],arglist[1],arglist[2],arglist[3],arglist[4],arglist[5])
             results.append(new)
