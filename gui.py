@@ -30,7 +30,7 @@ class mainWindow:
 
         self.datecheck()
         watch(globals.today,callback=self.onUpdate)
-        schedule.every().minutes.at(":30").do(self.sync)
+        schedule.every().minutes.at("30:00").do(self.sync)
         schedule.every().day.at("09:00").do(self.daily_check)
         self.run_sched()
 
@@ -162,12 +162,6 @@ class mainWindow:
         self.daily_check()
         self.sync()
     
-    def sync(self):
-        try:
-            self.reader.sync()
-        except:
-            print("No reader object yet.")
-            self.APIin()
 
 if __name__ == "__main__":
     root = tk.Tk()
