@@ -3,7 +3,7 @@ import datetime
 import sheets_update_values
 import sheets_create
 import sheets_get_values
-import sheets_append_values #Do not remove, passed as string
+import sheets_append_values 
 import re
 from urllib.request import urlretrieve
 import traceback;
@@ -25,50 +25,93 @@ class Reader():
             print("Error downloading file:" + e)
         self.parse("Schedule.ical")
 
-    def export(self):
-        self.compare(self.masterList,self.readToEnd(),"uid","uid",False,
-                     """sheets_append_values.append_values(self.outFile,"A5:F5","USER_ENTERED",[each.course,each.assignment,each.status,each.daysLeft,each.date]""")
+    def append_to_sheet(self,assignment, _ignored):
+        sheets_append_values.append_values(
+            self.outFile,
+            "A5:F",
+            "USER_ENTERED",
+            [[
+                assignment.course,
+                assignment.name,
+                assignment.status,
+                assignment.daysLeft,
+                assignment.dueDate.isoformat() if hasattr(assignment.dueDate, "isoformat") else assignment.dueDate,
+                assignment.uid,
+            ]],
+        )
 
-        
+    def export(self):
+        sheet_rows = self.readToEnd()
+        self.compare(self.masterList,sheet_rows,"uid","uid",False,self.append_to_sheet)
+
+
+    def add_from_sheet(self,sheet_assignment, _match):
+        # sheet_assignment is each1 from sheet_rows
+        self.masterList.append(sheet_assignment)  
     
     def sync(self):
         self._import()
-        self.compare(self.readToEnd(),self.masterList,"uid","uid",False,
-                     "self.masterList.append(each2)")
+        rows = self.readToEnd()
+        self.compare(rows,self.masterList,"uid","uid",False,self.add_from_sheet)
         self.export()
 
 
 
     def readToEnd(self):
-        row = 1
-        result = sheets_get_values.get_values(self.outFile,(f"A{row}"))
-        value = result.get("values",[])
         results = []
-        while (value is not None or value != "" ) or (value or value[0]):
-            result = sheets_get_values.get_values(self.outFile,(f"A{row}"))
-            value = result.get("values",[])
-            row = row + 1
-        for i in range(row - 1):
-            result = sheets_get_values.get_values(self.outFile,(f"A{i}F{i}"))
-            arglist = result.get("values",[])
-            new = Assignment(arglist[0],arglist[1],arglist[2],arglist[3],arglist[4],arglist[5])
+        row = 1  
+
+        while True:
+            #
+            result = sheets_get_values.get_values(self.outFile, f"A{row}:F{row}")
+            rows = result.get("values", [])
+
+            # No data in this row → we're done
+            if not rows:
+                break
+
+            # rows[0] is the list of cells in that row
+            row_values = rows[0]
+
+            # Pad to 6 items so we don't crash if some trailing cells are empty
+            while len(row_values) < 6:
+                row_values.append(None)
+
+            course, assignment, status, daysLeft, date, uid = row_values[:6]
+
+            new = Assignment(course, assignment, status, daysLeft, date, uid)
             results.append(new)
+
+            row += 1
+
         return results
-    
+
     
 
-    def compare(self,list1,list2,attrone,attrtwo,want,func):
-        valueFound = False
+    def compare(self, list1, list2, attrone, attrtwo, want, func):
+        """
+        For each each1 in list1:
+        - Look for a matching each2 in list2, comparing attrone vs attrtwo.
+        - If (match_found == want) is True, call func(each1, match_or_None)
+
+        list1: primary list we are iterating over
+        list2: secondary list to compare against
+        attrone: attribute name on each1 (str)
+        attrtwo: attribute name on each2 (str)
+        want: True → trigger when match exists; False → trigger when match does NOT exist
+        func: callable taking (each1, each2_or_None)
+        """
         for each1 in list1:
+            match = None
             for each2 in list2:
-                attr1 = getattr(each1, attrone)
-                attr2 = getattr(each2, attrtwo)
-                if attr2 == attr1:
-                    valueFound = True
-                else:
-                    valueFound = False
-                if valueFound == want:
-                    exec(func)
+                if getattr(each1, attrone) == getattr(each2, attrtwo):
+                    match = each2
+                    break
+
+            found = match is not None
+            if found == want:
+                func(each1, match)
+
 
     def deduplicate(self):
             todelete =[]
@@ -98,10 +141,12 @@ class Reader():
   
                 if foundEv:
                     if "#assignment" in each:
-                        half = each.split("&",1)[0]
-                        ID = re.sub(r'[^0-9]','',half)
-                        print("Found course ID:",ID)
-                        uid = each.split("#",1)
+                        half = each.split("&", 1)[0]
+                        ID = re.sub(r'[^0-9]', '', half)
+                        print("Found course ID:", ID)
+
+                        uid = ID
+
                     if ":" in each:
                         key, value = each.split(":",1)
                     #print(key)

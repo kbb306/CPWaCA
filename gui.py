@@ -164,7 +164,7 @@ class mainWindow:
         try:
             self.reader.sync()
         except:
-            print("No reader class yet.")
+            print("No reader object yet.")
             self.APIin()
 
 if __name__ == "__main__":

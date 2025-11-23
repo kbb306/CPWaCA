@@ -6,320 +6,6 @@ METHOD:PUBLISH
 X-WR-CALNAME:Kyler Belshaw Calendar (Canvas)
 X-WR-CALDESC:Calendar events for the user\, Kyler Belshaw
 BEGIN:VEVENT
-DTSTAMP:20251106T001300Z
-UID:event-assignment-16271843
-DTSTART;VALUE=DATE;VALUE=DATE:20251015
-CLASS:PUBLIC
-DESCRIPTION:---------------------------------\nJavaScript and Forms Assignm
- ent 4\n---------------------------------\n\n Assignment Instruction\n----
- -------------------\n\nPurpose of this Assignment\n-----------------------
- ---\n\nUse JavaScript to work with form elements\n\nInstructions\n--------
- ----\n\nStart with the following pages:[] (https://lumos.csis.suu.edu/~bar
- kern/CS_4350/AttendingSUUPage4.html)\n\n* [AttendingSUUPage4.html] (https:
- //lumos.csis.suu.edu/~barkern/CS_4350/AttendingSUUPage4.html)\n\n* [Attend
- ingSUUStudentInfo.html] (https://lumos.csis.suu.edu/~barkern/CS_4350/Atten
- dingSUUStudentInfo.html)\n\nFor this assignment I would like you to use Ja
- vaScript to work with form elements under the following scenario:\nYou are
-  working on website pages that users will fill out when they first attend 
- SUU\n\nHTML Tasks:\n\n* Edit the AttendingSUUPage4.html page to complete t
- he following tasks\n\n* Add attributes to all fields so they can be access
- ed programmatically\n\n* Be sure the reset button works\n\n* Add attribute
- s to the submit button so that the form submits to the AttendingSUUStudent
- Info.html page\n\nCSS Tasks:\n\n* For both pages:\n\n* Match the CSS and s
- tyle of your previous pages\, making sure that all 3 SUU colors are visibl
- e\n\nJavaScript Tasks:\n\n* For the AttendingSUUPage4.html page\n\n* Use J
- avaScript to\n\n*\n\n*\n\n* Save all previous form inputs into hidden fiel
- ds.\n\n* Hopefully this code is now just a copy/paste from last time where
-  you added code that works more programmatically\n\n* Add code that verifi
- es the secret code matches.\n\n* This should work when both the submit but
- ton is pressed\, or they tab/navigate out of the verify area\n\n* For the 
- AttendingSUUStudentInfo.html page \n\n*\n\n* Dump out all the data that w
- as collected on the pages onto the Attending SUU Student Info page\n\n* My
-  page isn't that great\, so feel free to modify it as you see fit\, making
-  sure all the data is still displayed\n\nOther Tasks:\n\n* Verify your cod
- e using the following website\n\n* https://validator.w3.org/#validate_by_i
- nput\n\n* Include a screenshot of your validated code in your report\n\n* 
- Include a screenshot of the get request url in your report.  This helps m
- e see that all input items are appropriately connected\n\n* for example as
- signment.html?name=DrB&course=CS%204350\n\nSubmission\n----------\n\nPleas
- e submit the following files:\n\n* Your html page\n\n* A basic report with
-  appropriate screenshots\n\nGrading of Assignment\n---------------------\n
- \nHTML Tasks: 3 points\nCSS Tasks: 2 points\nJavaScript Tasks: 15 points\n
- Other Tasks: 5 points
-SEQUENCE:0
-SUMMARY:Assignment 4 (JavaScript and Forms) [Web Programming]
-URL;VALUE=URI:https://suu.instructure.com/calendar?include_contexts=course_
- 1048413&month=10&year=2025#assignment_16271843
-X-ALT-DESC;FMTTYPE=text/html:<link rel="stylesheet" href="https://instructu
- re-uploads-2.s3.amazonaws.com/account_20000000000019/attachments/149326035
- /dp_app.css"><div id="kl_wrapper_3" class="kl_flat_sections variation_2 kl
- _wrapper">\n<div id="kl_banner">\n<h2><span id="kl_banner_left">JavaScript
-  and Forms</span> <span id="kl_banner_right">Assignment 4</span></h2>\n</d
- iv>\n<div id="kl_content_block_0" class="">\n<h3 class=""><i class="fas fa
- -file-signature" aria-hidden="true"><span class="dp-icon-content" style="d
- isplay: none\;">&nbsp\;</span></i>Assignment Instruction</h3>\n<h4>Purpose
-  of this Assignment</h4>\n<p>Use JavaScript to work with form elements</p>
- \n<h4>Instructions</h4>\n<p><span>Start with the following pages:</span><a
-  class="inline_disabled external" href="https://lumos.csis.suu.edu/~barker
- n/CS_4350/AttendingSUUPage4.html" target="_blank"></a></p>\n<ul>\n<li><a c
- lass="inline_disabled external" href="https://lumos.csis.suu.edu/~barkern/
- CS_4350/AttendingSUUPage4.html" target="_blank">AttendingSUUPage4.html</a>
- </li>\n<li><a class="inline_disabled external" href="https://lumos.csis.su
- u.edu/~barkern/CS_4350/AttendingSUUStudentInfo.html" target="_blank">Atten
- dingSUUStudentInfo.html</a></li>\n</ul>\n<p>For this assignment I would li
- ke you to use JavaScript to work with form elements under the following sc
- enario:<br>You are working on website pages that users will fill out when 
- they first attend SUU</p>\n<p><span>HTML Tasks:</span></p>\n<ul>\n<li>Edit
-  the AttendingSUUPage4.html page to complete the following tasks\n<ul>\n<l
- i>Add attributes to all fields so they can be accessed programmatically</l
- i>\n<li>Be sure the reset button works</li>\n<li>Add attributes to the sub
- mit button so that the form submits to the AttendingSUUStudentInfo.html pa
- ge</li>\n</ul>\n</li>\n</ul>\n<p>CSS Tasks:</p>\n<ul>\n<li>For both pages:
- \n<ul>\n<li>Match the CSS and style of your previous pages\, making sure t
- hat all 3 SUU colors are visible</li>\n</ul>\n</li>\n</ul>\n<p>JavaScript 
- Tasks:</p>\n<ul>\n<li>For the AttendingSUUPage4.html page\n<ul>\n<li>Use J
- avaScript to</li>\n</ul>\n</li>\n</ul>\n<ul>\n<li style="list-style-type: 
- none\;">\n<ul>\n<li style="list-style-type: none\;">\n<ul>\n<li>Save all p
- revious form inputs into hidden fields.\n<ul>\n<li>Hopefully this code is 
- now just a copy/paste from last time where you added code that works more 
- programmatically</li>\n</ul>\n</li>\n<li>Add code that verifies the secret
-  code matches.\n<ul>\n<li>This should work when both the submit button is 
- pressed\, or they tab/navigate out of the verify area</li>\n</ul>\n</li>\n
- </ul>\n</li>\n</ul>\n</li>\n<li>For the AttendingSUUStudentInfo.html page&
- nbsp\;\n<ul>\n<li style="list-style-type: none\;">\n<ul>\n<li>Dump out all
-  the data that was collected on the pages onto the Attending SUU Student I
- nfo page</li>\n<li>My page isn't that great\, so feel free to modify it as
-  you see fit\, making sure all the data is still displayed</li>\n</ul>\n</
- li>\n</ul>\n</li>\n</ul>\n<p><span>Other Tasks:</span></p>\n<ul>\n<li>Veri
- fy your code using the following website\n<ul>\n<li><a href="https://valid
- ator.w3.org/#validate_by_input" target="_blank">https://validator.w3.org/#
- validate_by_input</a></li>\n<li>Include a screenshot of your validated cod
- e in your report</li>\n</ul>\n</li>\n<li>Include a screenshot of the get r
- equest url in your report.&nbsp\; This helps me see that all input items a
- re appropriately connected\n<ul>\n<li>for example assignment.html?name=DrB
- &amp\;course=CS%204350</li>\n</ul>\n</li>\n</ul>\n<h4>Submission</h4>\n<p>
- Please submit the following files:</p>\n<ul>\n<li>Your html page</li>\n<li
- >A basic report with appropriate screenshots</li>\n</ul>\n<h4>Grading of A
- ssignment</h4>\n<p><span>HTML Tasks: 3 points</span><br><span>CSS Tasks: 2
-  points</span><br><span>JavaScript Tasks: 15 points</span><br><span>Other 
- Tasks: 5 points</span></p>\n</div>\n</div><script src="https://instructure
- -uploads-2.s3.amazonaws.com/account_20000000000019/attachments/149326034/d
- p_app.js"></script>
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20241008T181800Z
-UID:event-calendar-event-3741674
-DTSTART;VALUE=DATE;VALUE=DATE:20251017
-CLASS:PUBLIC
-LOCATION:
-SEQUENCE:0
-SUMMARY:Midterm Grades Due: Full Session
-URL;VALUE=URI:https://suu.instructure.com/calendar?include_contexts=account
- _19&month=10&year=2025#calendar_event_3741674
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20251016T221000Z
-UID:event-assignment-17104100
-DTSTART;VALUE=DATE;VALUE=DATE:20251019
-CLASS:PUBLIC
-DESCRIPTION:Please do the following from page 422:\n\n1\, 4\, 7\, 8\, 12\, 
- 28\, 33
-SEQUENCE:0
-SUMMARY:6.1 Basics of Counting [Discrete Structures]
-URL;VALUE=URI:https://suu.instructure.com/calendar?include_contexts=course_
- 1048406&month=10&year=2025#assignment_17104100
-X-ALT-DESC;FMTTYPE=text/html:<link rel="stylesheet" href="https://instructu
- re-uploads-2.s3.amazonaws.com/account_20000000000019/attachments/149326035
- /dp_app.css"><p>Please do the following from page 422:</p>\n<p>1\, 4\, 7\,
-  8\, 12\, 28\, 33</p><script src="https://instructure-uploads-2.s3.amazona
- ws.com/account_20000000000019/attachments/149326034/dp_app.js"></script>
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20251016T221500Z
-UID:event-assignment-17104108
-DTSTART;VALUE=DATE;VALUE=DATE:20251019
-CLASS:PUBLIC
-DESCRIPTION:Please complete the following from page 434:\n\n3\, 4\, 7\, 37
-SEQUENCE:0
-SUMMARY:6.2 Pigeon Hole Principle [Discrete Structures]
-URL;VALUE=URI:https://suu.instructure.com/calendar?include_contexts=course_
- 1048406&month=10&year=2025#assignment_17104108
-X-ALT-DESC;FMTTYPE=text/html:<link rel="stylesheet" href="https://instructu
- re-uploads-2.s3.amazonaws.com/account_20000000000019/attachments/149326035
- /dp_app.css"><p>Please complete the following from page 434:</p>\n<p>3\, 4
- \, 7\, 37</p><script src="https://instructure-uploads-2.s3.amazonaws.com/a
- ccount_20000000000019/attachments/149326034/dp_app.js"></script>
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20231213T183200Z
-UID:event-calendar-event-3741683
-DTSTART;VALUE=DATE;VALUE=DATE:20251020
-CLASS:PUBLIC
-LOCATION:
-SEQUENCE:0
-SUMMARY:Commenced Attendance DUE: 2nd Session
-URL;VALUE=URI:https://suu.instructure.com/calendar?include_contexts=account
- _19&month=10&year=2025#calendar_event_3741683
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20231213T183200Z
-UID:event-calendar-event-3741681
-DTSTART;VALUE=DATE;VALUE=DATE:20251020
-CLASS:PUBLIC
-LOCATION:
-SEQUENCE:0
-SUMMARY:Last Day to Add without Signature: 2nd Session
-URL;VALUE=URI:https://suu.instructure.com/calendar?include_contexts=account
- _19&month=10&year=2025#calendar_event_3741681
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20251020T231100Z
-UID:event-assignment-16271837
-DTSTART;VALUE=DATE;VALUE=DATE:20251022
-CLASS:PUBLIC
-DESCRIPTION:------------------------------------\nSemester Long Project Pro
- ject Report\n------------------------------------\n\n Presentation Instru
- ction\n-------------------------\n\nPurpose of this Assignment\n----------
- ----------------\n\nThis assignment allows you to present your efforts on 
- your project and discuss how your project is going.\n\nInstructions\n-----
- -------\n\n* You walk me through all the pages on your current website\n\n
- * You present some highlights about the work you accomplished\n\n* You pre
- sent some highlights about the work that is left\n\n* Shorter than 5 minut
- es in length so that we can get through everyone\n\n* (Can be a video uplo
- ad instead)\n\nGrading of Assignment\n---------------------\n\nThis is a p
- ass/fail assignment\, so be sure that you have me mark you off\n\n 
-SEQUENCE:0
-SUMMARY:Class Presentation: Project Report [Web Programming]
-URL;VALUE=URI:https://suu.instructure.com/calendar?include_contexts=course_
- 1048413&month=10&year=2025#assignment_16271837
-X-ALT-DESC;FMTTYPE=text/html:<link rel="stylesheet" href="https://instructu
- re-uploads-2.s3.amazonaws.com/account_20000000000019/attachments/149326035
- /dp_app.css"><div id="kl_wrapper_3" class="kl_flat_sections variation_2 kl
- _wrapper">\n<div id="kl_banner">\n<h2><span id="kl_banner_left"><span clas
- s="kl_mod_text">Semester Long Project</span></span> <span id="kl_banner_ri
- ght">Project Report</span></h2>\n</div>\n<div id="kl_content_block_0" clas
- s="">\n<h3 class=""><i class="fas fa-file-signature" aria-hidden="true"><s
- pan class="dp-icon-content" style="display: none\;">&nbsp\;</span></i>Pres
- entation Instruction</h3>\n<h4>Purpose of this Assignment</h4>\n<p>This as
- signment allows you to present your efforts on your project and discuss ho
- w your project is going.</p>\n<h4>Instructions</h4>\n<ul>\n<li>You walk me
-  through all the pages on your current website</li>\n<li>You present some 
- highlights about the work you accomplished</li>\n<li>You present some high
- lights about the work that is left</li>\n<li>Shorter than 5 minutes in len
- gth so that we can get through everyone</li>\n<li>(Can be a video upload i
- nstead)</li>\n</ul>\n<h4>Grading of Assignment</h4>\n<p>This is a pass/fai
- l assignment\, so be sure that you have me mark you off</p>\n</div>\n</div
- >\n<p>&nbsp\;</p><script src="https://instructure-uploads-2.s3.amazonaws.c
- om/account_20000000000019/attachments/149326034/dp_app.js"></script>
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20250613T213700Z
-UID:event-assignment-16271848
-DTSTART;VALUE=DATE;VALUE=DATE:20251022
-CLASS:PUBLIC
-DESCRIPTION:-------------------\nCSS HTML Canvas Lab\n-------------------\n
- \n Assignment Instruction\n-----------------------\n\nPurpose of this Ass
- ignment\n--------------------------\n\nGet experience drawing on an html c
- anvas and hooking up mouse event listeners\n\nBonus: All the G: Drive File
- s [lecture_files.zip] (https://suu.instructure.com/courses/1048413/files/1
- 80766258?wrap=1)\n\nInstructions\n------------\n\n* Read your way through 
- the w3school's game intro at this link https://www.w3schools.com/graphics/
- game_intro.asp\n\n* Download the following file which contains the basic c
- ode from the previous example [CanvasExample.html] (https://suu.instructur
- e.com/courses/1048413/files/180766253?wrap=1)\n\n* I would then like you e
- ssentially get rid of the buttons and have everything work by using the mo
- use as follows\n\n* Instead of the 4 buttons for moving\, use the mousemov
- e event to keep the red square centered where the mouse is\n\n* On restart
- \, instead of having that button to click\, use the mousedown event\n\nSub
- mission\n----------\n\nPlease submit the following files:\n\n* Your finish
- ed CanvasExample.html file\n\nGrading of Assignment\n---------------------
- \n\nThis assignment is a pass/fail assignment
-SEQUENCE:0
-SUMMARY:Html Canvas Lab [Web Programming]
-URL;VALUE=URI:https://suu.instructure.com/calendar?include_contexts=course_
- 1048413&month=10&year=2025#assignment_16271848
-X-ALT-DESC;FMTTYPE=text/html:<link rel="stylesheet" href="https://instructu
- re-uploads-2.s3.amazonaws.com/account_20000000000019/attachments/149326035
- /dp_app.css"><div id="kl_wrapper_3" class="kl_flat_sections variation_2 kl
- _wrapper">\n<div id="kl_banner">\n<h2>\n<span id="kl_banner_left"><span cl
- ass="kl_mod_text">CSS</span></span> <span id="kl_banner_right">HTML Canvas
-  Lab</span>\n</h2>\n</div>\n<div id="kl_content_block_0" class="">\n<h3 cl
- ass="">\n<i class="fas fa-file-signature" aria-hidden="true"><span class="
- dp-icon-content" style="display: none\;">&nbsp\;</span></i>Assignment Inst
- ruction</h3>\n<h4>Purpose of this Assignment</h4>\n<p>Get experience drawi
- ng on an html canvas and hooking up mouse event listeners</p>\n<p>Bonus: A
- ll the G: Drive Files <a class="instructure_file_link inline_disabled" tit
- le="lecture_files.zip" href="https://suu.instructure.com/courses/1048413/f
- iles/180766258?wrap=1" target="_blank" data-canvas-previewable="false" dat
- a-api-endpoint="https://suu.instructure.com/api/v1/courses/1048413/files/1
- 80766258" data-api-returntype="File">lecture_files.zip</a></p>\n<h4>Instru
- ctions</h4>\n<ul>\n<li>Read your way through the w3school's game intro at 
- this link <a href="https://www.w3schools.com/graphics/game_intro.asp" targ
- et="_blank">https://www.w3schools.com/graphics/game_intro.asp</a>\n</li>\n
- <li>Download the following file which contains the basic code from the pre
- vious example <a id="121784023" class="instructure_file_link inline_disabl
- ed" href="https://suu.instructure.com/courses/1048413/files/180766253?wrap
- =1" target="_blank" data-api-endpoint="https://suu.instructure.com/api/v1/
- courses/1048413/files/180766253" data-api-returntype="File">CanvasExample.
- html</a>\n</li>\n<li>I would then like you essentially get rid of the butt
- ons and have everything work by using the mouse as follows\n<ul>\n<li>Inst
- ead of the 4 buttons for moving\, use the mousemove event to keep the red 
- square centered where the mouse is</li>\n<li>On restart\, instead of havin
- g that button to click\, use the mousedown event</li>\n</ul>\n</li>\n</ul>
- \n<h4>Submission</h4>\n<p>Please submit the following files:</p>\n<ul>\n<l
- i>Your finished CanvasExample.html file</li>\n</ul>\n<h4>Grading of Assign
- ment</h4>\n<p>This assignment is a pass/fail assignment</p>\n</div>\n</div
- ><script src="https://instructure-uploads-2.s3.amazonaws.com/account_20000
- 000000019/attachments/149326034/dp_app.js"></script>
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20250613T213700Z
-UID:event-assignment-16271846
-DTSTART;VALUE=DATE;VALUE=DATE:20251022
-CLASS:PUBLIC
-DESCRIPTION:------------------------------------------\nSemester Long Proje
- ct HTML5 Canvas Element\n------------------------------------------\n\nIns
- truction\n-----------\n\nPurpose of this Assignment\n---------------------
- -----\n\nAs everyone's project will be different\, the guidelines are vagu
- e on purpose\, but I would like the code for your HTML5 Canvas Element rou
- ghed out.  You are welcome to add more things later\, but I would like to
-  see the following at a minimum:\n\n* At least one page where you will be 
- using the HTML5 Canvas Element\n\nGrading of Assignment\n-----------------
- ----\n\nPlease submit the following\n\n* The file(s) containing your HTML5
-  Canvas Element code\n\n* A report with the following\n\n* General report 
- things\, like name and date\n\n* A starting paragraph (at a minimum) givin
- g me a written outline of the work you accomplished\, and what your HTML5 
- Canvas element will be used for.\n\n* Screenshot(s)\, with text explanatio
- n(s)\, showing me the page(s) with your HTML5 Canvas element(s)\n\nThis is
-  a pass/fail assignment\n\n 
-SEQUENCE:0
-SUMMARY:HTML5 Canvas Element [Web Programming]
-URL;VALUE=URI:https://suu.instructure.com/calendar?include_contexts=course_
- 1048413&month=10&year=2025#assignment_16271846
-X-ALT-DESC;FMTTYPE=text/html:<link rel="stylesheet" href="https://instructu
- re-uploads-2.s3.amazonaws.com/account_20000000000019/attachments/149326035
- /dp_app.css"><div id="kl_wrapper_3" class="kl_flat_sections variation_2 kl
- _wrapper">\n<div id="kl_banner">\n<h2>\n<span id="kl_banner_left">Semester
-  Long Project</span> <span id="kl_banner_right">HTML5 Canvas Element</span
- >\n</h2>\n</div>\n<div id="kl_content_block_0" class="">\n<h3 class="">\n<
- i class="fas fa-file-signature" aria-hidden="true"> </i>Instruction</h3>\n
- <h4>Purpose of this Assignment</h4>\n<p>As everyone's project will be diff
- erent\, the guidelines are vague on purpose\, but I would like the code fo
- r your HTML5 Canvas Element roughed out.&nbsp\; You are welcome to add mor
- e things later\, but I would like to see the following at a minimum:</p>\n
- <ul>\n<li>At least one page where you will be using the HTML5 Canvas Eleme
- nt</li>\n</ul>\n<h4>Grading of Assignment</h4>\n<p>Please submit the follo
- wing</p>\n<ul>\n<li>The file(s) containing your HTML5 Canvas Element code<
- /li>\n<li>A report with the following\n<ul>\n<li>General report things\, l
- ike name and date</li>\n<li>A starting paragraph (at a minimum) giving me 
- a written outline of the work you accomplished\, and what your HTML5 Canva
- s element will be used for.</li>\n<li>Screenshot(s)\, with text explanatio
- n(s)\, showing me the page(s) with your HTML5 Canvas element(s)</li>\n</ul
- >\n</li>\n</ul>\n<p>This is a pass/fail assignment</p>\n<p>&nbsp\;</p>\n</
- div>\n</div><script src="https://instructure-uploads-2.s3.amazonaws.com/ac
- count_20000000000019/attachments/149326034/dp_app.js"></script>
-END:VEVENT
-BEGIN:VEVENT
 DTSTAMP:20251027T171700Z
 UID:event-assignment-17104447
 DTSTART;VALUE=DATE;VALUE=DATE:20251024
@@ -683,7 +369,7 @@ URL;VALUE=URI:https://suu.instructure.com/calendar?include_contexts=account
  _19&month=10&year=2025#calendar_event_4801290
 END:VEVENT
 BEGIN:VEVENT
-DTSTAMP:20251027T160600Z
+DTSTAMP:20251117T042400Z
 UID:event-assignment-17104474
 DTSTART;VALUE=DATE;VALUE=DATE:20251030
 CLASS:PUBLIC
@@ -731,7 +417,7 @@ URL;VALUE=URI:https://suu.instructure.com/calendar?include_contexts=course_
 X-ALT-DESC;FMTTYPE=text/html:
 END:VEVENT
 BEGIN:VEVENT
-DTSTAMP:20250729T175000Z
+DTSTAMP:20251121T184000Z
 UID:event-assignment-16408293
 DTSTART;VALUE=DATE;VALUE=DATE:20251101
 CLASS:PUBLIC
@@ -867,7 +553,7 @@ URL;VALUE=URI:https://suu.instructure.com/calendar?include_contexts=account
  _19&month=11&year=2025#calendar_event_4801291
 END:VEVENT
 BEGIN:VEVENT
-DTSTAMP:20251028T220700Z
+DTSTAMP:20251118T153300Z
 UID:event-assignment-16934544
 DTSTART;VALUE=DATE;VALUE=DATE:20251103
 CLASS:PUBLIC
@@ -905,10 +591,10 @@ DESCRIPTION:------------------------\nPHP and SQL Assignment 5\n-----------
  reenshot of the get request url in your report.  This helps me see that a
  ll input items are appropriately connected\n\n* for example assignment.htm
  l?name=DrB&course=CS%204350\n\nSubmission\n----------\n\nPlease submit the
-  following files:\n\n* Your html page\n\n* A basic report with appropriate
-  screenshots\n\nGrading of Assignment\n---------------------\n\n* Database
-  Tasks: 10 points\n\n* PHP Tasks: 15 points\n\n* Other Tasks: 5 points\n\n
-  
+  following files:\n\n* Your php/html page(s)\n\n* A basic report with appr
+ opriate screenshots\n\nGrading of Assignment\n---------------------\n\n* D
+ atabase Tasks: 10 points\n\n* PHP Tasks: 15 points\n\n* Other Tasks: 5 poi
+ nts\n\n 
 SEQUENCE:0
 SUMMARY:Assignment 5 (PHP and SQL) [Web Programming]
 URL;VALUE=URI:https://suu.instructure.com/calendar?include_contexts=course_
@@ -959,12 +645,12 @@ X-ALT-DESC;FMTTYPE=text/html:<link rel="stylesheet" href="https://instructu
  &nbsp\; This helps me see that all input items are appropriately connected
  \n<ul>\n<li>for example assignment.html?name=DrB&amp\;course=CS%204350</li
  >\n</ul>\n</li>\n</ul>\n<h4>Submission</h4>\n<p>Please submit the followin
- g files:</p>\n<ul>\n<li>Your html page</li>\n<li>A basic report with appro
- priate screenshots</li>\n</ul>\n<h4>Grading of Assignment</h4>\n<ul>\n<li>
- Database Tasks: 10 points</li>\n<li>PHP Tasks: 15 points</li>\n<li>Other T
- asks: 5 points</li>\n</ul>\n<p>&nbsp\;</p>\n</div>\n</div><script src="htt
- ps://instructure-uploads-2.s3.amazonaws.com/account_20000000000019/attachm
- ents/149326034/dp_app.js"></script>
+ g files:</p>\n<ul>\n<li>Your php/html page(s)</li>\n<li>A basic report wit
+ h appropriate screenshots</li>\n</ul>\n<h4>Grading of Assignment</h4>\n<ul
+ >\n<li>Database Tasks: 10 points</li>\n<li>PHP Tasks: 15 points</li>\n<li>
+ Other Tasks: 5 points</li>\n</ul>\n<p>&nbsp\;</p>\n</div>\n</div><script s
+ rc="https://instructure-uploads-2.s3.amazonaws.com/account_20000000000019/
+ attachments/149326034/dp_app.js"></script>
 END:VEVENT
 BEGIN:VEVENT
 DTSTAMP:20250925T170800Z
@@ -1286,7 +972,7 @@ X-ALT-DESC;FMTTYPE=text/html:<link rel="stylesheet" href="https://instructu
  p.js"></script>
 END:VEVENT
 BEGIN:VEVENT
-DTSTAMP:20251028T221300Z
+DTSTAMP:20251118T153300Z
 UID:event-assignment-16935103
 DTSTART;VALUE=DATE;VALUE=DATE:20251110
 CLASS:PUBLIC
@@ -1319,9 +1005,9 @@ DESCRIPTION:------------------------\nPHP and SQL Assignment 6\n-----------
  eenshot of the get request url in your report.  This helps me see that al
  l input items are appropriately connected\n\n* for example assignment.html
  ?name=DrB&course=CS%204350\n\nSubmission\n----------\n\nPlease submit the 
- following files:\n\n* Your html page\n\n* A basic report with appropriate 
- screenshots\n\nGrading of Assignment\n---------------------\n\nDatabase Ta
- sks: 10 points\nPHP Tasks: 10 points\nOther Tasks: 5 points
+ following files:\n\n* Your php/html page(s)\n\n* A basic report with appro
+ priate screenshots\n\nGrading of Assignment\n---------------------\n\nData
+ base Tasks: 10 points\nPHP Tasks: 10 points\nOther Tasks: 5 points
 SEQUENCE:0
 SUMMARY:Assignment 6 (PHP and SQL) [Web Programming]
 URL;VALUE=URI:https://suu.instructure.com/calendar?include_contexts=course_
@@ -1366,12 +1052,12 @@ X-ALT-DESC;FMTTYPE=text/html:<link rel="stylesheet" href="https://instructu
  e get request url in your report.&nbsp\; This helps me see that all input 
  items are appropriately connected\n<ul>\n<li>for example assignment.html?n
  ame=DrB&amp\;course=CS%204350</li>\n</ul>\n</li>\n</ul>\n<h4>Submission</h
- 4>\n<p>Please submit the following files:</p>\n<ul>\n<li>Your html page</l
- i>\n<li>A basic report with appropriate screenshots</li>\n</ul>\n<h4>Gradi
- ng of Assignment</h4>\n<p>Database Tasks: 10 points<br>PHP Tasks: 10 point
- s<br>Other Tasks: 5 points</p>\n</div>\n</div><script src="https://instruc
- ture-uploads-2.s3.amazonaws.com/account_20000000000019/attachments/1493260
- 34/dp_app.js"></script>
+ 4>\n<p>Please submit the following files:</p>\n<ul>\n<li>Your php/html pag
+ e(s)</li>\n<li>A basic report with appropriate screenshots</li>\n</ul>\n<h
+ 4>Grading of Assignment</h4>\n<p>Database Tasks: 10 points<br>PHP Tasks: 1
+ 0 points<br>Other Tasks: 5 points</p>\n</div>\n</div><script src="https://
+ instructure-uploads-2.s3.amazonaws.com/account_20000000000019/attachments/
+ 149326034/dp_app.js"></script>
 END:VEVENT
 BEGIN:VEVENT
 DTSTAMP:20251108T230600Z
@@ -1545,54 +1231,6 @@ URL;VALUE=URI:https://suu.instructure.com/calendar?include_contexts=account
  _19&month=11&year=2025#calendar_event_3741708
 END:VEVENT
 BEGIN:VEVENT
-DTSTAMP:20250613T213700Z
-UID:event-assignment-16271852
-DTSTART;VALUE=DATE;VALUE=DATE:20251117
-CLASS:PUBLIC
-DESCRIPTION:------------------------\nCS 4720 Chapter 13 Notes\n-----------
- -------------\n\nInstruction\n-----------\n\nPurpose of this Assignment\n-
- -------------------------\n\nYou don't need to read the information on thi
- s link\, and with the internet ever changing\, it might not work\, but res
- earch shows that taking notes helps in student learning.\n\nhttps://www.cu
- ltofpedagogy.com/note-taking/\n\nInstructions\n------------\n\nUpload your
-  notes from this chapter.  You may take either handwritten\, or digital n
- otes\, but if you write notes by hand\, please take a picture of your note
- s and paste the picture into a word document.  Save your document to a pd
- f file.\n\nThere are many ways in which you can create notes\, and I will 
- leave it to you to figure out what works best for you.  I do expect that 
- you capture the main points of the chapter.  Full sentences are not neces
- sary\, and you are not graded by length.\n\nGrading of Assignment\n-------
- --------------\n\nPoints are given based on your notes capturing the main 
- points of the chapter
-SEQUENCE:0
-SUMMARY:Notes: Chapter 13 [Web Programming]
-URL;VALUE=URI:https://suu.instructure.com/calendar?include_contexts=course_
- 1048413&month=11&year=2025#assignment_16271852
-X-ALT-DESC;FMTTYPE=text/html:<link rel="stylesheet" href="https://instructu
- re-uploads-2.s3.amazonaws.com/account_20000000000019/attachments/149326035
- /dp_app.css"><div id="kl_wrapper_3" class="kl_flat_sections variation_2 kl
- _wrapper">\n<div id="kl_banner">\n<h2>\n<span id="kl_banner_left"><span cl
- ass="kl_mod_text">CS 4720</span></span> <span id="kl_banner_right">Chapter
-  13 Notes</span>\n</h2>\n</div>\n<div id="kl_content_block_0" class="">\n<
- h3 class="">\n<i class="fas fa-file-signature" aria-hidden="true"> </i>Ins
- truction</h3>\n<h4>Purpose of this Assignment</h4>\n<p>You don't need to r
- ead the information on this link\, and with the internet ever changing\, i
- t might not work\, but research shows that taking notes helps in student l
- earning.</p>\n<p><a href="https://www.cultofpedagogy.com/note-taking/">htt
- ps://www.cultofpedagogy.com/note-taking/</a></p>\n<h4>Instructions</h4>\n<
- p>Upload your notes from this chapter.&nbsp\; You may take either handwrit
- ten\, or digital notes\, but if you write notes by hand\, please take a pi
- cture of your notes and paste the picture into a word document.&nbsp\; Sav
- e your document to a pdf file.</p>\n<p>There are many ways in which you ca
- n create notes\, and I will leave it to you to figure out what works best 
- for you.&nbsp\; I do expect that you capture the main points of the chapte
- r.&nbsp\; Full sentences are not necessary\, and you are not graded by len
- gth.</p>\n<h4>Grading of Assignment</h4>\n<p>Points are given based on you
- r notes capturing the main points of the chapter</p>\n</div>\n</div><scrip
- t src="https://instructure-uploads-2.s3.amazonaws.com/account_200000000000
- 19/attachments/149326034/dp_app.js"></script>
-END:VEVENT
-BEGIN:VEVENT
 DTSTAMP:20251105T230300Z
 UID:event-assignment-16271865
 DTSTART;VALUE=DATE;VALUE=DATE:20251117
@@ -1643,7 +1281,7 @@ X-ALT-DESC;FMTTYPE=text/html:<link rel="stylesheet" href="https://instructu
  9/attachments/149326034/dp_app.js"></script>
 END:VEVENT
 BEGIN:VEVENT
-DTSTAMP:20251028T220700Z
+DTSTAMP:20251118T153300Z
 UID:event-assignment-16936557
 DTSTART;VALUE=DATE;VALUE=DATE:20251117
 CLASS:PUBLIC
@@ -1673,10 +1311,10 @@ DESCRIPTION:------------------------\nPHP and SQL Assignment 7\n-----------
  in your report\n\n* Include a screenshot of the get request url in your re
  port.  This helps me see that all input items are appropriately connected
  \n\n* for example assignment.html?name=DrB&course=CS%204350\n\nSubmission\
- n----------\n\nPlease submit the following files:\n\n* Your html page\n\n*
-  A basic report with appropriate screenshots\n\nGrading of Assignment\n---
- ------------------\n\nDatabase Tasks: 5 points\nPHP Tasks: 10 points\nOthe
- r Tasks: 3 points
+ n----------\n\nPlease submit the following files:\n\n* Your php/html page(
+ s)\n\n* A basic report with appropriate screenshots\n\nGrading of Assignme
+ nt\n---------------------\n\nDatabase Tasks: 5 points\nPHP Tasks: 10 point
+ s\nOther Tasks: 3 points
 SEQUENCE:0
 SUMMARY:Assignment 7 (PHP and SQL) [Web Programming]
 URL;VALUE=URI:https://suu.instructure.com/calendar?include_contexts=course_
@@ -1719,12 +1357,12 @@ X-ALT-DESC;FMTTYPE=text/html:<link rel="stylesheet" href="https://instructu
   your report.&nbsp\; This helps me see that all input items are appropriat
  ely connected\n<ul>\n<li>for example assignment.html?name=DrB&amp\;course=
  CS%204350</li>\n</ul>\n</li>\n</ul>\n<h4>Submission</h4>\n<p>Please submit
-  the following files:</p>\n<ul>\n<li>Your html page</li>\n<li>A basic repo
- rt with appropriate screenshots</li>\n</ul>\n<h4>Grading of Assignment</h4
- >\n<p>Database Tasks: 5 points<br>PHP Tasks: 10 points<br>Other Tasks: 3 p
- oints</p>\n</div>\n</div><script src="https://instructure-uploads-2.s3.ama
- zonaws.com/account_20000000000019/attachments/149326034/dp_app.js"></scrip
- t>
+  the following files:</p>\n<ul>\n<li>Your php/html page(s)</li>\n<li>A bas
+ ic report with appropriate screenshots</li>\n</ul>\n<h4>Grading of Assignm
+ ent</h4>\n<p>Database Tasks: 5 points<br>PHP Tasks: 10 points<br>Other Tas
+ ks: 3 points</p>\n</div>\n</div><script src="https://instructure-uploads-2
+ .s3.amazonaws.com/account_20000000000019/attachments/149326034/dp_app.js">
+ </script>
 END:VEVENT
 BEGIN:VEVENT
 DTSTAMP:20251114T183600Z
@@ -2059,7 +1697,7 @@ X-ALT-DESC;FMTTYPE=text/html:<link rel="stylesheet" href="https://instructu
  p_app.js"></script>
 END:VEVENT
 BEGIN:VEVENT
-DTSTAMP:20250829T030200Z
+DTSTAMP:20251116T070000Z
 UID:event-assignment-16408280
 DTSTART;VALUE=DATE;VALUE=DATE:20251122
 CLASS:PUBLIC
@@ -2067,6 +1705,38 @@ SEQUENCE:0
 SUMMARY:Quiz 7: Classes in C++ [C and C++ Programming]
 URL;VALUE=URI:https://suu.instructure.com/calendar?include_contexts=course_
  1048411&month=11&year=2025#assignment_16408280
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20251118T175400Z
+UID:event-assignment-17197851
+DTSTART;VALUE=DATE;VALUE=DATE:20251123
+CLASS:PUBLIC
+DESCRIPTION:Please do the following from page 739:\n\n1-8\, 26abc\, 30-36
+SEQUENCE:0
+SUMMARY:10.5 -- Euler and Hamilton Paths [Discrete Structures]
+URL;VALUE=URI:https://suu.instructure.com/calendar?include_contexts=course_
+ 1048406&month=11&year=2025#assignment_17197851
+X-ALT-DESC;FMTTYPE=text/html:<link rel="stylesheet" href="https://instructu
+ re-uploads-2.s3.amazonaws.com/account_20000000000019/attachments/149326035
+ /dp_app.css"><p>Please do the following from page 739:</p>\n<p>1-8\, 26abc
+ \, 30-36</p><script src="https://instructure-uploads-2.s3.amazonaws.com/ac
+ count_20000000000019/attachments/149326034/dp_app.js"></script>
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20251118T175700Z
+UID:event-assignment-17197856
+DTSTART;VALUE=DATE;VALUE=DATE:20251123
+CLASS:PUBLIC
+DESCRIPTION:Please do the following from page 751:\n\n2-4\, 8
+SEQUENCE:0
+SUMMARY:10.6 -- Shortest-Path Problesm [Discrete Structures]
+URL;VALUE=URI:https://suu.instructure.com/calendar?include_contexts=course_
+ 1048406&month=11&year=2025#assignment_17197856
+X-ALT-DESC;FMTTYPE=text/html:<link rel="stylesheet" href="https://instructu
+ re-uploads-2.s3.amazonaws.com/account_20000000000019/attachments/149326035
+ /dp_app.css"><p>Please do the following from page 751:</p>\n<p>2-4\, 8</p>
+ <script src="https://instructure-uploads-2.s3.amazonaws.com/account_200000
+ 00000019/attachments/149326034/dp_app.js"></script>
 END:VEVENT
 BEGIN:VEVENT
 DTSTAMP:20231213T183800Z
@@ -2194,7 +1864,7 @@ X-ALT-DESC;FMTTYPE=text/html:<link rel="stylesheet" href="https://instructu
  _20000000000019/attachments/149326034/dp_app.js"></script>
 END:VEVENT
 BEGIN:VEVENT
-DTSTAMP:20251028T220700Z
+DTSTAMP:20251118T153400Z
 UID:event-assignment-16936612
 DTSTART;VALUE=DATE;VALUE=DATE:20251201
 CLASS:PUBLIC
@@ -2224,10 +1894,10 @@ DESCRIPTION:------------------------\nPHP and SQL Assignment 8\n-----------
  ode in your report\n\n* Include a screenshot of the get request url in you
  r report.  This helps me see that all input items are appropriately conne
  cted\n\n* for example assignment.html?name=DrB&course=CS%204350\n\nSubmiss
- ion\n----------\n\nPlease submit the following files:\n\n* Your html page\
- n\n* A basic report with appropriate screenshots\n\nGrading of Assignment\
- n---------------------\n\nDatabase Tasks: 5 points\nPHP Tasks: 15 points\n
- Other Tasks: 5 points
+ ion\n----------\n\nPlease submit the following files:\n\n* Your php/html p
+ age(s)\n\n* A basic report with appropriate screenshots\n\nGrading of Assi
+ gnment\n---------------------\n\nDatabase Tasks: 5 points\nPHP Tasks: 15 p
+ oints\nOther Tasks: 5 points
 SEQUENCE:0
 SUMMARY:Assignment 8 (PHP and SQL) [Web Programming]
 URL;VALUE=URI:https://suu.instructure.com/calendar?include_contexts=course_
@@ -2271,12 +1941,43 @@ X-ALT-DESC;FMTTYPE=text/html:<link rel="stylesheet" href="https://instructu
  helps me see that all input items are appropriately connected\n<ul>\n<li>f
  or example assignment.html?name=DrB&amp\;course=CS%204350</li>\n</ul>\n</l
  i>\n</ul>\n<h4>Submission</h4>\n<p>Please submit the following files:</p>\
- n<ul>\n<li>Your html page</li>\n<li>A basic report with appropriate screen
- shots</li>\n</ul>\n<h4>Grading of Assignment</h4>\n<p><span>Database Tasks
- : 5 points</span><br><span>PHP Tasks: 15 points</span><br><span>Other Task
- s: 5 points</span></p>\n</div>\n</div><script src="https://instructure-upl
- oads-2.s3.amazonaws.com/account_20000000000019/attachments/149326034/dp_ap
- p.js"></script>
+ n<ul>\n<li>Your php/html page(s)</li>\n<li>A basic report with appropriate
+  screenshots</li>\n</ul>\n<h4>Grading of Assignment</h4>\n<p><span>Databas
+ e Tasks: 5 points</span><br><span>PHP Tasks: 15 points</span><br><span>Oth
+ er Tasks: 5 points</span></p>\n</div>\n</div><script src="https://instruct
+ ure-uploads-2.s3.amazonaws.com/account_20000000000019/attachments/14932603
+ 4/dp_app.js"></script>
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20251118T154900Z
+UID:event-assignment-17195645
+DTSTART:20251203T065800Z
+DTEND:20251203T065800Z
+CLASS:PUBLIC
+DESCRIPTION:If you complete the student evaluations by the date this is due
+  and email me a screenshot of your final page I will add bonus points to y
+ our test grades.  The points are TBD but won't be more than 0.5% of your 
+ total grade.\n\nIf you did it before you saw this bonus\, just tell me in 
+ the submission.\n\n \n\nThere was some confusion in past semester as to w
+ hat I was asking for\,\nDON'T SEND YOUR ANSWERS\, just the page that says 
+ you completed the assessment.
+SEQUENCE:0
+SUMMARY:Student Evaluation [Web Programming]
+URL;VALUE=URI:https://suu.instructure.com/calendar?include_contexts=course_
+ 1048413&month=12&year=2025#assignment_17195645
+X-ALT-DESC;FMTTYPE=text/html:<link rel="stylesheet" href="https://instructu
+ re-uploads-2.s3.amazonaws.com/account_20000000000019/attachments/149326035
+ /dp_app.css"><p>If you complete the student evaluations by the date this i
+ s due and email me a screenshot of your final page I will add bonus points
+  to your test grades.&nbsp\; The points are TBD but won't be more than 0.5
+ % of your total grade.</p>\n<p>If you did it before you saw this bonus\, j
+ ust tell me in the submission.</p>\n<p>&nbsp\;</p>\n<p>There was some conf
+ usion in past semester as to what I was asking for\,<br><span style="font-
+ family: LatoWeb\, 'Helvetica Neue'\, Helvetica\, Arial\, sans-serif\; font
+ -size: 1rem\;">DON'T SEND YOUR ANSWERS\, just the page that says you compl
+ eted the assessment.</span></p><script src="https://instructure-uploads-2.
+ s3.amazonaws.com/account_20000000000019/attachments/149326034/dp_app.js"><
+ /script>
 END:VEVENT
 BEGIN:VEVENT
 DTSTAMP:20231213T183900Z
@@ -2319,6 +2020,88 @@ X-ALT-DESC;FMTTYPE=text/html:<link rel="stylesheet" href="https://instructu
  gnment</p>\n<p>&nbsp\;</p>\n</div>\n</div><script src="https://instructure
  -uploads-2.s3.amazonaws.com/account_20000000000019/attachments/149326034/d
  p_app.js"></script>
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20251121T205300Z
+UID:event-assignment-17220620
+DTSTART;VALUE=DATE;VALUE=DATE:20251205
+CLASS:PUBLIC
+DESCRIPTION:Please do the following from page 791:\n\n1\,3\,5\,7\, 17\,22\,
+SEQUENCE:0
+SUMMARY:11.1 -- Introduction to Trees [Discrete Structures]
+URL;VALUE=URI:https://suu.instructure.com/calendar?include_contexts=course_
+ 1048406&month=12&year=2025#assignment_17220620
+X-ALT-DESC;FMTTYPE=text/html:<link rel="stylesheet" href="https://instructu
+ re-uploads-2.s3.amazonaws.com/account_20000000000019/attachments/149326035
+ /dp_app.css"><p>Please do the following from page 791:</p>\n<p>1\,3\,5\,7\
+ , 17\,22\,</p><script src="https://instructure-uploads-2.s3.amazonaws.com/
+ account_20000000000019/attachments/149326034/dp_app.js"></script>
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20251121T210800Z
+UID:event-assignment-17220679
+DTSTART;VALUE=DATE;VALUE=DATE:20251205
+CLASS:PUBLIC
+DESCRIPTION:Please do the following from page 805:\n\n2\,4\,12\, 19\,20\,27
+SEQUENCE:0
+SUMMARY:11.2 -- Applications of Trees [Discrete Structures]
+URL;VALUE=URI:https://suu.instructure.com/calendar?include_contexts=course_
+ 1048406&month=12&year=2025#assignment_17220679
+X-ALT-DESC;FMTTYPE=text/html:<link rel="stylesheet" href="https://instructu
+ re-uploads-2.s3.amazonaws.com/account_20000000000019/attachments/149326035
+ /dp_app.css"><p><iframe style="width: 912px\; height: 513px\;" title="2300
+ _11.2" src="https://suu.instructure.com/courses/1048406/external_tools/ret
+ rieve?display=in_rce&amp\;resource_link_lookup_uuid=71922119-60e6-417e-b91
+ 9-cab1026cfa12" allowfullscreen="allowfullscreen" allow="geolocation *\; m
+ icrophone *\; camera *\; midi *\; encrypted-media *\; autoplay *\; clipboa
+ rd-write *\; display-capture *" loading="lazy"></iframe></p>\n<p>Please do
+  the following from page 805:</p>\n<p>2\,4\,12\, 19\,20\,27</p><script src
+ ="https://instructure-uploads-2.s3.amazonaws.com/account_20000000000019/at
+ tachments/149326034/dp_app.js"></script>
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20251121T210900Z
+UID:event-assignment-17220684
+DTSTART;VALUE=DATE;VALUE=DATE:20251205
+CLASS:PUBLIC
+DESCRIPTION:Please do the following from page 832:\n\n2-7
+SEQUENCE:0
+SUMMARY:11.4-- Spanning Trees [Discrete Structures]
+URL;VALUE=URI:https://suu.instructure.com/calendar?include_contexts=course_
+ 1048406&month=12&year=2025#assignment_17220684
+X-ALT-DESC;FMTTYPE=text/html:<link rel="stylesheet" href="https://instructu
+ re-uploads-2.s3.amazonaws.com/account_20000000000019/attachments/149326035
+ /dp_app.css"><p><iframe style="width: 912px\; height: 513px\;" title="2300
+ _11.4" src="https://suu.instructure.com/courses/1048406/external_tools/ret
+ rieve?display=in_rce&amp\;resource_link_lookup_uuid=2154a680-2dd0-45c2-912
+ 4-779e6c2409ac" allowfullscreen="allowfullscreen" allow="geolocation *\; m
+ icrophone *\; camera *\; midi *\; encrypted-media *\; autoplay *\; clipboa
+ rd-write *\; display-capture *" loading="lazy"></iframe></p>\n<p>Please do
+  the following from page 832:</p>\n<p>2-7</p><script src="https://instruct
+ ure-uploads-2.s3.amazonaws.com/account_20000000000019/attachments/14932603
+ 4/dp_app.js"></script>
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20251121T211100Z
+UID:event-assignment-17220687
+DTSTART;VALUE=DATE;VALUE=DATE:20251205
+CLASS:PUBLIC
+DESCRIPTION:Please do the following from page 839:\n\n1\, 4\,8\,15
+SEQUENCE:0
+SUMMARY:11.5 -- Minimum Spanning Trees [Discrete Structures]
+URL;VALUE=URI:https://suu.instructure.com/calendar?include_contexts=course_
+ 1048406&month=12&year=2025#assignment_17220687
+X-ALT-DESC;FMTTYPE=text/html:<link rel="stylesheet" href="https://instructu
+ re-uploads-2.s3.amazonaws.com/account_20000000000019/attachments/149326035
+ /dp_app.css"><p><iframe style="width: 912px\; height: 513px\;" title="vide
+ o1888794226.mp4" src="https://suu.instructure.com/courses/1048406/external
+ _tools/retrieve?display=in_rce&amp\;resource_link_lookup_uuid=ef9a8edf-e08
+ 0-401f-ba7f-23ca8142bec8" allowfullscreen="allowfullscreen" allow="geoloca
+ tion *\; microphone *\; camera *\; midi *\; encrypted-media *\; autoplay *
+ \; clipboard-write *\; display-capture *" loading="lazy"></iframe></p>\n<p
+ >Please do the following from page 839:</p>\n<p>1\, 4\,8\,15</p><script sr
+ c="https://instructure-uploads-2.s3.amazonaws.com/account_20000000000019/a
+ ttachments/149326034/dp_app.js"></script>
 END:VEVENT
 BEGIN:VEVENT
 DTSTAMP:20251029T174000Z
@@ -2589,6 +2372,60 @@ X-ALT-DESC;FMTTYPE=text/html:<link rel="stylesheet" href="https://instructu
  correction form\, and any scratch work where you solved the problem.</span
  ></p>\n</div><script src="https://instructure-uploads-2.s3.amazonaws.com/a
  ccount_20000000000019/attachments/149326034/dp_app.js"></script>
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20251119T151700Z
+UID:event-assignment-17202803
+DTSTART;VALUE=DATE;VALUE=DATE:20251212
+CLASS:PUBLIC
+DESCRIPTION:Please submit your corrections for Chapter 6 Midterm here. They
+  must be complete and correct with work shown to receive up to half-points
+  missed from original problem back. You need to include your original exam
+ \, the correction form\, and any scratch work where you solved the problem
+ .
+SEQUENCE:0
+SUMMARY:Chapter 6 Midterm Corrections Submission [Discrete Structures]
+URL;VALUE=URI:https://suu.instructure.com/calendar?include_contexts=course_
+ 1048406&month=12&year=2025#assignment_17202803
+X-ALT-DESC;FMTTYPE=text/html:<link rel="stylesheet" href="https://instructu
+ re-uploads-2.s3.amazonaws.com/account_20000000000019/attachments/149326035
+ /dp_app.css"><div class="description user_content teacher-version enhanced
+ " data-resource-type="assignment.body" data-resource-id="17108461">\n<div 
+ class="description user_content teacher-version enhanced" data-resource-ty
+ pe="assignment.body" data-resource-id="17052714">\n<p><span>Please submit 
+ your corrections for Chapter 6 Midterm here. They must be complete and cor
+ rect with work shown to receive up to half-points missed from original pro
+ blem back. You need to include your original exam\, the correction form\, 
+ and any scratch work where you solved the problem.</span></p>\n</div>\n</d
+ iv><script src="https://instructure-uploads-2.s3.amazonaws.com/account_200
+ 00000000019/attachments/149326034/dp_app.js"></script>
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20251119T151800Z
+UID:event-assignment-17202805
+DTSTART;VALUE=DATE;VALUE=DATE:20251212
+CLASS:PUBLIC
+DESCRIPTION:Please submit your corrections for Chapter 8 Midterm here. They
+  must be complete and correct with work shown to receive up to half-points
+  missed from original problem back. You need to include your original exam
+ \, the correction form\, and any scratch work where you solved the problem
+ .
+SEQUENCE:0
+SUMMARY:Chapter 8 Midterm Corrections Submission [Discrete Structures]
+URL;VALUE=URI:https://suu.instructure.com/calendar?include_contexts=course_
+ 1048406&month=12&year=2025#assignment_17202805
+X-ALT-DESC;FMTTYPE=text/html:<link rel="stylesheet" href="https://instructu
+ re-uploads-2.s3.amazonaws.com/account_20000000000019/attachments/149326035
+ /dp_app.css"><div class="description user_content teacher-version enhanced
+ " data-resource-type="assignment.body" data-resource-id="17108461">\n<div 
+ class="description user_content teacher-version enhanced" data-resource-ty
+ pe="assignment.body" data-resource-id="17052714">\n<p><span>Please submit 
+ your corrections for Chapter 8 Midterm here. They must be complete and cor
+ rect with work shown to receive up to half-points missed from original pro
+ blem back. You need to include your original exam\, the correction form\, 
+ and any scratch work where you solved the problem.</span></p>\n</div>\n</d
+ iv><script src="https://instructure-uploads-2.s3.amazonaws.com/account_200
+ 00000000019/attachments/149326034/dp_app.js"></script>
 END:VEVENT
 BEGIN:VEVENT
 DTSTAMP:20250925T170800Z
@@ -4008,5 +3845,38 @@ SEQUENCE:0
 SUMMARY:Last Day to Withdraw from Individual Courses with W: Full Session
 URL;VALUE=URI:https://suu.instructure.com/calendar?include_contexts=account
  _19&month=11&year=2026#calendar_event_3742224
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20231213T200200Z
+UID:event-calendar-event-3742231
+DTSTART;VALUE=DATE;VALUE=DATE:20261123
+CLASS:PUBLIC
+LOCATION:
+SEQUENCE:0
+SUMMARY:Last Day to Withdraw from Individual Courses with W: 2nd Session
+URL;VALUE=URI:https://suu.instructure.com/calendar?include_contexts=account
+ _19&month=11&year=2026#calendar_event_3742231
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20231213T200300Z
+UID:event-calendar-event-3742235
+DTSTART;VALUE=DATE;VALUE=DATE:20261123
+CLASS:PUBLIC
+LOCATION:
+SEQUENCE:0
+SUMMARY:Thanksgiving Break – No Classes\, Campus Open
+URL;VALUE=URI:https://suu.instructure.com/calendar?include_contexts=account
+ _19&month=11&year=2026#calendar_event_3742235
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20231213T200300Z
+UID:event-calendar-event-3742236
+DTSTART;VALUE=DATE;VALUE=DATE:20261124
+CLASS:PUBLIC
+LOCATION:
+SEQUENCE:0
+SUMMARY:Thanksgiving Break – No Classes\, Campus Open
+URL;VALUE=URI:https://suu.instructure.com/calendar?include_contexts=account
+ _19&month=11&year=2026#calendar_event_3742236
 END:VEVENT
 END:VCALENDAR
