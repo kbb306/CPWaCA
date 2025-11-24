@@ -33,7 +33,6 @@ class mainWindow:
         self.custbutton.grid(row=1, column=1, sticky="nsew", padx=5, pady=5)
 
         self.datecheck()
-        watch(globals.today,callback=self.onUpdate)
         schedule.every().hours.at("00:30").do(self.sync)
         schedule.every().day.at("09:00").do(self.daily_check)
         self.run_sched()
@@ -198,16 +197,14 @@ class mainWindow:
                 if globals.Alarm:
                     if each.alert() is not None:
                         self.alarm(each.alert())
-            self.reader.sync()
         except:
             self.APIin()
 
     def daily_check(self):
         globals.today = globals.datetime.date.today()
-        
-    def onUpdate(self):
         self.datecheck()
-        self.sync()
+        
+    
     
 
 if __name__ == "__main__":

@@ -60,7 +60,7 @@ class Reader():
     def export(self):
         sheet_rows = self.readToEnd()
         self.compare(self.masterList,sheet_rows,"uid","uid",True,self.update_sheet)
-        self.compare(self.masterList,sheet_rows,"uid","uid",False,self.append_to_sheet)
+        #self.compare(self.masterList,sheet_rows,"uid","uid",False,self.append_to_sheet)
         
 
 
