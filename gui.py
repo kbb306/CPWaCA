@@ -197,6 +197,7 @@ class mainWindow:
                 if globals.Alarm:
                     if each.alert() is not None:
                         self.alarm(each.alert())
+            self.reader.sync()
         except:
             self.APIin()
 
