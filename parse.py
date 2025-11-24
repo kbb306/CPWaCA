@@ -42,9 +42,26 @@ class Reader():
             ]],
         )
 
+    def update_sheet(self,assignment, _ignored):
+        sheets_update_values.update_values(
+            self.outFile,
+            "A5:F",
+            "USER_ENTERED",
+            [[
+                assignment.course,
+                assignment.name,
+                assignment.status,
+                assignment.daysLeft,
+                assignment.dueDate.isoformat() if hasattr(assignment.dueDate, "isoformat") else assignment.dueDate,
+                assignment.uid,
+            ]],
+        )
+
     def export(self):
         sheet_rows = self.readToEnd()
         self.compare(self.masterList,sheet_rows,"uid","uid",False,self.append_to_sheet)
+        self.compare(self.masterList,sheet_rows,"uid","uid",True,self.update_sheet)
+
 
 
     def add_from_sheet(self,sheet_assignment, _match):
