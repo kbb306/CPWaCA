@@ -158,7 +158,7 @@ class mainWindow:
     def alarm(self,assignment):
         def playalarm():
             try:
-                wave = simpleaudio.WaveObject.from_wave_file(alarm.wav)
+                wave = simpleaudio.WaveObject.from_wave_file("alarm.wav")
                 play = wave.play()
             except Exception as e:
                 print(f"Error playing sound: {e}")
