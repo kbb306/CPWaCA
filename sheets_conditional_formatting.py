@@ -20,7 +20,7 @@ from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 
 
-def conditional_formatting(spreadsheet_id):
+def conditional_formatting(spreadsheet_id,my_range):
   """
   Creates the batch_update the user has access to.
   Load pre-authorized user credentials from the environment.
@@ -32,13 +32,7 @@ def conditional_formatting(spreadsheet_id):
   try:
     service = build("sheets", "v4", credentials=creds)
 
-    my_range = {
-        "sheetId": 0,
-        "startRowIndex": 1,
-        "endRowIndex": 11,
-        "startColumnIndex": 0,
-        "endColumnIndex": 4,
-    }
+   
     requests = [
         {
             "addConditionalFormatRule": {
