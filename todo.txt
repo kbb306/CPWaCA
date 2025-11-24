@@ -1,4 +1,4 @@
-Add code to create table headers
+Add code to create table headers (Special case in customizer.py?)
 
 Create customization functions (More google API, yay!)
     Add check for add vs update
