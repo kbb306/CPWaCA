@@ -16,6 +16,7 @@ class Reader():
         
         if self.outFile is None:
             self.outFile = sheets_create.create("Calendar")
+            sheets_update_values.update_values(self.outFile,"A1:C1","USER_ENTERED",["CPWaCA Assignment Tracker",2025])
     def _import(self):
         try:
             urlretrieve(self.inURL,"Schedule.ical")
