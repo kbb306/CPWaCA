@@ -205,7 +205,7 @@ class mainWindow:
         globals.today = globals.datetime.date.today()
         
     def onUpdate(self):
-        self.daily_check()
+        self.datecheck()
         self.sync()
     
 
