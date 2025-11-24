@@ -39,7 +39,7 @@ def conditional_formatting(spreadsheet_id,rule):
         "endColumnIndex": 4,
     }
   """
-  creds, _ = authorize.authcheck()
+  creds = authorize.authcheck()
   # pylint: disable=maybe-no-member
   try:
     service = build("sheets", "v4", credentials=creds)

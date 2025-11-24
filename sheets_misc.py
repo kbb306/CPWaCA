@@ -39,7 +39,7 @@ def run(spreadsheet_id,command):
         "endColumnIndex": 4,
     }
   """
-  creds, _ = authorize.authcheck()
+  creds = authorize.authcheck()
   # pylint: disable=maybe-no-member
   try:
     service = build("sheets", "v4", credentials=creds)
@@ -60,7 +60,3 @@ def run(spreadsheet_id,command):
     return error
 
 
-if __name__ == "__main__":
-  # Pass: spreadsheet_id
-  merge("1CM29gwKIzeXsAppeNwrc8lbYaVMmUclprLuLYuHog4k")
-  # [END sheets_merge]

@@ -13,7 +13,7 @@ class Rule:
                 later = Color(args[0][0],args[0][1],args[0][2],1)
                 soon = Color(args[1][0],args[1][1],args[1][2],1)
                 now = Color(args[2][0],args[2][1],args[2][2],1)
-                self.jsonobj = json.dumps({
+                self.jsonobj = {
                     "addConditionalFormatRule": {
                     "rule": {
                         "ranges": [
@@ -55,7 +55,7 @@ class Rule:
                     "index": 0
                 }
             }
-                )
+                
                 
                 
             case "type":
@@ -64,17 +64,16 @@ class Rule:
                 essay = Color(args[2,0],args[2,1],args[2,2],args[2,3])
                 project = Color(args[3,0],args[3,1],args[3,2],args[3,3])
                 final = Color(args[4,0],args[4,1],args[4,2],args[4,3])
-                self.jsonobj = json.dumps({}) # Not finished
+                self.jsonobj = {} # Not finished
 
             case "title":
                 row = args[0]
                 fontsize = args[1]
                 bold = args[2]
-                self.jsonobj = json.dumps(
-                    {
+                self.jsonobj = {
                     "repeatCell" : {
                         "range" : {
-                            "sheetID" : 0,
+                            "sheetId" : 0,
                             "startRowIndex" : row,
                             "endRowIndex" : row + 1,
                             "startColumnIndex" : 0,
@@ -86,12 +85,12 @@ class Rule:
                                 "horizontalAlignment" : "CENTER",
                                 "textFormat" : {
                                     "bold" : bold,
-                                    "fontsize" : fontsize
+                                    "fontSize" : fontsize
                                 }
                             }
                         },
                         "fields" : "userEnteredFormat(horizontalAlignment,textFormat)"
                     }
                 }
-                )
+                
     
