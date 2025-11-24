@@ -5,6 +5,6 @@ Create customization functions (More google API, yay!)
     Finish filling in entry boxes in customization settings window
     Hook up customization window to button
     Update syncsetyings to read and write new customization settings
-    Add indicators for customization settings to file
+    Add indicators for customization settings to spreadsheet
     
 Get an alarm sound
