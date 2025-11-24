@@ -12,6 +12,8 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
+
+
 """
 
 # [START sheets_conditional_formatting]
@@ -26,13 +28,23 @@ def conditional_formatting(spreadsheet_id,my_range):
   Load pre-authorized user credentials from the environment.
   TODO(developer) - See https://developers.google.com/identity
   for guides on implementing OAuth2 for the application.
+
+  Reference for range:
+
+   my_range = {
+        "sheetId": 0,
+        "startRowIndex": 1,
+        "endRowIndex": 11,
+        "startColumnIndex": 0,
+        "endColumnIndex": 4,
+    }
   """
-  creds = authorize.authcheck()
+  creds, _ = authorize.authcheck()
   # pylint: disable=maybe-no-member
   try:
     service = build("sheets", "v4", credentials=creds)
 
-   
+    
     requests = [
         {
             "addConditionalFormatRule": {
