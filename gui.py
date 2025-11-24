@@ -44,6 +44,7 @@ class mainWindow:
             self.reader.sync()
         except:
             print("Warning, no reader class yet.")
+        self.datecheck()
 
     def fileFuckery(self,command,file,section,lookfor,changeTo=None):
          config = configparser.ConfigParser()
