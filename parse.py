@@ -43,9 +43,14 @@ class Reader():
         )
 
     def update_sheet(self,assignment, _ignored):
+        rows = 5
+        uid = sheets_get_values(f"F{rows}:F{rows}")
+        while uid != assignment.uid:
+            uid = sheets_get_values(f"F{rows}:F{rows}")
+            rows += 1
         sheets_update_values.update_values(
             self.outFile,
-            "A5:F",
+            f"A{rows}:F",
             "USER_ENTERED",
             [[
                 assignment.course,
@@ -59,8 +64,8 @@ class Reader():
 
     def export(self):
         sheet_rows = self.readToEnd()
-        self.compare(self.masterList,sheet_rows,"uid","uid",True,self.update_sheet)
-        #self.compare(self.masterList,sheet_rows,"uid","uid",False,self.append_to_sheet)
+        
+        self.compare(self.masterList,sheet_rows,"uid","uid",False,self.append_to_sheet)
         
 
 
