@@ -1,5 +1,5 @@
 Add code to create table headers.
-
+Auto update days left field on spreadsheet
 Create customization functions (More google API, yay!)
     Add check for add vs update
     Finish filling in entry boxes in customization settings window

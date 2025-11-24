@@ -6,27 +6,6 @@ METHOD:PUBLISH
 X-WR-CALNAME:Kyler Belshaw Calendar (Canvas)
 X-WR-CALDESC:Calendar events for the user\, Kyler Belshaw
 BEGIN:VEVENT
-DTSTAMP:20251027T171700Z
-UID:event-assignment-17104447
-DTSTART;VALUE=DATE;VALUE=DATE:20251024
-CLASS:PUBLIC
-DESCRIPTION:[Assignment 3.pdf] (https://suu.instructure.com/courses/1192010
- /files/187301436?wrap=1)
-SEQUENCE:0
-SUMMARY:Assignment 3: System Analysis [Software Engineering]
-URL;VALUE=URI:https://suu.instructure.com/calendar?include_contexts=course_
- 1192010&month=10&year=2025#assignment_17104447
-X-ALT-DESC;FMTTYPE=text/html:<link rel="stylesheet" href="https://instructu
- re-uploads-2.s3.amazonaws.com/account_20000000000019/attachments/149326035
- /dp_app.css"><p><a class="instructure_file_link instructure_scribd_file in
- line_disabled" title="Assignment 3.pdf" href="https://suu.instructure.com/
- courses/1192010/files/187301436?wrap=1" target="_blank" data-canvas-previe
- wable="false" data-api-endpoint="https://suu.instructure.com/api/v1/course
- s/1192010/files/187301436" data-api-returntype="File">Assignment 3.pdf</a>
- </p><script src="https://instructure-uploads-2.s3.amazonaws.com/account_20
- 000000000019/attachments/149326034/dp_app.js"></script>
-END:VEVENT
-BEGIN:VEVENT
 DTSTAMP:20251104T174800Z
 UID:event-assignment-16408292
 DTSTART;VALUE=DATE;VALUE=DATE:20251025
@@ -3878,5 +3857,16 @@ SEQUENCE:0
 SUMMARY:Thanksgiving Break – No Classes\, Campus Open
 URL;VALUE=URI:https://suu.instructure.com/calendar?include_contexts=account
  _19&month=11&year=2026#calendar_event_3742236
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20231213T200300Z
+UID:event-calendar-event-3742237
+DTSTART;VALUE=DATE;VALUE=DATE:20261125
+CLASS:PUBLIC
+LOCATION:
+SEQUENCE:0
+SUMMARY:Thanksgiving Break – No Classes\, Campus Open
+URL;VALUE=URI:https://suu.instructure.com/calendar?include_contexts=account
+ _19&month=11&year=2026#calendar_event_3742237
 END:VEVENT
 END:VCALENDAR
