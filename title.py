@@ -13,7 +13,7 @@ def titleinator(driveFile,row,fontsize,bold):
                                 "startRowIndex" : row,
                                 "endRowIndex" : row + 1,
                                 "startColumnIndex" : 0,
-                                "endColumnIndex" : 5,
+                                "endColumnIndex" : 6,
                         },
                         "mergeType" : "MERGE_ALL"
                 }
