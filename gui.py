@@ -5,8 +5,8 @@ import parse
 import schedule
 from watchpoints import watch
 import configparser
+import simpleaudio
 import threading
-import playsound
 import sheets_conditional_formatting
 import customizer
 class mainWindow:
@@ -158,7 +158,8 @@ class mainWindow:
     def alarm(self,assignment):
         def playalarm():
             try:
-                playsound(alarm.mp3)
+                wave = simpleaudio.WaveObject.from_wave_file(alarm.wav)
+                play = wave.play()
             except Exception as e:
                 print(f"Error playing sound: {e}")
 
