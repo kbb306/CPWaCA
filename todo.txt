@@ -4,5 +4,6 @@ Create customization functions (More google API, yay!)
     Add check for add vs update
     Finish filling in entry boxes in customization settings window
     Hook up customization window to button
+    Update syncsetyings to read and write new customization settings.
     
 Get an alarm sound
