@@ -22,7 +22,7 @@ from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 
 
-def conditional_formatting(spreadsheet_id,my_range):
+def conditional_formatting(spreadsheet_id,rule):
   """
   Creates the batch_update the user has access to.
   Load pre-authorized user credentials from the environment.
@@ -45,58 +45,7 @@ def conditional_formatting(spreadsheet_id,my_range):
     service = build("sheets", "v4", credentials=creds)
 
     
-    requests = [
-        {
-            "addConditionalFormatRule": {
-                "rule": {
-                    "ranges": [my_range],
-                    "booleanRule": {
-                        "condition": {
-                            "type": "CUSTOM_FORMULA",
-                            "values": [
-                                {
-                                    "userEnteredValue": (
-                                        "=GT($D2,median($D$2:$D$11))"
-                                    )
-                                }
-                            ],
-                        },
-                        "format": {
-                            "textFormat": {"foregroundColor": {"red": 0.8}}
-                        },
-                    },
-                },
-                "index": 0,
-            }
-        },
-        {
-            "addConditionalFormatRule": {
-                "rule": {
-                    "ranges": [my_range],
-                    "booleanRule": {
-                        "condition": {
-                            "type": "CUSTOM_FORMULA",
-                            "values": [
-                                {
-                                    "userEnteredValue": (
-                                        "=LT($D2,median($D$2:$D$11))"
-                                    )
-                                }
-                            ],
-                        },
-                        "format": {
-                            "backgroundColor": {
-                                "red": 1,
-                                "green": 0.4,
-                                "blue": 0.4,
-                            }
-                        },
-                    },
-                },
-                "index": 0,
-            }
-        },
-    ]
+    requests = [rule]
     body = {"requests": requests}
     response = (
         service.spreadsheets()

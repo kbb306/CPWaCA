@@ -7,6 +7,8 @@ from watchpoints import watch
 import configparser
 import threading
 import playsound
+import sheets_conditional_formatting
+import customizer
 class mainWindow:
     def __init__(self,root):
         self.root = root
@@ -120,6 +122,39 @@ class mainWindow:
         self.thresholdPrompt.pack(pady=5)
         self.threshold.pack(pady=5)
     
+    def customization_window(self):
+        self.custwin = tk.Toplevel(self.root)
+        self.custwin.title("Spreadsheet Customization")
+        self.later = tk.StringVar()
+        self.soon = tk.StringVar()
+        self.now = tk.StringVar()
+        self.quiz = tk.StringVar()
+        self.optional = tk.StringVar()
+        self.essay = tk.StringVar()
+        self.project = tk.StringVar()
+        self.final = tk.StringVar()
+        self.quizprompt = tk.Label(self.custwin,text="Enter a color for quizzes/exams (R,G,B)")
+        self.quizentry = tk.Entry(self.custwin, textvariable=self.quiz)
+        self.optionalprompt = tk.Label(self.custwin,text="Enter a color for optional assignments")
+        self.optionalentry = tk.Entry(self.custwin,textvariable=self.optional)
+
+    def customize(self):
+       quiz = (self.quiz.get()).split(",")
+       optional = (self.optional.get()).split(",")
+       essay = (self.essay.get()).split(",")
+       final = (self.final.get()).split(",")
+       project = (self.project.get()).split(",")
+       later = (self.later.get()).split(",")
+       soon = (self.soon.get()).split(",")
+       now = (self.now.get()).split(",")
+       dueColors = customizer.Rule("daysleft",[later,soon,now])
+       typeColors = customizer.Rule("type",[quiz,optional,essay,project,final])
+       for each in (dueColors,typeColors):
+           try:
+               sheets_conditional_formatting.conditional_formatting(self.reader.outFile)
+           except Exception as e:
+               print(f"Error saving formatting rule {each}: {e}")
+
     def alarm(self,assignment):
         def playalarm():
             try:

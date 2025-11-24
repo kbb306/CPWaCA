@@ -1,3 +1,8 @@
-Add code to create new file (And table headers)
+Add code to create table headers
+
 Create customization functions (More google API, yay!)
-Create unit test for parse()
+    Add check for add vs update
+    Finish filling in entry boxes in customization settings window
+    Hook up customization window to button
+    
+Get an alarm sound
