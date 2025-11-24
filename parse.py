@@ -4,6 +4,7 @@ import sheets_update_values
 import sheets_create
 import sheets_get_values
 import sheets_append_values 
+import title
 import re
 from urllib.request import urlretrieve
 import traceback;
@@ -16,7 +17,7 @@ class Reader():
         
         if self.outFile is None:
             self.outFile = sheets_create.create("Calendar")
-            sheets_update_values.update_values(self.outFile,"A1:C1","USER_ENTERED",["CPWaCA Assignment Tracker",globals.today.year])
+            title.titleinator(self.outFile,0,39,True)
     def _import(self):
         try:
             urlretrieve(self.inURL,"Schedule.ical")
@@ -90,18 +91,7 @@ class Reader():
     
 
     def compare(self, list1, list2, attrone, attrtwo, want, func):
-        """
-        For each each1 in list1:
-        - Look for a matching each2 in list2, comparing attrone vs attrtwo.
-        - If (match_found == want) is True, call func(each1, match_or_None)
-
-        list1: primary list we are iterating over
-        list2: secondary list to compare against
-        attrone: attribute name on each1 (str)
-        attrtwo: attribute name on each2 (str)
-        want: True → trigger when match exists; False → trigger when match does NOT exist
-        func: callable taking (each1, each2_or_None)
-        """
+       
         for each1 in list1:
             match = None
             for each2 in list2:

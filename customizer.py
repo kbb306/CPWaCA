@@ -64,5 +64,34 @@ class Rule:
                 essay = Color(args[2,0],args[2,1],args[2,2],args[2,3])
                 project = Color(args[3,0],args[3,1],args[3,2],args[3,3])
                 final = Color(args[4,0],args[4,1],args[4,2],args[4,3])
-                self.jsonobj = json.dumps({})
+                self.jsonobj = json.dumps({}) # Not finished
+
+            case "title":
+                row = args[0]
+                fontsize = args[1]
+                bold = args[2]
+                self.jsonobj = json.dumps(
+                    {
+                    "repeatCell" : {
+                        "range" : {
+                            "sheetID" : 0,
+                            "startRowIndex" : row,
+                            "endRowIndex" : row + 1,
+                            "startColumnIndex" : 0,
+                            "endColumnIndex" : 5,
+ 
+                        },
+                        "cell" : {
+                            "userEnteredFormat" : {
+                                "horizontalAlignment" : "CENTER",
+                                "textFormat" : {
+                                    "bold" : bold,
+                                    "fontsize" : fontsize
+                                }
+                            }
+                        },
+                        "fields" : "userEnteredFormat(horizontalAlignment,textFormat)"
+                    }
+                }
+                )
     

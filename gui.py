@@ -151,7 +151,7 @@ class mainWindow:
        typeColors = customizer.Rule("type",[quiz,optional,essay,project,final])
        for each in (dueColors,typeColors):
            try:
-               sheets_conditional_formatting.conditional_formatting(self.reader.outFile)
+               sheets_conditional_formatting.conditional_formatting(self.reader.outFile,each.jsonobj)
            except Exception as e:
                print(f"Error saving formatting rule {each}: {e}")
 
