@@ -6,113 +6,6 @@ METHOD:PUBLISH
 X-WR-CALNAME:Kyler Belshaw Calendar (Canvas)
 X-WR-CALDESC:Calendar events for the user\, Kyler Belshaw
 BEGIN:VEVENT
-DTSTAMP:20251104T174800Z
-UID:event-assignment-16408292
-DTSTART;VALUE=DATE;VALUE=DATE:20251025
-CLASS:PUBLIC
-DESCRIPTION:In this program you will implement a linked list using a C stru
- cture and some custom functions. A linked list is defined by a series of n
- odes that contain data\, and a reference to the next node in the list. In 
- this implementation\, the linked list will be used to store integer data. 
- A link list must have the following operations:\n\n* Create a linked list:
-  this function should take in nothing and return a node with no value set 
- for it's data\, and the next reference set to NULL\n\n* Change a value in 
- the list: this function should take in the list\, and an index value and a
-  data value and determine if that node exists in the list first. If it doe
- s not exist\, it should do nothing\, but print to the console that the nod
- e does not exist. If it does exist\, it should set the data of the node to
-  be the data in the input. The head of the list is index 0\, and so forth\
- n\n* Print the list: this function should take in the list\, and iterate t
- hrough the list and print all the values in each node sequentially\n\n* Ap
- pend an item to the list: this function should take in a list and an integ
- er and create a node and append the node to end of the linked list\, and s
- et it's data to be the input value\n\n* Delete an item: this function shou
- ld take in a list and an index and determine if that node exists. If it do
- es not exist\, it should do nothing\, but print to the console that the no
- de does not exist. If it does exist\, it should delete the node and update
-  the references.\n\n* Insert an item: this function should take in a list 
- and an index and data. It should determine if the index is a valid index (
- it is between 0 and length -1 inclusive). If the index is valid then it sh
- ould insert the data at the specified index and shift the latter indices d
- own.\n\nIn separate files linkedlist.h and linkedlist.c write the struc
- ture definition and the functions above. Be sure to write the structure de
- finition in the .h file and use a typedef to name it Node. \n\nIn a separ
- ate file (main.c) you should write a main() function and present a menu wi
- th the following options:\n\n* Make a new list\n\n* Print the list\n\n* Ap
- pend an item to the list\n\n* Delete an item from the list\n\n* Insert an 
- item in the list\n\n* Quit\n\nBe sure to validate all input with a non-in
- finite while loop. Once the input has been validated\, perform the correc
- t operation given by the user's input.\n\n \n\nNOTE: I've noticed that s
- ome of you have been attempting to modify the list inside your functions\,
-  which you can do. If you want to do this\, you will need to use malloc t
- o make sure your nodes do not disappear from memory. In order to use mall
- oc you will need to include <stdlib.h> and do it in the following way:\n\n
- type* var = (type*) malloc(sizeof(type))\;\n\nWhere you replace type with 
- the type of variable you want to create (a Node in this case).
-SEQUENCE:0
-SUMMARY:Assignment 5: Advanced C Program [C and C++ Programming]
-URL;VALUE=URI:https://suu.instructure.com/calendar?include_contexts=course_
- 1048411&month=10&year=2025#assignment_16408292
-X-ALT-DESC;FMTTYPE=text/html:<link rel="stylesheet" href="https://instructu
- re-uploads-2.s3.amazonaws.com/account_20000000000019/attachments/149326035
- /dp_app.css"><p>In this program you will implement a linked list using a C
-  structure and some custom functions. A linked list is defined by a series
-  of nodes that contain data\, and a reference to the next node in the list
- . In this implementation\, the linked list will be used to store integer d
- ata. A link list must have the following operations:</p>\n<ol style="list-
- style-type: decimal\;">\n<li>Create a linked list: this function should ta
- ke in nothing and return a node with no value set for it's data\, and the 
- next reference set to NULL</li>\n<li>Change a value in the list: this func
- tion should take in the list\, and an index value and a data value and det
- ermine if that node exists in the list first. If it does not exist\, it sh
- ould do nothing\, but print to the console that the node does not exist. I
- f it does exist\, it should set the data of the node to be the data in the
-  input. The head of the list is index 0\, and so forth</li>\n<li>Print the
-  list: this function should take in the list\, and iterate through the lis
- t and print all the values in each node sequentially</li>\n<li>Append an i
- tem to the list: this function should take in a list and an integer and cr
- eate a node and append the node to end of the linked list\, and set it's d
- ata to be the input value</li>\n<li>Delete an item: this function should t
- ake in a list and an index and determine if that node exists. If it does n
- ot exist\, it should do nothing\, but print to the console that the node d
- oes not exist. If it does exist\, it should delete the node and update the
-  references.</li>\n<li>Insert an item: this function should take in a list
-  and an index and data. It should determine if the index is a valid index 
- (it is between 0 and length -1 inclusive). If the index is valid then it s
- hould insert the data at the specified index and shift the latter indices 
- down.</li>\n</ol>\n<p>In separate files&nbsp\;<strong>linkedlist.h&nbsp\;<
- /strong>and&nbsp\;<strong>linkedlist.c</strong> write the structure defini
- tion and the functions above. Be sure to write the structure definition in
-  the .h file and use a typedef to name it Node.&nbsp\;</p>\n<p>In a separa
- te file (<strong>main.c</strong>) you should write a main() function and p
- resent a menu with the following options:</p>\n<ol style="list-style-type:
-  decimal\;">\n<li>Make a new list</li>\n<li>Print the list</li>\n<li>Appen
- d an item to the list</li>\n<li>Delete an item from the list</li>\n<li>Ins
- ert an item in the list</li>\n<li>Quit</li>\n</ol>\n<p>Be sure to validate
-  all input with a&nbsp\;<em><strong>non-infinite while loop.&nbsp\;</stron
- g></em>Once the input has been validated\, perform the correct operation g
- iven by the user's input.</p>\n<p>&nbsp\;</p>\n<p><strong>NOTE:&nbsp\;</st
- rong>I've noticed that some of you have been attempting to modify the list
-  inside your functions\, which you can do. If you want to do this\, you wi
- ll need to use&nbsp\;<strong>malloc</strong> to make sure your nodes do no
- t disappear from memory. In order to use&nbsp\;<strong>malloc</strong> you
-  will need to include &lt\;stdlib.h&gt\; and do it in the following way:</
- p>\n<pre>type* var = (type*) malloc(sizeof(type))\;</pre>\n<p>Where you re
- place type with the type of variable you want to create (a Node in this ca
- se).</p><script src="https://instructure-uploads-2.s3.amazonaws.com/accoun
- t_20000000000019/attachments/149326034/dp_app.js"></script>
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20250829T030200Z
-UID:event-assignment-16408281
-DTSTART;VALUE=DATE;VALUE=DATE:20251025
-CLASS:PUBLIC
-SEQUENCE:0
-SUMMARY:Quiz 5: C++ Basics [C and C++ Programming]
-URL;VALUE=URI:https://suu.instructure.com/calendar?include_contexts=course_
- 1048411&month=10&year=2025#assignment_16408281
-END:VEVENT
-BEGIN:VEVENT
 DTSTAMP:20251023T220600Z
 UID:event-assignment-17121894
 DTSTART;VALUE=DATE;VALUE=DATE:20251026
@@ -2201,7 +2094,7 @@ X-ALT-DESC;FMTTYPE=text/html:<link rel="stylesheet" href="https://instructu
  ccount_20000000000019/attachments/149326034/dp_app.js"></script>
 END:VEVENT
 BEGIN:VEVENT
-DTSTAMP:20250829T031400Z
+DTSTAMP:20251125T160500Z
 UID:event-assignment-16408295
 DTSTART:20251211T000000Z
 DTEND:20251211T000000Z
@@ -3868,5 +3761,16 @@ SEQUENCE:0
 SUMMARY:Thanksgiving Break – No Classes\, Campus Open
 URL;VALUE=URI:https://suu.instructure.com/calendar?include_contexts=account
  _19&month=11&year=2026#calendar_event_3742237
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20231213T200300Z
+UID:event-calendar-event-3742238
+DTSTART;VALUE=DATE;VALUE=DATE:20261126
+CLASS:PUBLIC
+LOCATION:
+SEQUENCE:0
+SUMMARY:Thanksgiving Break – No Classes\, Campus Closed
+URL;VALUE=URI:https://suu.instructure.com/calendar?include_contexts=account
+ _19&month=11&year=2026#calendar_event_3742238
 END:VEVENT
 END:VCALENDAR
