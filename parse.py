@@ -72,7 +72,11 @@ class Reader():
 
     def export(self):
         for each in self.masterList:
-            each.upDate()
+            try:
+                each.upDate()
+            except Exception as e:
+                print(f"Warning, could not update days left for assignment {each.uid}: {e}")
+
         sheet_rows = self.readToEnd()
         self.compare(self.masterList,sheet_rows,"uid","uid",True,self.update_sheet)
         self.compare(self.masterList,sheet_rows,"uid","uid",False,self.append_to_sheet)
@@ -82,7 +86,10 @@ class Reader():
 
     def add_from_sheet(self,sheet_assignment, _match):
         # sheet_assignment is each1 from sheet_rows
-        sheet_assignment.upDate()
+        try:
+            sheet_assignment.upDate()
+        except Exception as e:
+            print(f"Warning, could not update days left for assignment {sheet_assignment.uid}: {e}")
         self.masterList.append(sheet_assignment)  
     
     def sync(self):
