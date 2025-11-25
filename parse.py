@@ -44,7 +44,7 @@ class Reader():
 
     def update_sheet(self,assignment, _ignored):
         rows = 5
-        uid = sheets_get_values(f"F{rows}:F{rows}")
+        uid = sheets_get_values.get_values(f"F{rows}:F{rows}")
         while uid != assignment.uid:
             uid = sheets_get_values.get_values(f"F{rows}:F{rows}")
             rows += 1
