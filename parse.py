@@ -76,6 +76,7 @@ class Reader():
                 each.upDate()
             except Exception as e:
                 print(f"Warning, could not update days left for assignment {each.uid}: {e}")
+        print(f"Now exporting {each.name, each.uid} date {each.dueDate}. {each.daysLeft} days until due.")
 
         sheet_rows = self.readToEnd()
         self.compare(self.masterList,sheet_rows,"uid","uid",True,self.update_sheet)
