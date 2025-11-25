@@ -58,7 +58,7 @@ class Reader():
 
         sheets_update_values.update_values(
             self.outFile,
-            f"A{rows}:F",
+            f"A{row}:F",
             "USER_ENTERED",
             [[
                 assignment.course,
