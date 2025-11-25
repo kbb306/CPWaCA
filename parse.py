@@ -46,7 +46,7 @@ class Reader():
         print(f"Updating assignment {assignment.uid}")
         row = 5
         while True:
-            result = sheets_get_values.get_values(self.outFile,f"F{rows}:F{rows}")
+            result = sheets_get_values.get_values(self.outFile,f"F{row}:F{row}")
             rows = result.get("values",[])
 
             if not rows:
