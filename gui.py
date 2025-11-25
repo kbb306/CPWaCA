@@ -35,12 +35,12 @@ class mainWindow:
         self.datecheck()
         self.daily_check()
         schedule.every().hours.at("00:30").do(self.sync)
-        schedule.every().day.at("09:00").do(self.daily_check)
+        schedule.every().day.at("09:00").do(lambda: (self.daily_check(), self.reader.sync()))
         self.run_sched()
 
     def sync(self):
+        self.daily_check()
         self.syncSettings("read")
-        self.datecheck()
         try:
             self.reader.sync()
         except Exception as e:

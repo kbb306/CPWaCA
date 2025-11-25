@@ -112,6 +112,12 @@ class Reader():
 
             course, assignment, status, daysLeft, date, uid = row_values[:6]
 
+            if isinstance(date,str) and date:
+                try:
+                    date = datetime.date.fromisoformat(date)
+                except ValueError:
+                    pass
+
             new = Assignment(course, assignment, status, daysLeft, date, uid)
             results.append(new)
 
