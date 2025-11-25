@@ -44,11 +44,18 @@ class Reader():
 
     def update_sheet(self,assignment, _ignored):
         print(f"Updating assignment {assignment.uid}")
-        rows = 5
-        uid = sheets_get_values.get_values(self.outFile,f"F{rows}")
-        while uid != assignment.uid:
-            uid = sheets_get_values.get_values(self.outFile,f"F{rows}")
-            rows += 1
+        row = 5
+        while True:
+            result = sheets_get_values.get_values(self.outFile,f"F{rows}:F{rows}")
+            rows = result.get("values",[])
+
+            if not rows:
+                return
+            uid = rows[0][0]
+            if uid == assignment.uid:
+                break
+            row += 1
+
         sheets_update_values.update_values(
             self.outFile,
             f"A{rows}:F",
