@@ -44,7 +44,8 @@ class mainWindow:
         try:
             self.reader.sync()
         except Exception as e:
-            print(f"Warning sync failed due to {e}")
+            traceback = parse.traceback.format_exc()
+            print(f"Warning sync failed due to {e}. Traceback is {traceback}")
        
 
     def fileFuckery(self,command,file,section,lookfor,changeTo=None):
