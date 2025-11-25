@@ -43,10 +43,11 @@ class Reader():
         )
 
     def update_sheet(self,assignment, _ignored):
+        print(f"Updating assignment {assignment.uid}")
         rows = 5
-        uid = sheets_get_values.get_values(self.outFile,f"F{rows}:F{rows}")
+        uid = sheets_get_values.get_values(self.outFile,f"F{rows}")
         while uid != assignment.uid:
-            uid = sheets_get_values.get_values(self.outFile,f"F{rows}:F{rows}")
+            uid = sheets_get_values.get_values(self.outFile,f"F{rows}")
             rows += 1
         sheets_update_values.update_values(
             self.outFile,
