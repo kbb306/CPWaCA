@@ -71,6 +71,8 @@ class Reader():
         )
 
     def export(self):
+        for each in self.masterList:
+            each.upDate()
         sheet_rows = self.readToEnd()
         self.compare(self.masterList,sheet_rows,"uid","uid",True,self.update_sheet)
         self.compare(self.masterList,sheet_rows,"uid","uid",False,self.append_to_sheet)
@@ -80,6 +82,7 @@ class Reader():
 
     def add_from_sheet(self,sheet_assignment, _match):
         # sheet_assignment is each1 from sheet_rows
+        sheet_assignment.upDate()
         self.masterList.append(sheet_assignment)  
     
     def sync(self):
