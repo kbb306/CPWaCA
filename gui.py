@@ -10,7 +10,7 @@ class mainWindow:
         self.root = root
         self.root.title("Calendar Parser Without a Cool Acronym")
         root.protocol("WM_DELETE_WINDOW",self.shutdown)
-        self.root.geometry("400x300")
+        self.root.geometry("700x500")
         self.root.grid_rowconfigure(0, weight=1)
         self.root.grid_columnconfigure(0, weight=1)
         self.root.grid_rowconfigure(1, weight=1)
@@ -94,6 +94,7 @@ class mainWindow:
     def connwindow(self):
        self.connwin = tk.Toplevel(self.root)
        self.connwin.title("Connect Accounts")
+       self.connwin.geometry("500x300")
        self.gAPI = tk.StringVar()
        self.cURL = tk.StringVar()
        self.DriveFile = tk.StringVar()
@@ -111,6 +112,7 @@ class mainWindow:
     def alertsettings(self):
         self.alertwin = tk.Toplevel(self.root)
         self.alertwin.title("Alert Settings")
+        self.alertwin.geometry("500x300")
         self.toggle = tk.Button(self.alertwin,text="Toggle alerts on/off")
         self.daysUntil = tk.StringVar()
         self.daysUntil.trace_add("write", self.on_thres_change)
