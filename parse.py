@@ -38,7 +38,7 @@ class Reader():
                 assignment.status,
                 assignment.daysLeft,
                 assignment.dueDate.isoformat() if hasattr(assignment.dueDate, "isoformat") else assignment.dueDate,
-                assignment.uid,
+                str(assignment.uid),
             ]],
         )
 
@@ -66,7 +66,7 @@ class Reader():
                 assignment.status,
                 assignment.daysLeft,
                 assignment.dueDate.isoformat() if hasattr(assignment.dueDate, "isoformat") else assignment.dueDate,
-                assignment.uid,
+                str(assignment.uid),
             ]],
         )
 
@@ -76,7 +76,7 @@ class Reader():
                 each.upDate()
             except Exception as e:
                 print(f"Warning, could not update days left for assignment {each.uid}: {e}")
-        print(f"Now exporting {each.name, each.uid} date {each.dueDate}. {each.daysLeft} days until due.")
+            print(f"Now exporting {each.name, each.uid} date {each.dueDate}. {each.daysLeft} days until due.")
 
         sheet_rows = self.readToEnd()
         self.compare(self.masterList,sheet_rows,"uid","uid",True,self.update_sheet)
@@ -86,12 +86,12 @@ class Reader():
 
 
     def add_from_sheet(self,sheet_assignment, _match):
-        # sheet_assignment is each1 from sheet_rows
         try:
             sheet_assignment.upDate()
         except Exception as e:
             print(f"Warning, could not update days left for assignment {sheet_assignment.uid}: {e}")
         self.masterList.append(sheet_assignment)  
+
     
     def sync(self):
         self._import()
@@ -122,12 +122,17 @@ class Reader():
                 row_values.append(None)
 
             course, assignment, status, daysLeft, date, uid = row_values[:6]
+            uid = str(uid).strip() if uid is not None else None
+
 
             if isinstance(date,str) and date:
                 try:
                     date = datetime.date.fromisoformat(date)
                 except ValueError:
                     pass
+            
+            if uid is not None:
+                uid = str(uid).strip()
 
             new = Assignment(course, assignment, status, daysLeft, date, uid)
             results.append(new)
@@ -177,13 +182,23 @@ class Reader():
                     print("Found event!")
                     foundEv = True
                     date= None
+                    ID = None
+                    uid = None
   
                 if foundEv:
                     if "#assignment" in each:
-                        half = each.split("&", 1)[0]
-                        ID = re.sub(r'[^0-9]', '', half)
-                        print("Found course ID:", ID)
-                        uid = ID
+                        # Look specifically for "...assignment_12345678"
+                        m = re.search(r'assignment_(\d+)', each)
+                        if m:
+                            ID = m.group(1)          # e.g. "17159689"
+                            uid = ID                 # keep as string
+                            print("Found assignment ID:", ID)
+                        else:
+                            # Fallback if for some reason the pattern isn't there
+                            print("Could not find assignment_... in line:", each)
+                            ID = None
+                            uid = None
+
 
                     if ":" in each:
                         key, value = each.split(":",1)
