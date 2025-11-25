@@ -43,8 +43,8 @@ class mainWindow:
         self.datecheck()
         try:
             self.reader.sync()
-        except:
-            print("Warning, no reader class yet.")
+        except Exception as e:
+            print(f"Warning sync failed due to {e}")
        
 
     def fileFuckery(self,command,file,section,lookfor,changeTo=None):
