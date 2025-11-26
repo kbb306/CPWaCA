@@ -6,159 +6,6 @@ METHOD:PUBLISH
 X-WR-CALNAME:Kyler Belshaw Calendar (Canvas)
 X-WR-CALDESC:Calendar events for the user\, Kyler Belshaw
 BEGIN:VEVENT
-DTSTAMP:20251023T220600Z
-UID:event-assignment-17121894
-DTSTART;VALUE=DATE;VALUE=DATE:20251026
-CLASS:PUBLIC
-DESCRIPTION:Please do the following from page 467:\n\n2\,6\,9
-SEQUENCE:0
-SUMMARY:6.6 -- Generating Permutations and Combinations [Discrete Structure
- s]
-URL;VALUE=URI:https://suu.instructure.com/calendar?include_contexts=course_
- 1048406&month=10&year=2025#assignment_17121894
-X-ALT-DESC;FMTTYPE=text/html:<link rel="stylesheet" href="https://instructu
- re-uploads-2.s3.amazonaws.com/account_20000000000019/attachments/149326035
- /dp_app.css"><p>Please do the following from page 467:</p>\n<p>2\,6\,9</p>
- <script src="https://instructure-uploads-2.s3.amazonaws.com/account_200000
- 00000019/attachments/149326034/dp_app.js"></script>
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20251022T143000Z
-UID:event-assignment-17108624
-DTSTART;VALUE=DATE;VALUE=DATE:20251026
-CLASS:PUBLIC
-DESCRIPTION:Please do the following from page 441:\n\n1\, 2\, 3\, 5\, 6\, 2
- 1\, 22\, 24 
-SEQUENCE:0
-SUMMARY:6.3 -- Permutations and Combinations [Discrete Structures]
-URL;VALUE=URI:https://suu.instructure.com/calendar?include_contexts=course_
- 1048406&month=10&year=2025#assignment_17108624
-X-ALT-DESC;FMTTYPE=text/html:<link rel="stylesheet" href="https://instructu
- re-uploads-2.s3.amazonaws.com/account_20000000000019/attachments/149326035
- /dp_app.css"><p>Please do the following from page 441:</p>\n<p>1\, 2\, 3\,
-  5\, 6\, 21\, 22\, 24&nbsp\;</p><script src="https://instructure-uploads-2
- .s3.amazonaws.com/account_20000000000019/attachments/149326034/dp_app.js">
- </script>
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20251022T143000Z
-UID:event-assignment-17108629
-DTSTART;VALUE=DATE;VALUE=DATE:20251026
-CLASS:PUBLIC
-DESCRIPTION:Please do the following from page 451:\n\n1b\, 2b\, 4\, 16
-SEQUENCE:0
-SUMMARY:6.4 -- Binomial Coefficients [Discrete Structures]
-URL;VALUE=URI:https://suu.instructure.com/calendar?include_contexts=course_
- 1048406&month=10&year=2025#assignment_17108629
-X-ALT-DESC;FMTTYPE=text/html:<link rel="stylesheet" href="https://instructu
- re-uploads-2.s3.amazonaws.com/account_20000000000019/attachments/149326035
- /dp_app.css"><p>Please do the following from page 451:</p>\n<p>1b\, 2b\, 4
- \, 16</p><script src="https://instructure-uploads-2.s3.amazonaws.com/accou
- nt_20000000000019/attachments/149326034/dp_app.js"></script>
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20251021T232600Z
-UID:event-assignment-17115818
-DTSTART;VALUE=DATE;VALUE=DATE:20251026
-CLASS:PUBLIC
-DESCRIPTION:Please do the Following form page 460:\n\n1\, 2\, 5\, 6\, 8\, 2
- 3\, 32
-SEQUENCE:0
-SUMMARY:6.5 -- Generalizing Permutations and Combinations [Discrete Structu
- res]
-URL;VALUE=URI:https://suu.instructure.com/calendar?include_contexts=course_
- 1048406&month=10&year=2025#assignment_17115818
-X-ALT-DESC;FMTTYPE=text/html:<link rel="stylesheet" href="https://instructu
- re-uploads-2.s3.amazonaws.com/account_20000000000019/attachments/149326035
- /dp_app.css"><p>Please do the Following form page 460:</p>\n<p>1\, 2\, 5\,
-  6\, 8\, 23\, 32</p><script src="https://instructure-uploads-2.s3.amazonaw
- s.com/account_20000000000019/attachments/149326034/dp_app.js"></script>
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20251023T221000Z
-UID:event-assignment-17121900
-DTSTART;VALUE=DATE;VALUE=DATE:20251026
-CLASS:PUBLIC
-DESCRIPTION:Please do the following from page 542:\n\n1\, 11\, 12
-SEQUENCE:0
-SUMMARY:8.1 -- Applications of Recurrence Relations [Discrete Structures]
-URL;VALUE=URI:https://suu.instructure.com/calendar?include_contexts=course_
- 1048406&month=10&year=2025#assignment_17121900
-X-ALT-DESC;FMTTYPE=text/html:<link rel="stylesheet" href="https://instructu
- re-uploads-2.s3.amazonaws.com/account_20000000000019/attachments/149326035
- /dp_app.css"><p>Please do the following from page 542:</p>\n<p>1\, 11\, 12
- </p><script src="https://instructure-uploads-2.s3.amazonaws.com/account_20
- 000000000019/attachments/149326034/dp_app.js"></script>
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20231213T183300Z
-UID:event-calendar-event-3741691
-DTSTART;VALUE=DATE;VALUE=DATE:20251027
-CLASS:PUBLIC
-LOCATION:
-SEQUENCE:0
-SUMMARY:100% Refund Deadline: 2nd Session
-URL;VALUE=URI:https://suu.instructure.com/calendar?include_contexts=account
- _19&month=10&year=2025#calendar_event_3741691
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20231213T183500Z
-UID:event-calendar-event-3741699
-DTSTART;VALUE=DATE;VALUE=DATE:20251027
-CLASS:PUBLIC
-LOCATION:
-SEQUENCE:0
-SUMMARY:Commenced Attendance DROP: 2nd Session
-URL;VALUE=URI:https://suu.instructure.com/calendar?include_contexts=account
- _19&month=10&year=2025#calendar_event_3741699
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20231213T183400Z
-UID:event-calendar-event-3741693
-DTSTART;VALUE=DATE;VALUE=DATE:20251027
-CLASS:PUBLIC
-LOCATION:
-SEQUENCE:0
-SUMMARY:Last Day to Add: 2nd Session
-URL;VALUE=URI:https://suu.instructure.com/calendar?include_contexts=account
- _19&month=10&year=2025#calendar_event_3741693
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20231213T183400Z
-UID:event-calendar-event-3741695
-DTSTART;VALUE=DATE;VALUE=DATE:20251027
-CLASS:PUBLIC
-LOCATION:
-SEQUENCE:0
-SUMMARY:Last Day to Change to Audit: 2nd Session
-URL;VALUE=URI:https://suu.instructure.com/calendar?include_contexts=account
- _19&month=10&year=2025#calendar_event_3741695
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20231213T183400Z
-UID:event-calendar-event-3741697
-DTSTART;VALUE=DATE;VALUE=DATE:20251027
-CLASS:PUBLIC
-LOCATION:
-SEQUENCE:0
-SUMMARY:Last Day to Drop without W: 2nd Session
-URL;VALUE=URI:https://suu.instructure.com/calendar?include_contexts=account
- _19&month=10&year=2025#calendar_event_3741697
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20250925T170700Z
-UID:event-calendar-event-4801287
-DTSTART;VALUE=DATE;VALUE=DATE:20251027
-CLASS:PUBLIC
-DESCRIPTION:
-LOCATION:
-SEQUENCE:0
-SUMMARY:Spring 2026 Graduate Student Registration Begins (8 AM)
-URL;VALUE=URI:https://suu.instructure.com/calendar?include_contexts=account
- _19&month=10&year=2025#calendar_event_4801287
-X-ALT-DESC;FMTTYPE=text/html:
-END:VEVENT
-BEGIN:VEVENT
 DTSTAMP:20251024T160200Z
 UID:event-assignment-16271855
 DTSTART;VALUE=DATE;VALUE=DATE:20251027
@@ -3772,5 +3619,16 @@ SEQUENCE:0
 SUMMARY:Thanksgiving Break – No Classes\, Campus Closed
 URL;VALUE=URI:https://suu.instructure.com/calendar?include_contexts=account
  _19&month=11&year=2026#calendar_event_3742238
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20231213T200300Z
+UID:event-calendar-event-3742239
+DTSTART;VALUE=DATE;VALUE=DATE:20261127
+CLASS:PUBLIC
+LOCATION:
+SEQUENCE:0
+SUMMARY:Thanksgiving Break – No Classes\, Campus Closed
+URL;VALUE=URI:https://suu.instructure.com/calendar?include_contexts=account
+ _19&month=11&year=2026#calendar_event_3742239
 END:VEVENT
 END:VCALENDAR
