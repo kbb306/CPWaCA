@@ -6,66 +6,6 @@ METHOD:PUBLISH
 X-WR-CALNAME:Kyler Belshaw Calendar (Canvas)
 X-WR-CALDESC:Calendar events for the user\, Kyler Belshaw
 BEGIN:VEVENT
-DTSTAMP:20251024T160200Z
-UID:event-assignment-16271855
-DTSTART;VALUE=DATE;VALUE=DATE:20251027
-CLASS:PUBLIC
-DESCRIPTION:-----------------------\nCS 4720 Chapter 6 Notes\n-------------
- ----------\n\n Instruction\n------------\n\nPurpose of this Assignment\n-
- -------------------------\n\nYou don't need to read the information on thi
- s link\, and with the internet ever changing\, it might not work\, but res
- earch shows that taking notes helps in student learning.\n\nhttps://www.cu
- ltofpedagogy.com/note-taking/\n\nInstructions\n------------\n\nUpload your
-  notes from this chapter.  You may take either handwritten\, or digital n
- otes\, but if you write notes by hand\, please take a picture of your note
- s and paste the picture into a word document.  Save your document to a pd
- f file.\n\nThere are many ways in which you can create notes\, and I will 
- leave it to you to figure out what works best for you.  I do expect that 
- you capture the main points of the chapter.  Full sentences are not neces
- sary\, and you are not graded by length.\n\nGrading of Assignment\n-------
- --------------\n\nPoints are given based on your notes capturing the main 
- points of the chapter
-SEQUENCE:0
-SUMMARY:Notes: Chapter 6 [Web Programming]
-URL;VALUE=URI:https://suu.instructure.com/calendar?include_contexts=course_
- 1048413&month=10&year=2025#assignment_16271855
-X-ALT-DESC;FMTTYPE=text/html:<link rel="stylesheet" href="https://instructu
- re-uploads-2.s3.amazonaws.com/account_20000000000019/attachments/149326035
- /dp_app.css"><div id="kl_wrapper_3" class="kl_flat_sections variation_2 kl
- _wrapper">\n<div id="kl_banner">\n<h2><span id="kl_banner_left"><span clas
- s="kl_mod_text">CS 4720</span></span> <span id="kl_banner_right">Chapter 6
-  Notes</span></h2>\n</div>\n<div id="kl_content_block_0" class="">\n<h3 cl
- ass=""><i class="fas fa-file-signature" aria-hidden="true"><span class="dp
- -icon-content" style="display: none\;">&nbsp\;</span></i>Instruction</h3>\
- n<h4>Purpose of this Assignment</h4>\n<p>You don't need to read the inform
- ation on this link\, and with the internet ever changing\, it might not wo
- rk\, but research shows that taking notes helps in student learning.</p>\n
- <p><a href="https://www.cultofpedagogy.com/note-taking/">https://www.culto
- fpedagogy.com/note-taking/</a></p>\n<h4>Instructions</h4>\n<p>Upload your 
- notes from this chapter.&nbsp\; You may take either handwritten\, or digit
- al notes\, but if you write notes by hand\, please take a picture of your 
- notes and paste the picture into a word document.&nbsp\; Save your documen
- t to a pdf file.</p>\n<p>There are many ways in which you can create notes
- \, and I will leave it to you to figure out what works best for you.&nbsp\
- ; I do expect that you capture the main points of the chapter.&nbsp\; Full
-  sentences are not necessary\, and you are not graded by length.</p>\n<h4>
- Grading of Assignment</h4>\n<p>Points are given based on your notes captur
- ing the main points of the chapter</p>\n</div>\n</div><script src="https:/
- /instructure-uploads-2.s3.amazonaws.com/account_20000000000019/attachments
- /149326034/dp_app.js"></script>
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20250925T170800Z
-UID:event-calendar-event-4801289
-DTSTART;VALUE=DATE;VALUE=DATE:20251028
-CLASS:PUBLIC
-LOCATION:
-SEQUENCE:0
-SUMMARY:Spring 2026 Senior Registration Begins (8 AM)
-URL;VALUE=URI:https://suu.instructure.com/calendar?include_contexts=account
- _19&month=10&year=2025#calendar_event_4801289
-END:VEVENT
-BEGIN:VEVENT
 DTSTAMP:20231213T183600Z
 UID:event-calendar-event-3741701
 DTSTART;VALUE=DATE;VALUE=DATE:20251029
