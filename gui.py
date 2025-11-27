@@ -168,7 +168,7 @@ class mainWindow:
             except Exception as e:
                 print(f"Error playing sound: {e}")
 
-        tk.messagebox.showwarning("Time's running out!",f"Assignment: {assignment[0]} is due in {assignment[1]} days!","OK")
+        tk.messagebox.showwarning("Time's running out!",f"Assignment: {assignment[0]} is due in {assignment[1]} days!",)
         threading.Thread(target=playalarm()).start()
 
     def APIin(self):
