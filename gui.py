@@ -33,20 +33,46 @@ class mainWindow:
 
         self.custbutton = tk.Button(root,text="Customize Spreadsheet")
         self.custbutton.grid(row=1, column=1, sticky="nsew", padx=5, pady=5)
-
-        self.sync()
         schedule.every().hours.at("00:30").do(self.sync)
         self.run_sched()
+        self.root.after(0, self.sync)
+
 
     def sync(self):
-        """Mostly just a wrapper for repeating functions"""
-        self.daily_check()
-        self.syncSettings("read")
+        """Run reader.sync() in a background thread so the UI doesn't freeze."""
+        if getattr(self, "_sync_running", False):
+            print("Sync already running, skipping.")
+            return
+
+        self._sync_running = True
         try:
-            self.reader.sync()
-        except Exception as e:
-            traceback = parse.traceback.format_exc()
-            print(f"Warning sync failed due to {e}. Traceback is {traceback}")
+            self.syncbutton.config(state="disabled")
+        except Exception:
+            pass
+
+        def worker():
+            try:
+                self.reader.sync()
+            except Exception as e:
+                tb = parse.traceback.format_exc()
+                print(f"Warning sync failed due to {e}. Traceback is {tb}")
+            finally:
+                self.root.after(0, self._sync_finished)
+
+        threading.Thread(target=worker, daemon=True).start()
+
+    def _sync_finished(self):
+        """Called on the Tkinter thread when background sync completes."""
+        self._sync_running = False
+
+        try:
+            self.syncbutton.config(state="normal")
+        except Exception:
+            pass
+
+        self.syncSettings("read")
+        self.daily_check()
+
        
 
     def fileFuckery(self,command,file,section,lookfor,changeTo=None):
