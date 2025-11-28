@@ -164,16 +164,33 @@ class mainWindow:
            except Exception as e:
                print(f"Error saving formatting rule {each}: {e}")
 
-    def alarm(self,assignment):
-        def playalarm():
+    
+    def alarm(self, assignment):
+        stop_event = threading.Event()   
+
+        def playalarm_loop():
             try:
                 wave = simpleaudio.WaveObject.from_wave_file("alarm.wav")
-                play = wave.play()
             except Exception as e:
-                print(f"Error playing sound: {e}")
+                print(f"Error loading sound: {e}")
+                return
 
-        threading.Thread(target=playalarm, daemon=True).start()
-        tk.messagebox.showwarning("Time's running out!",f"Assignment: {assignment[0]} is due in {assignment[1]} days!",)
+            while not stop_event.is_set():
+                try:
+                    play_obj = wave.play()
+                    play_obj.wait_done()
+                except Exception as e:
+                    print(f"Error playing sound: {e}")
+                    break
+
+        threading.Thread(target=playalarm_loop, daemon=True).start()
+
+        tk.messagebox.showwarning(
+            "Time's running out!",
+            f"Assignment: {assignment[0]} is due in {assignment[1]} days!",
+        )
+
+        stop_event.set()
 
     def APIin(self):
         try: 
