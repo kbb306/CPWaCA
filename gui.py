@@ -172,8 +172,8 @@ class mainWindow:
             except Exception as e:
                 print(f"Error playing sound: {e}")
 
+        threading.Thread(target=playalarm, daemon=True).start()
         tk.messagebox.showwarning("Time's running out!",f"Assignment: {assignment[0]} is due in {assignment[1]} days!",)
-        threading.Thread(target=playalarm()).start()
 
     def APIin(self):
         try: 
@@ -196,13 +196,13 @@ class mainWindow:
     
     def on_thres_change(self,sv):
         current = sv.get()
-        globals.threshold = current
+        globals.threshold = int(current)
         self.fileFuckery("write","settings.ini","settings","threshold",globals.threshold)
 
     def datecheck(self):
         try:
             for each in self.reader.masterList:
-                threading.Thread(target=each.upDate).start()
+                each.upDate()
                 if globals.Alarm:
                     if each.alert() is not None:
                         self.alarm(each.alert())
