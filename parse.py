@@ -121,14 +121,11 @@ class Reader():
             result = sheets_get_values.get_values(self.outFile, f"A{row}:F{row}")
             rows = result.get("values", [])
 
-            # No data in this row → we're done
             if not rows:
                 break
 
-            # rows[0] is the list of cells in that row
             row_values = rows[0]
 
-            # Pad to 6 items so we don't crash if some trailing cells are empty
             while len(row_values) < 6:
                 row_values.append(None)
 
