@@ -34,10 +34,8 @@ class mainWindow:
         self.custbutton = tk.Button(root,text="Customize Spreadsheet")
         self.custbutton.grid(row=1, column=1, sticky="nsew", padx=5, pady=5)
 
-        self.datecheck()
-        self.daily_check()
+        self.sync()
         schedule.every().hours.at("00:30").do(self.sync)
-        schedule.every().day.at("09:00").do(lambda: (self.sync()))
         self.run_sched()
 
     def sync(self):
@@ -184,7 +182,7 @@ class mainWindow:
 
         msg = f"{assignment[0]} is due in {assignment[1]}"
         print(f"ALARM: {msg}")
-        
+
         label = tk.Label(win,msg,padx=20,pady=20)
         label.pack()
         btn = tk.Button(win, text="OK", width=10, command=win.destroy)
@@ -229,6 +227,7 @@ class mainWindow:
         DriveFile = self.reader.outFile
         self.fileFuckery("write","settings.ini","keys","cURL",cURL)
         self.fileFuckery("write","settings.ini","keys","DriveFile",DriveFile)
+        return
     
     def on_thres_change(self,sv):
         """Allows for dynamic changing of Threshold variable (the variable that controls when the alarm goes off)"""
@@ -246,6 +245,7 @@ class mainWindow:
                         self.alarm(each.alert())
         except:
             self.APIin()
+            self.datecheck()
 
     def daily_check(self):
         """Wrapper so the scheduler can call datecheck and update the variable tracking today's date"""
