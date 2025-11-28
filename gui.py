@@ -52,6 +52,7 @@ class mainWindow:
 
         def worker():
             try:
+                self.APIin()
                 self.reader.sync()
             except Exception as e:
                 tb = parse.traceback.format_exc()
@@ -206,7 +207,7 @@ class mainWindow:
         win.lift()
         win.focus_force()
 
-        msg = f"{assignment[0]} is due in {assignment[1]}"
+        msg = f"{assignment[0]} is due in {assignment[1]} days!"
         print(f"ALARM: {msg}")
 
         label = tk.Label(win,msg,padx=20,pady=20)
