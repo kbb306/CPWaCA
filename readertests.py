@@ -23,8 +23,18 @@ class testReader(unittest.TestCase):
         Bob = Assignment("Standing Up Class","Stand Up for 5 Seconds","Not Started",5,(datetime.datetime.date.today()+datetime.timedelta(days=5)),random.randint(10000000,99999999))
         Wyatt = Reader("https://suu.instructure.com/feeds/calendars/user_MY3O6WwP5ysxV4URUoOTK03GYdmmfe4BVSOjhZcg.ics","1IY3A-mZwVB94UFqShO-QZuYDGYZaYPLcLbVfHv7Txt8")
         Wyatt.append_to_sheet(Bob)
-        result = sheets_get_values(Wyatt.outFile,"A5:Z")
-        
+        result = sheets_get_values(Wyatt.outFile,"A5:F")
+        rows = result.get("values",[])
+        row = rows[0]
+        course, assignment, status, daysleft, date, uid = row[:6] 
+        self.assertEqual(Bob.course,course)
+        self.assertEqual(Bob.name,assignment)
+        self.assertEqual(Bob.status,status)
+        self.assertEqual(Bob.daysLeft,daysleft)
+        self.assertEqual(Bob.dueDate,date)
+        self.assertEqual(Bob.uid,uid)
+
+
         sheets_clear_values(Wyatt.outFile,"A1:Z")
 
     def test_update_sheet(self):
@@ -146,7 +156,7 @@ class testReader(unittest.TestCase):
             course, assignment, status, daysleft, date, uid = row[:6] 
             matching = False
             for each in toTest:
-                if (each.course == course and each.assignment == assignment and each.status == status and each.daysleft == daysleft and each.date == date and each.uid == uid):
+                if (each.course == course and each.name == assignment and each.status == status and each.daysleft == daysleft and each.date == date and each.uid == uid):
                     matching = True
                 else: 
                     matching = False
