@@ -5,7 +5,7 @@ import parse
 import schedule
 from watchpoints import watch
 import configparser
-import simpleaudio
+import pygame
 import threading
 import sheets_conditional_formatting
 import customizer
@@ -21,6 +21,7 @@ class mainWindow:
         self.root.grid_columnconfigure(0, weight=1)
         self.root.grid_rowconfigure(1, weight=1)
         self.root.grid_columnconfigure(1, weight=1)
+        pygame.mixer.init()
 
         self.keybutton = tk.Button(root,text="Connect Accounts",command=self.connwindow)
         self.keybutton.grid(row=0, column=0, sticky="nsew", padx=5, pady=5)
@@ -199,8 +200,9 @@ class mainWindow:
                print(f"Error saving formatting rule {each}: {e}")
 
     
-    def alarm(self,assignment):
-        """Called by dateCheck to actually bring up the alarm window"""
+    def alarm(self, assignment):
+        """Cross-platform alarm popup with looping sound."""
+        
         win = tk.Toplevel(self.root)
         win.title("Time's running out!")
         win.transient(self.root)
@@ -210,29 +212,35 @@ class mainWindow:
         msg = f"{assignment[0]} is due in {assignment[1]} days!"
         print(f"ALARM: {msg}")
 
-        label = tk.Label(win,text=msg,padx=20,pady=20)
+        label = tk.Label(win, text=msg, padx=20, pady=20)
         label.pack()
-        btn = tk.Button(win, text="OK", width=10, command=win.destroy)
-        btn.pack(pady=10)
 
+        # Load sound
         try:
-            wave = simpleaudio.WaveObject.from_wave_file("alarm.wav")
+            sound = pygame.mixer.Sound("alarm.wav")
         except Exception as e:
             print(f"Error loading alarm.wav: {e}")
-            wave = None
+            sound = None
 
-        def play_sound():
-            if not win.winfo_exists() or wave is None:
-                return
+        def close_alarm():
+            # Stop alarm sound
+            if sound:
+                sound.stop()
+            win.destroy()
+
+        btn = tk.Button(win, text="OK", width=10, command=close_alarm)
+        btn.pack(pady=10)
+
+        # Loop sound forever until stop() is called
+        if sound:
             try:
-                wave.play()  
+                sound.play(loops=-1)  # -1 = infinite loop
             except Exception as e:
-                print(f"Error playing alarm sound: {e}")
-                return
-            self.root.after(2000, play_sound)
+                print(f"Error playing alarm.wav: {e}")
 
-        play_sound()
+        # Modal behavior
         win.grab_set()
+        win.protocol("WM_DELETE_WINDOW", close_alarm)
 
 
     def APIin(self):
