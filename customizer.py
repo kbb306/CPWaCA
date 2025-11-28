@@ -74,10 +74,10 @@ class Rule:
                     "repeatCell" : {
                         "range" : {
                             "sheetId" : 0,
-                            "startRowIndex" : row,
-                            "endRowIndex" : row + 1,
+                            "startRowIndex" : row -1,
+                            "endRowIndex" : row,
                             "startColumnIndex" : 0,
-                            "endColumnIndex" : 5,
+                            "endColumnIndex" : 6,
  
                         },
                         "cell" : {

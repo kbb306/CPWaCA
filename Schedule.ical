@@ -6,17 +6,6 @@ METHOD:PUBLISH
 X-WR-CALNAME:Kyler Belshaw Calendar (Canvas)
 X-WR-CALDESC:Calendar events for the user\, Kyler Belshaw
 BEGIN:VEVENT
-DTSTAMP:20231213T183600Z
-UID:event-calendar-event-3741701
-DTSTART;VALUE=DATE;VALUE=DATE:20251029
-CLASS:PUBLIC
-LOCATION:
-SEQUENCE:0
-SUMMARY:Last Day to Withdraw from Individual Courses with W: Full Session
-URL;VALUE=URI:https://suu.instructure.com/calendar?include_contexts=account
- _19&month=10&year=2025#calendar_event_3741701
-END:VEVENT
-BEGIN:VEVENT
 DTSTAMP:20250925T170800Z
 UID:event-calendar-event-4801290
 DTSTART;VALUE=DATE;VALUE=DATE:20251030
