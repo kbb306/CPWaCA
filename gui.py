@@ -35,7 +35,7 @@ class mainWindow:
         self.datecheck()
         self.daily_check()
         schedule.every().hours.at("00:30").do(self.sync)
-        schedule.every().day.at("09:00").do(lambda: (self.daily_check(), self.reader.sync()))
+        schedule.every().day.at("09:00").do(lambda: (self.sync()))
         self.run_sched()
 
     def sync(self):
@@ -93,7 +93,11 @@ class mainWindow:
                 self.reader.outFile = DriveFile
 
     def run_sched(self):
-        schedule.run_pending()
+        try:
+            schedule.run_pending()
+        except:
+            print("Error in scheduler job!")
+            parse.traceback.print_exc()
         self.root.after(1000, self.run_sched)
 
     def connwindow(self):
