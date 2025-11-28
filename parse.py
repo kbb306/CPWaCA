@@ -268,7 +268,7 @@ class Assignment():
 
     def alert(self):
         """Called by the gui's dateCheck function. Returns the assignment's name and daysLeft if more than x days overdue"""
-        if (self.daysLeft <= globals.threshold and self.daysLeft >= -(globals.threshold)): 
+        if (self.daysLeft <= globals.threshold and self.daysLeft >= -(globals.threshold) and self.status != "Done"): 
             return self.name,self.daysLeft
         else:
             return None
