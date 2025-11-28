@@ -176,10 +176,16 @@ class mainWindow:
     
     def alarm(self,assignment):
         """Called by dateCheck to actually bring up the alarm window"""
-        win = tk.Toplevel(root)
+        win = tk.Toplevel(self.root)
         win.title("Time's running out!")
         win.transient(self.root)
-        label = tk.Label(win,f"{assignment[0]} is due in {assignment[1]}",padx=20,pady=20)
+        win.lift()
+        win.focus_force()
+
+        msg = f"{assignment[0]} is due in {assignment[1]}"
+        print(f"ALARM: {msg}")
+        
+        label = tk.Label(win,msg,padx=20,pady=20)
         label.pack()
         btn = tk.Button(win, text="OK", width=10, command=win.destroy)
         btn.pack(pady=10)
@@ -202,7 +208,6 @@ class mainWindow:
 
         play_sound()
         win.grab_set()
-        self.root.wait_window(win)
 
 
     def APIin(self):
