@@ -9,6 +9,7 @@ import simpleaudio
 import threading
 import sheets_conditional_formatting
 import customizer
+
 class mainWindow:
     def __init__(self,root):
         self.root = root
@@ -165,32 +166,35 @@ class mainWindow:
                print(f"Error saving formatting rule {each}: {e}")
 
     
-    def alarm(self, assignment):
-        stop_event = threading.Event()   
+    def Alarm(self,assignment):
+        win = tk.Toplevel(root)
+        win.title("Time's running out!")
+        win.transient(self.root)
+        label = tk.Label(win,f"{assignment[0]} is due in {assignment[1]}",padx=20,pady=20)
+        label.pack()
+        btn = tk.Button(win, text="OK", width=10, command=win.destroy)
+        btn.pack(pady=10)
 
-        def playalarm_loop():
-            try:
-                wave = simpleaudio.WaveObject.from_wave_file("alarm.wav")
-            except Exception as e:
-                print(f"Error loading sound: {e}")
+        try:
+            wave = simpleaudio.WaveObject.from_wave_file("alarm.wav")
+        except Exception as e:
+            print(f"Error loading alarm.wav: {e}")
+            wave = None
+
+        def play_sound():
+            if not win.winfo_exists() or wave is None:
                 return
+            try:
+                wave.play()  
+            except Exception as e:
+                print(f"Error playing alarm sound: {e}")
+                return
+            self.root.after(2000, play_sound)
 
-            while not stop_event.is_set():
-                try:
-                    play_obj = wave.play()
-                    play_obj.wait_done()
-                except Exception as e:
-                    print(f"Error playing sound: {e}")
-                    break
+        play_sound()
+        win.grab_set()
+        self.root.wait_window(win)
 
-        threading.Thread(target=playalarm_loop, daemon=True).start()
-
-        tk.messagebox.showwarning(
-            "Time's running out!",
-            f"Assignment: {assignment[0]} is due in {assignment[1]} days!",
-        )
-
-        stop_event.set()
 
     def APIin(self):
         try: 
