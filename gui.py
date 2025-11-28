@@ -11,6 +11,7 @@ import sheets_conditional_formatting
 import customizer
 
 class mainWindow:
+    """The main window"""
     def __init__(self,root):
         self.root = root
         self.root.title("Calendar Parser Without a Cool Acronym")
@@ -40,6 +41,7 @@ class mainWindow:
         self.run_sched()
 
     def sync(self):
+        """Mostly just a wrapper for repeating functions"""
         self.daily_check()
         self.syncSettings("read")
         try:
@@ -50,6 +52,7 @@ class mainWindow:
        
 
     def fileFuckery(self,command,file,section,lookfor,changeTo=None):
+         """Reads and writes to settings.ini"""
          config = configparser.ConfigParser()
          config.read(file)
          if section not in config:
@@ -63,19 +66,19 @@ class mainWindow:
                  config.write(f)
 
     def shutdown(self):
+        """Brings up confimation dialogue before destroying window"""
         if tk.messagebox.askokcancel("Quit","Do you want to quit? This will disable alerts!"):
             self.syncSettings("write")
             root.destroy()
    
     def syncSettings(self, command):
-    # Save values TO ini
+        """Calls fileFuckery"""
         if command == "write":
             self.fileFuckery("write","settings.ini","settings","alarm",globals.Alarm)
             self.fileFuckery("write", "settings.ini", "settings", "threshold", globals.threshold)
             self.fileFuckery("write", "settings.ini", "keys", "cURL", self.reader.inURL)
             self.fileFuckery("write", "settings.ini", "keys", "DriveFile", self.reader.outFile)
 
-        # Load values FROM ini
         elif command == "read":
             Alarm = self.fileFuckery("read","settings.ini","settings","Alarm")
             threshold = self.fileFuckery("read", "settings.ini", "settings", "threshold")
@@ -94,6 +97,7 @@ class mainWindow:
                 self.reader.outFile = DriveFile
 
     def run_sched(self):
+        """Loops scheduled events"""
         try:
             schedule.run_pending()
         except:
@@ -102,6 +106,7 @@ class mainWindow:
         self.root.after(1000, self.run_sched)
 
     def connwindow(self):
+       """This is where the user inputs the iCal download URL and google sheets ID string"""
        self.connwin = tk.Toplevel(self.root)
        self.connwin.title("Connect Accounts")
        self.connwin.geometry("500x300")
@@ -120,6 +125,7 @@ class mainWindow:
        tk.Button(self.connwin,text="Close",command=self.connwin.destroy).pack(pady=10)
 
     def alertsettings(self):
+        """This window allows you to turn the alarm on or off, or change the daysLeft value at which it triggers"""
         self.alertwin = tk.Toplevel(self.root)
         self.alertwin.title("Alert Settings")
         self.alertwin.geometry("500x300")
@@ -133,6 +139,7 @@ class mainWindow:
         self.threshold.pack(pady=5)
     
     def customization_window(self):
+        """Someday, this will allow you to define color coding for the calendar"""
         self.custwin = tk.Toplevel(self.root)
         self.custwin.title("Spreadsheet Customization")
         self.later = tk.StringVar()
@@ -149,6 +156,7 @@ class mainWindow:
         self.optionalentry = tk.Entry(self.custwin,textvariable=self.optional)
 
     def customize(self):
+       """Passes rules to sheets_conditional_formatting"""
        quiz = (self.quiz.get()).split(",")
        optional = (self.optional.get()).split(",")
        essay = (self.essay.get()).split(",")
@@ -166,7 +174,8 @@ class mainWindow:
                print(f"Error saving formatting rule {each}: {e}")
 
     
-    def Alarm(self,assignment):
+    def alarm(self,assignment):
+        """Called by dateCheck to actually bring up the alarm window"""
         win = tk.Toplevel(root)
         win.title("Time's running out!")
         win.transient(self.root)
@@ -197,6 +206,7 @@ class mainWindow:
 
 
     def APIin(self):
+        """Checks window variables and INI file for iCal URL and Spreadsheet ID"""
         try: 
             cURL = (self.cURL.get() or "").strip()
             DriveFile = (self.DriveFile.get() or "").strip()
@@ -216,11 +226,13 @@ class mainWindow:
         self.fileFuckery("write","settings.ini","keys","DriveFile",DriveFile)
     
     def on_thres_change(self,sv):
+        """Allows for dynamic changing of Threshold variable (the variable that controls when the alarm goes off)"""
         current = sv.get()
         globals.threshold = int(current)
         self.fileFuckery("write","settings.ini","settings","threshold",globals.threshold)
 
     def datecheck(self):
+        """Calls the alarm method on each assignment in the masterlist, and updates the daysLeft values"""
         try:
             for each in self.reader.masterList:
                 each.upDate()
@@ -231,6 +243,7 @@ class mainWindow:
             self.APIin()
 
     def daily_check(self):
+        """Wrapper so the scheduler can call datecheck and update the variable tracking today's date"""
         globals.today = globals.datetime.date.today()
         self.datecheck()
         

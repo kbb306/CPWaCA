@@ -10,6 +10,8 @@ from urllib.request import urlretrieve
 import traceback;
 from itertools import groupby
 class Reader():
+    """Takes in iCal URL and parses out assignments, creating an Assignment object for each of them and adding them to a master list. 
+    Updates/appends the google spreadsheet with those assignments """
     def __init__(self,inURL,outFile=None,):
         self.inURL = inURL
         self.outFile = outFile
@@ -19,6 +21,7 @@ class Reader():
             self.outFile = sheets_create.create("Calendar")
         title.titleinator(self.outFile,0,20,True)
     def _import(self):
+        """Downloads the iCal file"""
         try:
             urlretrieve(self.inURL,"Schedule.ical")
             print("Calendar downloaded!")
@@ -28,6 +31,8 @@ class Reader():
         self.parse("Schedule.ical")
 
     def append_to_sheet(self,assignment, _ignored):
+        """Called by compare() when an assignment in the masterlist does NOT have a match in the current spreadsheet,
+        appends that assignment to the end of it."""
         sheets_append_values.append_values(
             self.outFile,
             "A5:F",
@@ -43,6 +48,8 @@ class Reader():
         )
 
     def update_sheet(self,assignment, _ignored):
+        """Called by compare() when an assignment in the masterlist DOES have a match in the current spreadsheet, 
+        updates that entry with the lastest data."""
         print(f"Updating assignment {assignment.uid}")
         row = 5
         while True:
@@ -71,6 +78,7 @@ class Reader():
         )
 
     def export(self):
+        """Gets each assignment in the masterlist and asks compare() what to do with it"""
         for each in self.masterList:
             try:
                 each.upDate()
@@ -86,6 +94,7 @@ class Reader():
 
 
     def add_from_sheet(self,sheet_assignment, _match):
+        """Called by compare() when an assignment is found in the spreadsheet but NOT the internal masterlist, eg, when the program restarts"""
         try:
             sheet_assignment.upDate()
         except Exception as e:
@@ -94,6 +103,7 @@ class Reader():
 
     
     def sync(self):
+        """Wrapper for import and export, plus a compare() call controlling add_from_sheet()"""
         self._import()
         rows = self.readToEnd()
         self.compare(rows,self.masterList,"uid","uid",False,self.add_from_sheet)
@@ -102,6 +112,7 @@ class Reader():
 
 
     def readToEnd(self):
+        """Reads the spreadsheet until a blank row is found, then returns the list of entries to export()"""
         results = []
         row = 5  
 
@@ -144,7 +155,7 @@ class Reader():
     
 
     def compare(self, list1, list2, attrone, attrtwo, want, func):
-       
+        """Calls a function when a match is/is not found between two lists. Used to ensure the spreadsheet and masterlist stay in sync"""
         for each1 in list1:
             match = None
             for each2 in list2:
@@ -158,6 +169,7 @@ class Reader():
 
 
     def deduplicate(self):
+            """For assignments with multiple entries in the calendar. Deletes dupes past a user-defined limit"""
             todelete =[]
             groups = [list(g) for _, g in groupby(self.masterList, key=lambda x: x.uid)]
             for each in groups:
@@ -172,6 +184,7 @@ class Reader():
                 del(self.masterList[ind])
                 
     def parse(self,file):
+        """The core function of the CPwACA. Reads the iCal file and creates an Assignment object for each valid assignment"""
         foundEv = False
         with open(file, 'r') as f:
             rows = f.readlines()
@@ -245,6 +258,8 @@ class Reader():
             self.deduplicate()    
 
 class Assignment():
+    """The internal representation of an assignment. Stores unique assignment ID, the course name, the name/title,
+    the due date, and the days from today until the due date."""
     def __init__(self,course,assignment,status,daysLeft,date,uid):
         self.uid = uid
         self.course = course
@@ -254,10 +269,12 @@ class Assignment():
         self.status = status
 
     def alert(self):
+        """Called by the gui's dateCheck function. Returns the assignment's name and daysLeft if more than x days overdue"""
         if (self.daysLeft <= globals.threshold and self.daysLeft >= -(globals.threshold)): 
             return self.name,self.daysLeft
         else:
             return None
 
     def upDate(self):
+        """Called by multiple functions in the gui. Updates the days left until the due date."""
         self.daysLeft = (self.dueDate - globals.today).days
