@@ -210,7 +210,7 @@ class mainWindow:
         msg = f"{assignment[0]} is due in {assignment[1]} days!"
         print(f"ALARM: {msg}")
 
-        label = tk.Label(win,msg,padx=20,pady=20)
+        label = tk.Label(win,text=msg,padx=20,pady=20)
         label.pack()
         btn = tk.Button(win, text="OK", width=10, command=win.destroy)
         btn.pack(pady=10)
