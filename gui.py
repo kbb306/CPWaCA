@@ -181,25 +181,6 @@ class mainWindow:
         self.optionalprompt = tk.Label(self.custwin,text="Enter a color for optional assignments")
         self.optionalentry = tk.Entry(self.custwin,textvariable=self.optional)
 
-    def customize(self):
-       """Passes rules to sheets_conditional_formatting"""
-       quiz = (self.quiz.get()).split(",")
-       optional = (self.optional.get()).split(",")
-       essay = (self.essay.get()).split(",")
-       final = (self.final.get()).split(",")
-       project = (self.project.get()).split(",")
-       later = (self.later.get()).split(",")
-       soon = (self.soon.get()).split(",")
-       now = (self.now.get()).split(",")
-       dueColors = customizer.Rule("daysleft",[later,soon,now])
-       typeColors = customizer.Rule("type",[quiz,optional,essay,project,final])
-       for each in (dueColors,typeColors):
-           try:
-               sheets_conditional_formatting.conditional_formatting(self.reader.outFile,each.jsonobj)
-           except Exception as e:
-               print(f"Error saving formatting rule {each}: {e}")
-
-    
     def alarm(self, assignment):
         """Cross-platform alarm popup with looping sound."""
         
@@ -241,6 +222,27 @@ class mainWindow:
         # Modal behavior
         win.grab_set()
         win.protocol("WM_DELETE_WINDOW", close_alarm)
+
+    def customize(self):
+       """Passes rules to sheets_conditional_formatting"""
+       quiz = (self.quiz.get()).split(",")
+       optional = (self.optional.get()).split(",")
+       essay = (self.essay.get()).split(",")
+       final = (self.final.get()).split(",")
+       project = (self.project.get()).split(",")
+       later = (self.later.get()).split(",")
+       soon = (self.soon.get()).split(",")
+       now = (self.now.get()).split(",")
+       dueColors = customizer.Rule("daysleft",[later,soon,now])
+       typeColors = customizer.Rule("type",[quiz,optional,essay,project,final])
+       for each in (dueColors,typeColors):
+           try:
+               sheets_conditional_formatting.conditional_formatting(self.reader.outFile,each.jsonobj)
+           except Exception as e:
+               print(f"Error saving formatting rule {each}: {e}")
+
+    
+    
 
 
     def APIin(self):
