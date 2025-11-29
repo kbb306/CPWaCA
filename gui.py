@@ -32,7 +32,7 @@ class mainWindow:
         self.alertbutton = tk.Button(root,text="Alert Settings",command=self.alertsettings)
         self.alertbutton.grid(row=1, column=0, sticky="nsew", padx=5, pady=5)
 
-        self.custbutton = tk.Button(root,text="Customize Spreadsheet")
+        self.custbutton = tk.Button(root,text="Customize Spreadsheet", command=self.customization_window)
         self.custbutton.grid(row=1, column=1, sticky="nsew", padx=5, pady=5)
         schedule.every().hours.at("00:30").do(self.sync)
         self.run_sched()
@@ -164,10 +164,13 @@ class mainWindow:
         self.thresholdPrompt.pack(pady=5)
         self.threshold.pack(pady=5)
     
+    def alarm(self):
+        self.popup = tk.Toplevel(root)
     def customization_window(self):
         """Someday, this will allow you to define color coding for the calendar"""
         self.custwin = tk.Toplevel(self.root)
         self.custwin.title("Spreadsheet Customization")
+        self.custwin.geometry("500x300")
         self.later = tk.StringVar()
         self.soon = tk.StringVar()
         self.now = tk.StringVar()
@@ -178,8 +181,12 @@ class mainWindow:
         self.final = tk.StringVar()
         self.quizprompt = tk.Label(self.custwin,text="Enter a color for quizzes/exams (R,G,B)")
         self.quizentry = tk.Entry(self.custwin, textvariable=self.quiz)
+        self.quizprompt.pack(pady=5)
+        self.quizentry.pack(pady=0)
         self.optionalprompt = tk.Label(self.custwin,text="Enter a color for optional assignments")
         self.optionalentry = tk.Entry(self.custwin,textvariable=self.optional)
+        self.optionalprompt.pack(pady=5)
+        self.optionalentry.pack(pady=0)
 
     def alarm(self, assignment):
         """Cross-platform alarm popup with looping sound."""
@@ -243,6 +250,7 @@ class mainWindow:
 
     
     
+
 
 
     def APIin(self):
