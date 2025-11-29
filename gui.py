@@ -25,7 +25,7 @@ class mainWindow:
         self.alertbutton = tk.Button(root,text="Alert Settings",command=self.alertsettings)
         self.alertbutton.grid(row=1, column=0, sticky="nsew", padx=5, pady=5)
 
-        self.custbutton = tk.Button(root,text="Customize Spreadsheet")
+        self.custbutton = tk.Button(root,text="Customize Spreadsheet", command=self.customization_window)
         self.custbutton.grid(row=1, column=1, sticky="nsew", padx=5, pady=5)
 
         self.datecheck()
@@ -122,8 +122,96 @@ class mainWindow:
         self.thresholdPrompt.pack(pady=5)
         self.threshold.pack(pady=5)
     
+<<<<<<< Updated upstream
     def alarm(self):
         self.popup = tk.Toplevel(root)
+=======
+    def customization_window(self):
+        """Someday, this will allow you to define color coding for the calendar"""
+        self.custwin = tk.Toplevel(self.root)
+        self.custwin.title("Spreadsheet Customization")
+        self.custwin.geometry("500x300")
+        self.later = tk.StringVar()
+        self.soon = tk.StringVar()
+        self.now = tk.StringVar()
+        self.quiz = tk.StringVar()
+        self.optional = tk.StringVar()
+        self.essay = tk.StringVar()
+        self.project = tk.StringVar()
+        self.final = tk.StringVar()
+        self.quizprompt = tk.Label(self.custwin,text="Enter a color for quizzes/exams (R,G,B)")
+        self.quizentry = tk.Entry(self.custwin, textvariable=self.quiz)
+        self.quizprompt.pack(pady=5)
+        self.quizentry.pack(pady=0)
+        self.optionalprompt = tk.Label(self.custwin,text="Enter a color for optional assignments")
+        self.optionalentry = tk.Entry(self.custwin,textvariable=self.optional)
+        self.optionalprompt.pack(pady=5)
+        self.optionalentry.pack(pady=0)
+
+    def alarm(self, assignment):
+        """Cross-platform alarm popup with looping sound."""
+        
+        win = tk.Toplevel(self.root)
+        win.title("Time's running out!")
+        win.transient(self.root)
+        win.lift()
+        win.focus_force()
+
+        msg = f"{assignment[0]} is due in {assignment[1]} days!"
+        print(f"ALARM: {msg}")
+
+        label = tk.Label(win, text=msg, padx=20, pady=20)
+        label.pack()
+
+        # Load sound
+        try:
+            sound = pygame.mixer.Sound("alarm.wav")
+        except Exception as e:
+            print(f"Error loading alarm.wav: {e}")
+            sound = None
+
+        def close_alarm():
+            # Stop alarm sound
+            if sound:
+                sound.stop()
+            win.destroy()
+
+        btn = tk.Button(win, text="OK", width=10, command=close_alarm)
+        btn.pack(pady=10)
+
+        # Loop sound forever until stop() is called
+        if sound:
+            try:
+                sound.play(loops=-1)  # -1 = infinite loop
+            except Exception as e:
+                print(f"Error playing alarm.wav: {e}")
+
+        # Modal behavior
+        win.grab_set()
+        win.protocol("WM_DELETE_WINDOW", close_alarm)
+
+    def customize(self):
+       """Passes rules to sheets_conditional_formatting"""
+       quiz = (self.quiz.get()).split(",")
+       optional = (self.optional.get()).split(",")
+       essay = (self.essay.get()).split(",")
+       final = (self.final.get()).split(",")
+       project = (self.project.get()).split(",")
+       later = (self.later.get()).split(",")
+       soon = (self.soon.get()).split(",")
+       now = (self.now.get()).split(",")
+       dueColors = customizer.Rule("daysleft",[later,soon,now])
+       typeColors = customizer.Rule("type",[quiz,optional,essay,project,final])
+       for each in (dueColors,typeColors):
+           try:
+               sheets_conditional_formatting.conditional_formatting(self.reader.outFile,each.jsonobj)
+           except Exception as e:
+               print(f"Error saving formatting rule {each}: {e}")
+
+    
+    
+
+>>>>>>> Stashed changes
 
     def APIin(self):
         try: 
