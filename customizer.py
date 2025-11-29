@@ -1,6 +1,14 @@
 import json
 class Color:
     def __init__(self,red,green,blue,alpha):
+        """The constructor for the Color class
+
+        Args:
+            red (float): The red channel of the color
+            green (float): The green channel of the color
+            blue (_type_): The blue channel of the color
+            alpha (_type_): The transparency of the color
+        """
         self.red = red
         self.green = green
         self.blue = blue
@@ -8,6 +16,12 @@ class Color:
         
 class Rule:
     def __init__(self,rule,args):
+        """The constructor for the Rule class
+
+        Args:
+            rule (string): Which customization option we are modifying
+            args (list): Information specific to the chosen rule
+        """
         match rule:
             case "daysLeft":
                 later = Color(args[0][0],args[0][1],args[0][2],1)

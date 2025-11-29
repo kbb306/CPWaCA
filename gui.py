@@ -10,6 +10,8 @@ import sheets_conditional_formatting
 import customizer
 
 class Window:
+    """The GUI
+    """
     def __init__(self,root):
         """Constructor for the Window object
 
