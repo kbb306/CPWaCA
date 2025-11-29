@@ -1,3 +1,10 @@
-Add code to create new file (And table headers)
+Add code to create table headers.
+Auto update days left field on spreadsheet (Possibly complete)
+Refactor dailycheck(), datecheck() and sync() to hopefully consolidate.
 Create customization functions (More google API, yay!)
-Create unit test for parse()
+    Add check for add vs update
+    Finish filling in entry boxes in customization settings window
+    Hook up customization window to button
+    Update syncsetyings to read and write new customization settings
+    Add indicators for customization settings to spreadsheet
+Get an alarm sound

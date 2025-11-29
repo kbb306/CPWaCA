@@ -1,11 +1,17 @@
 import globals
 import tkinter as tk
-import tkinter.messagebox
+import tkinter.messagebox #Do not remove
 import parse
 import schedule
 from watchpoints import watch
 import configparser
+import pygame
+import threading
+import sheets_conditional_formatting
+import customizer
+
 class mainWindow:
+    """The main window"""
     def __init__(self,root):
         self.root = root
         self.root.title("Calendar Parser Without a Cool Acronym")
@@ -15,6 +21,7 @@ class mainWindow:
         self.root.grid_columnconfigure(0, weight=1)
         self.root.grid_rowconfigure(1, weight=1)
         self.root.grid_columnconfigure(1, weight=1)
+        pygame.mixer.init()
 
         self.keybutton = tk.Button(root,text="Connect Accounts",command=self.connwindow)
         self.keybutton.grid(row=0, column=0, sticky="nsew", padx=5, pady=5)
@@ -27,22 +34,51 @@ class mainWindow:
 
         self.custbutton = tk.Button(root,text="Customize Spreadsheet", command=self.customization_window)
         self.custbutton.grid(row=1, column=1, sticky="nsew", padx=5, pady=5)
-
-        self.datecheck()
-        watch(globals.today,callback=self.onUpdate)
-        schedule.every().minutes.at(":30").do(self.sync)
-        schedule.every().day.at("09:00").do(self.daily_check)
+        schedule.every().hours.at("00:30").do(self.sync)
         self.run_sched()
+        self.root.after(0, self.sync)
 
 
     def sync(self):
-        self.syncSettings()
-        try:
-            self.reader.sync()
-        except:
-            print("Warning, no reader class yet.")
+        """Run reader.sync() in a background thread so the UI doesn't freeze."""
+        if getattr(self, "_sync_running", False):
+            print("Sync already running, skipping.")
+            return
 
-    def fileFuckery(self,command,file,section,lookfor,changeTo=None):
+        self._sync_running = True
+        try:
+            self.syncbutton.config(state="disabled")
+        except Exception:
+            pass
+
+        def worker():
+            try:
+                self.APIin()
+                self.reader.sync()
+            except Exception as e:
+                tb = parse.traceback.format_exc()
+                print(f"Warning sync failed due to {e}. Traceback is {tb}")
+            finally:
+                self.root.after(0, self._sync_finished)
+
+        threading.Thread(target=worker, daemon=True).start()
+
+    def _sync_finished(self):
+        """Called on the Tkinter thread when background sync completes."""
+        self._sync_running = False
+
+        try:
+            self.syncbutton.config(state="normal")
+        except Exception:
+            pass
+
+        self.syncSettings("read")
+        self.daily_check()
+
+       
+
+    def iniBot(self,command,file,section,lookfor,changeTo=None):
+         """Reads and writes to settings.ini"""
          config = configparser.ConfigParser()
          config.read(file)
          if section not in config:
@@ -56,24 +92,24 @@ class mainWindow:
                  config.write(f)
 
     def shutdown(self):
+        """Brings up confimation dialogue before destroying window"""
         if tk.messagebox.askokcancel("Quit","Do you want to quit? This will disable alerts!"):
             self.syncSettings("write")
             root.destroy()
    
     def syncSettings(self, command):
-    # Save values TO ini
+        """Calls iniBot"""
         if command == "write":
-            self.fileFuckery("write","settings.ini","settings","alarm",globals.Alarm)
-            self.fileFuckery("write", "settings.ini", "settings", "threshold", globals.threshold)
-            self.fileFuckery("write", "settings.ini", "keys", "cURL", self.reader.inURL)
-            self.fileFuckery("write", "settings.ini", "keys", "DriveFile", self.reader.outFile)
+            self.iniBot("write","settings.ini","settings","alarm",globals.Alarm)
+            self.iniBot("write", "settings.ini", "settings", "threshold", globals.threshold)
+            self.iniBot("write", "settings.ini", "keys", "cURL", self.reader.inURL)
+            self.iniBot("write", "settings.ini", "keys", "DriveFile", self.reader.outFile)
 
-        # Load values FROM ini
         elif command == "read":
-            Alarm = self.fileFuckery("read","settings.ini","settings","Alarm")
-            threshold = self.fileFuckery("read", "settings.ini", "settings", "threshold")
-            cURL      = self.fileFuckery("read", "settings.ini", "keys", "cURL")
-            DriveFile = self.fileFuckery("read", "settings.ini", "keys", "DriveFile")
+            Alarm = self.iniBot("read","settings.ini","settings","Alarm")
+            threshold = self.iniBot("read", "settings.ini", "settings", "threshold")
+            cURL      = self.iniBot("read", "settings.ini", "keys", "cURL")
+            DriveFile = self.iniBot("read", "settings.ini", "keys", "DriveFile")
             if Alarm:
                 globals.Alarm = Alarm
                 
@@ -86,12 +122,17 @@ class mainWindow:
             if DriveFile:
                 self.reader.outFile = DriveFile
 
-
     def run_sched(self):
-        schedule.run_pending()
+        """Loops scheduled events"""
+        try:
+            schedule.run_pending()
+        except:
+            print("Error in scheduler job!")
+            parse.traceback.print_exc()
         self.root.after(1000, self.run_sched)
 
     def connwindow(self):
+       """This is where the user inputs the iCal download URL and google sheets ID string"""
        self.connwin = tk.Toplevel(self.root)
        self.connwin.title("Connect Accounts")
        self.connwin.geometry("500x300")
@@ -110,6 +151,7 @@ class mainWindow:
        tk.Button(self.connwin,text="Close",command=self.connwin.destroy).pack(pady=10)
 
     def alertsettings(self):
+        """This window allows you to turn the alarm on or off, or change the daysLeft value at which it triggers"""
         self.alertwin = tk.Toplevel(self.root)
         self.alertwin.title("Alert Settings")
         self.alertwin.geometry("500x300")
@@ -122,10 +164,8 @@ class mainWindow:
         self.thresholdPrompt.pack(pady=5)
         self.threshold.pack(pady=5)
     
-<<<<<<< Updated upstream
     def alarm(self):
         self.popup = tk.Toplevel(root)
-=======
     def customization_window(self):
         """Someday, this will allow you to define color coding for the calendar"""
         self.custwin = tk.Toplevel(self.root)
@@ -211,56 +251,54 @@ class mainWindow:
     
     
 
->>>>>>> Stashed changes
+
 
     def APIin(self):
+        """Checks window variables and INI file for iCal URL and Spreadsheet ID"""
         try: 
-            cURL = self.cURL.get()
-            DriveFile = self.DriveFile.get()
+            cURL = (self.cURL.get() or "").strip()
+            DriveFile = (self.DriveFile.get() or "").strip()
         except:
-            cURL = None
-            DriveFile = None
-        if cURL is None or DriveFile is None:
+            cURL = ""
+            DriveFile = ""
+        if not cURL or not DriveFile:
             try: 
-                 cURL = self.fileFuckery("read","settings.ini","keys","cURL")
-                 DriveFile = self.fileFuckery("read","settings.ini","keys","DriveFile")
+                 cURL = self.iniBot("read","settings.ini","keys","cURL")
+                 DriveFile = self.iniBot("read","settings.ini","keys","DriveFile")
             except:
                 self.connwindow()
-        self.reader = parse.Reader(cURL,DriveFile)
-        self.fileFuckery("write","settings.ini","keys","cURL",cURL)
-        self.fileFuckery("write","settings.ini","keys","DriveFile",DriveFile)
+        fileid = DriveFile or None
+        self.reader = parse.Reader(cURL,fileid)
+        DriveFile = self.reader.outFile
+        self.iniBot("write","settings.ini","keys","cURL",cURL)
+        self.iniBot("write","settings.ini","keys","DriveFile",DriveFile)
+        return
     
     def on_thres_change(self,sv):
+        """Allows for dynamic changing of Threshold variable (the variable that controls when the alarm goes off)"""
         current = sv.get()
-        globals.threshold = current
-        self.fileFuckery("write","settings.ini","settings","threshold",globals.threshold)
+        globals.threshold = int(current)
+        self.iniBot("write","settings.ini","settings","threshold",globals.threshold)
 
     def datecheck(self):
+        """Calls the alarm method on each assignment in the masterlist, and updates the daysLeft values"""
         try:
             for each in self.reader.masterList:
                 each.upDate()
                 if globals.Alarm:
                     if each.alert() is not None:
-                        self.alarm()
+                        self.alarm(each.alert())
         except:
             self.APIin()
+            self.datecheck()
 
     def daily_check(self):
+        """Wrapper so the scheduler can call datecheck and update the variable tracking today's date"""
         globals.today = globals.datetime.date.today()
+        self.datecheck()
         
-   
-
-    def onUpdate(self):
-        self.daily_check()
-        self.sync()
     
-    def sync(self):
-        try:
-            self.reader.sync()
-        except:
-            print("No reader class yet.")
-            self.APIin()
-
+    
 
 if __name__ == "__main__":
     root = tk.Tk()
