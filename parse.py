@@ -13,6 +13,12 @@ class Reader():
     """Creates Assignment objects using data pulled from a downloaded iCal file, and reads/writes them to a spreadsheet
     """
     def __init__(self,inURL,outFile=None,):
+        """Constructor for Reader class
+
+        Args:
+            inURL (string): download URL for iCal file
+            outFile (string, optional): Spreadsheet ID for the spreadsheet we are outputting to. if not provided, Reader will create a new Google Spreadsheet. Defaults to None.
+        """
         self.inURL = inURL
         self.outFile = outFile
         self.masterList = []
@@ -231,14 +237,12 @@ class Reader():
   
                 if foundEv:
                     if "#assignment" in each:
-                        # Look specifically for "...assignment_12345678"
                         m = re.search(r'assignment_(\d+)', each)
                         if m:
-                            ID = m.group(1)          # e.g. "17159689"
-                            uid = ID                 # keep as string
+                            ID = m.group(1)          
+                            uid = ID                 
                             print("Found assignment ID:", ID)
                         else:
-                            # Fallback if for some reason the pattern isn't there
                             print("Could not find assignment_... in line:", each)
                             ID = None
                             uid = None
@@ -246,7 +250,6 @@ class Reader():
 
                     if ":" in each:
                         key, value = each.split(":",1)
-                    #print(key)
                     if (key == "END"):
                         if (ID  is not None and date is not None): 
                             if ID == "1193172":
@@ -267,7 +270,6 @@ class Reader():
                         datein = value.strip()
                         print("Found date!")
                         date = (datetime.datetime.strptime(datein,"%Y%m%d")).date()
-                        #print((date - globals.today))
                         if (date - globals.today).days < -(globals.threshold):
                             date = None
                             print("Assignment is too overdue, skipping.")
@@ -299,6 +301,16 @@ class Assignment():
     """The internal representation of an assignment. Stores unique assignment ID, the course name, the name/title,
     the due date, and the days from today until the due date."""
     def __init__(self,course,assignment,status,daysLeft,date,uid):
+        """Constructor for Assignment class
+
+        Args:
+            course (string): The course that gave this assignment
+            assignment (string): Assignment name and/or description
+            status (string): "Not Started," "In Progress," or "Done"
+            daysLeft (int): Days until the assignment is due
+            date (date): Assignment due date
+            uid (int): Unique assignment ID, found at the end of the URL in the iCal event.
+        """
         self.uid = uid
         self.course = course
         self.name = assignment

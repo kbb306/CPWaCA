@@ -9,10 +9,13 @@ import threading
 import sheets_conditional_formatting
 import customizer
 
-class mainWindow:
-    """The main window
-    """
+class Window:
     def __init__(self,root):
+        """Constructor for the Window object
+
+        Args:
+            root (tkinter object): The primary window
+        """
         self.root = root
         self.root.title("Calendar Parser Without a Cool Acronym")
         root.protocol("WM_DELETE_WINDOW",self.shutdown)
@@ -323,5 +326,5 @@ class mainWindow:
 
 if __name__ == "__main__":
     root = tk.Tk()
-    app = mainWindow(root)
+    app = Window(root)
     root.mainloop()

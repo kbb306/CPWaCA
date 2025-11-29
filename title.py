@@ -5,6 +5,16 @@ import sheets_misc
 import json
 import customizer
 def titleinator(driveFile,row,fontsize,merge,bold,data):
+        """Create title or subtitle on given row with given formatting
+
+        Args:
+            driveFile (string): The Spreadsheet ID for the spreadsheet we wish to modify
+            row (int): The row to place the title/subtitle on
+            fontsize (int): The size of the text in the title/subtitlt
+            merge (bool): Whether or not to merge all the cells in a row
+            bold (bool): Whether or not the text should be bold
+            data (list): The list of data to place in the row
+        """
         formatting = customizer.Rule("title",[row,fontsize,bold])
         if merge:
                 command  = {
