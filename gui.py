@@ -295,7 +295,7 @@ class Window:
         self.iniBot("write","settings.ini","keys","DriveFile",DriveFile)
         return
     
-    def on_thres_change(self):
+    def on_thres_change(self, *args):
         """Update globals.threshold on change to threshold entry box in alarm settings
         """
         current = self.daysUntil.get()
