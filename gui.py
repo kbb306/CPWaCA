@@ -1,6 +1,6 @@
 import globals
 import tkinter as tk
-import tkinter.messagebox
+import tkinter.messagebox #Do not remove
 import parse
 import schedule
 from watchpoints import watch
