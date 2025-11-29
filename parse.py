@@ -21,6 +21,7 @@ class Reader():
             self.outFile = sheets_create.create("Calendar")
         title.titleinator(self.outFile,1,20,True,True,["CPWaCA Assignment Tracker"])
         title.titleinator(self.outFile,4,14,False,False,["Course","Assignment","Status","Days Left", "Due Date", "Assignment ID"])
+    
     def _import(self):
         """Downloads the iCal file"""
         try:
