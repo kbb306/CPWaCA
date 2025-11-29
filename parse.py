@@ -196,6 +196,7 @@ class Reader():
                     date= None
                     ID = None
                     uid = None
+                    skip = False
   
                 if foundEv:
                     if "#assignment" in each:
@@ -219,10 +220,15 @@ class Reader():
                         if (ID  is not None and date is not None): 
                             if ID == "1193172":
                                 continue
-                            print("Adding assignment!")
-                            thing = Assignment(course,assignment,status,daysLeft,date,uid)
-                            self.masterList.append(thing)
+                            for each in self.masterList:
+                                if uid == each.uid:
+                                    skip = True
+                            if not skip:
+                                print("Adding assignment!")
+                                thing = Assignment(course,assignment,status,daysLeft,date,uid)
+                                self.masterList.append(thing)
                             foundEv = False
+                            skip = False
                         
                     if key == "DTSTART;VALUE=DATE;VALUE=DATE":
                         datein = value.strip()
