@@ -77,7 +77,7 @@ class mainWindow:
 
        
 
-    def fileFuckery(self,command,file,section,lookfor,changeTo=None):
+    def iniReader(self,command,file,section,lookfor,changeTo=None):
          """Reads and writes to settings.ini"""
          config = configparser.ConfigParser()
          config.read(file)
@@ -100,16 +100,16 @@ class mainWindow:
     def syncSettings(self, command):
         """Calls fileFuckery"""
         if command == "write":
-            self.fileFuckery("write","settings.ini","settings","alarm",globals.Alarm)
-            self.fileFuckery("write", "settings.ini", "settings", "threshold", globals.threshold)
-            self.fileFuckery("write", "settings.ini", "keys", "cURL", self.reader.inURL)
-            self.fileFuckery("write", "settings.ini", "keys", "DriveFile", self.reader.outFile)
+            self.iniReader("write","settings.ini","settings","alarm",globals.Alarm)
+            self.iniReader("write", "settings.ini", "settings", "threshold", globals.threshold)
+            self.iniReader("write", "settings.ini", "keys", "cURL", self.reader.inURL)
+            self.iniReader("write", "settings.ini", "keys", "DriveFile", self.reader.outFile)
 
         elif command == "read":
-            Alarm = self.fileFuckery("read","settings.ini","settings","Alarm")
-            threshold = self.fileFuckery("read", "settings.ini", "settings", "threshold")
-            cURL      = self.fileFuckery("read", "settings.ini", "keys", "cURL")
-            DriveFile = self.fileFuckery("read", "settings.ini", "keys", "DriveFile")
+            Alarm = self.iniReader("read","settings.ini","settings","Alarm")
+            threshold = self.iniReader("read", "settings.ini", "settings", "threshold")
+            cURL      = self.iniReader("read", "settings.ini", "keys", "cURL")
+            DriveFile = self.iniReader("read", "settings.ini", "keys", "DriveFile")
             if Alarm:
                 globals.Alarm = Alarm
                 
@@ -255,22 +255,22 @@ class mainWindow:
             DriveFile = ""
         if not cURL or not DriveFile:
             try: 
-                 cURL = self.fileFuckery("read","settings.ini","keys","cURL")
-                 DriveFile = self.fileFuckery("read","settings.ini","keys","DriveFile")
+                 cURL = self.iniReader("read","settings.ini","keys","cURL")
+                 DriveFile = self.iniReader("read","settings.ini","keys","DriveFile")
             except:
                 self.connwindow()
         fileid = DriveFile or None
         self.reader = parse.Reader(cURL,fileid)
         DriveFile = self.reader.outFile
-        self.fileFuckery("write","settings.ini","keys","cURL",cURL)
-        self.fileFuckery("write","settings.ini","keys","DriveFile",DriveFile)
+        self.iniReader("write","settings.ini","keys","cURL",cURL)
+        self.iniReader("write","settings.ini","keys","DriveFile",DriveFile)
         return
     
     def on_thres_change(self,sv):
         """Allows for dynamic changing of Threshold variable (the variable that controls when the alarm goes off)"""
         current = sv.get()
         globals.threshold = int(current)
-        self.fileFuckery("write","settings.ini","settings","threshold",globals.threshold)
+        self.iniReader("write","settings.ini","settings","threshold",globals.threshold)
 
     def datecheck(self):
         """Calls the alarm method on each assignment in the masterlist, and updates the daysLeft values"""
