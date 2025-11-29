@@ -10,7 +10,8 @@ import sheets_conditional_formatting
 import customizer
 
 class mainWindow:
-    """The main window"""
+    """The main window
+    """
     def __init__(self,root):
         self.root = root
         self.root.title("Calendar Parser Without a Cool Acronym")
@@ -39,7 +40,8 @@ class mainWindow:
 
 
     def sync(self):
-        """Run reader.sync() in a background thread so the UI doesn't freeze."""
+        """Spawn thread for reader.sync().
+        """
         if getattr(self, "_sync_running", False):
             print("Sync already running, skipping.")
             return
@@ -63,7 +65,9 @@ class mainWindow:
         threading.Thread(target=worker, daemon=True).start()
 
     def _sync_finished(self):
-        """Called on the Tkinter thread when background sync completes."""
+        """
+        Reset _sync_running and unblock syncbutton, then call syncSettings and daily_check()
+        """
         self._sync_running = False
 
         try:
@@ -77,7 +81,18 @@ class mainWindow:
        
 
     def iniBot(self,command,file,section,lookfor,changeTo=None):
-         """Reads and writes to settings.ini"""
+         """_Run the given command on the specified field in the given ini file.
+
+        Args:
+            command (string): "read" or "write"
+            file (string): path to desired ini file
+            section (string): Section containing the field you want to access
+            lookfor (string): The name of the field you want to access
+            changeTo (string, optional): What to change the specified field to (Write mode only). Defaults to None.
+
+        Returns:
+            string: The varible you requested (read mode only)
+        """
          config = configparser.ConfigParser()
          config.read(file)
          if section not in config:
@@ -91,13 +106,18 @@ class mainWindow:
                  config.write(f)
 
     def shutdown(self):
-        """Brings up confimation dialogue before destroying window"""
+        """Bring up confimation dialogue before destroying window
+        """
         if tk.messagebox.askokcancel("Quit","Do you want to quit? This will disable alerts!"):
             self.syncSettings("write")
             root.destroy()
    
     def syncSettings(self, command):
-        """Calls iniBot"""
+        """Read or write all settings to/from Settings.ini"
+
+        Args:
+            command (string): "read" or "write"
+        """
         if command == "write":
             self.iniBot("write","settings.ini","settings","alarm",globals.Alarm)
             self.iniBot("write", "settings.ini", "settings", "threshold", globals.threshold)
@@ -122,7 +142,8 @@ class mainWindow:
                 self.reader.outFile = DriveFile
 
     def run_sched(self):
-        """Loops scheduled events"""
+        """Loop scheduled events
+        """
         try:
             schedule.run_pending()
         except:
@@ -131,7 +152,8 @@ class mainWindow:
         self.root.after(1000, self.run_sched)
 
     def connwindow(self):
-       """This is where the user inputs the iCal download URL and google sheets ID string"""
+       """House user inputs for cURL and DriveFile
+       """
        self.connwin = tk.Toplevel(self.root)
        self.connwin.title("Connect Accounts")
        self.connwin.geometry("500x300")
@@ -150,7 +172,8 @@ class mainWindow:
        tk.Button(self.connwin,text="Close",command=self.connwin.destroy).pack(pady=10)
 
     def alertsettings(self):
-        """This window allows you to turn the alarm on or off, or change the daysLeft value at which it triggers"""
+        """Alarm settings panel
+        """
         self.alertwin = tk.Toplevel(self.root)
         self.alertwin.title("Alert Settings")
         self.alertwin.geometry("500x300")
@@ -166,7 +189,8 @@ class mainWindow:
     def alarm(self):
         self.popup = tk.Toplevel(root)
     def customization_window(self):
-        """Someday, this will allow you to define color coding for the calendar"""
+        """Customization settings (not yet implemented)
+        """
         self.custwin = tk.Toplevel(self.root)
         self.custwin.title("Spreadsheet Customization")
         self.custwin.geometry("500x300")
@@ -188,8 +212,8 @@ class mainWindow:
         self.optionalentry.pack(pady=0)
 
     def alarm(self, assignment):
-        """Cross-platform alarm popup with looping sound."""
-        
+        """Alarm popup with cross-platform looping sound
+        """        
         win = tk.Toplevel(self.root)
         win.title("Time's running out!")
         win.transient(self.root)
@@ -202,7 +226,6 @@ class mainWindow:
         label = tk.Label(win, text=msg, padx=20, pady=20)
         label.pack()
 
-        # Load sound
         try:
             sound = pygame.mixer.Sound("alarm.wav")
         except Exception as e:
@@ -210,7 +233,6 @@ class mainWindow:
             sound = None
 
         def close_alarm():
-            # Stop alarm sound
             if sound:
                 sound.stop()
             win.destroy()
@@ -218,19 +240,19 @@ class mainWindow:
         btn = tk.Button(win, text="OK", width=10, command=close_alarm)
         btn.pack(pady=10)
 
-        # Loop sound forever until stop() is called
         if sound:
             try:
-                sound.play(loops=-1)  # -1 = infinite loop
+                sound.play(loops=-1)  
             except Exception as e:
                 print(f"Error playing alarm.wav: {e}")
 
-        # Modal behavior
+
         win.grab_set()
         win.protocol("WM_DELETE_WINDOW", close_alarm)
 
     def customize(self):
-       """Passes rules to sheets_conditional_formatting"""
+       """Build json string for sheets_conditional_formatting
+       """
        quiz = (self.quiz.get()).split(",")
        optional = (self.optional.get()).split(",")
        essay = (self.essay.get()).split(",")
@@ -248,12 +270,9 @@ class mainWindow:
                print(f"Error saving formatting rule {each}: {e}")
 
     
-    
-
-
-
     def APIin(self):
-        """Checks window variables and INI file for iCal URL and Spreadsheet ID"""
+        """Create Reader() object using available cURL and DriveFile settings
+        """
         try: 
             cURL = (self.cURL.get() or "").strip()
             DriveFile = (self.DriveFile.get() or "").strip()
@@ -273,14 +292,16 @@ class mainWindow:
         self.iniBot("write","settings.ini","keys","DriveFile",DriveFile)
         return
     
-    def on_thres_change(self,sv):
-        """Allows for dynamic changing of Threshold variable (the variable that controls when the alarm goes off)"""
-        current = sv.get()
-        globals.threshold = int(current)
-        self.iniBot("write","settings.ini","settings","threshold",globals.threshold)
+    def on_thres_change(self):
+        """Update globals.threshold on change to threshold entry box in alarm settings
+        """
+        current = self.daysUntil.get()
+        if current.isdigit():
+            globals.threshold = int(current)
+            self.iniBot("write", "settings.ini", "settings", "threshold", globals.threshold)
 
     def datecheck(self):
-        """Calls the alarm method on each assignment in the masterlist, and updates the daysLeft values"""
+        """Call upDate on each assignment in masterlist. Call alert on each assignment and check output if globals.alarm is true"""
         try:
             for each in self.reader.masterList:
                 each.upDate()
@@ -292,7 +313,8 @@ class mainWindow:
             self.datecheck()
 
     def daily_check(self):
-        """Wrapper so the scheduler can call datecheck and update the variable tracking today's date"""
+        """Update globals.today and call datecheck().
+        """
         globals.today = globals.datetime.date.today()
         self.datecheck()
         
