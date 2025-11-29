@@ -3,7 +3,6 @@ import tkinter as tk
 import tkinter.messagebox #Do not remove
 import parse
 import schedule
-from watchpoints import watch
 import configparser
 import pygame
 import threading

@@ -56,7 +56,7 @@ class testReader(unittest.TestCase):
         class Dummy():
             def __init__(self,foo,bar):
                 self.foo = foo
-                self.bar - bar
+                self.bar = bar
 
         Wyatt = Reader("https://suu.instructure.com/feeds/calendars/user_MY3O6WwP5ysxV4URUoOTK03GYdmmfe4BVSOjhZcg.ics","1IY3A-mZwVB94UFqShO-QZuYDGYZaYPLcLbVfHv7Txt8")
         
@@ -175,7 +175,28 @@ class testReader(unittest.TestCase):
     
     def test_add_from_sheet(self):
         Wyatt = Reader("https://suu.instructure.com/feeds/calendars/user_MY3O6WwP5ysxV4URUoOTK03GYdmmfe4BVSOjhZcg.ics","1IY3A-mZwVB94UFqShO-QZuYDGYZaYPLcLbVfHv7Txt8")
-
+        Bob = Assignment("Standing Up Class","Stand Up for 5 Seconds","Not Started",5,(datetime.datetime.date.today()+datetime.timedelta(days=5)),random.randint(10000000,99999999))
+        Alice = Assignment("Breathing 101","Breathe In","Not Started",7,(datetime.datetime.date.today()+datetime.timedelta(days=7)))
+        Wyatt.masterList.append(Bob)
+        Wyatt.masterList.append(Alice)
+        Wyatt.export()
+        Red = Reader("https://suu.instructure.com/feeds/calendars/user_MY3O6WwP5ysxV4URUoOTK03GYdmmfe4BVSOjhZcg.ics","1IY3A-mZwVB94UFqShO-QZuYDGYZaYPLcLbVfHv7Txt8")
+        for each in Wyatt.masterList:
+            Red.add_from_sheet(each)
+        Equal = False
+        for each in Red.masterList:
+            for each2 in Wyatt.masterList:
+                if each2.uid == each.uid:
+                    if each2.name == each.name:
+                        if each2.course == each.course:
+                            if each2.dueDate == each.dueDate:
+                                if each2.daysLeft == each.daysLeft:
+                                    Equal = True
+                                    break
+                else: 
+                    Equal = False
+        self.assertTrue(Equal)
+               
 
 
 

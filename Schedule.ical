@@ -6,17 +6,6 @@ METHOD:PUBLISH
 X-WR-CALNAME:Kyler Belshaw Calendar (Canvas)
 X-WR-CALDESC:Calendar events for the user\, Kyler Belshaw
 BEGIN:VEVENT
-DTSTAMP:20250925T170800Z
-UID:event-calendar-event-4801290
-DTSTART;VALUE=DATE;VALUE=DATE:20251030
-CLASS:PUBLIC
-LOCATION:
-SEQUENCE:0
-SUMMARY:Spring 2026 Junior Registration Begins (8 AM)
-URL;VALUE=URI:https://suu.instructure.com/calendar?include_contexts=account
- _19&month=10&year=2025#calendar_event_4801290
-END:VEVENT
-BEGIN:VEVENT
 DTSTAMP:20251117T042400Z
 UID:event-assignment-17104474
 DTSTART;VALUE=DATE;VALUE=DATE:20251030

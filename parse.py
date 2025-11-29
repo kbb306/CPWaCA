@@ -10,8 +10,8 @@ from urllib.request import urlretrieve
 import traceback;
 from itertools import groupby
 class Reader():
-    """Takes in iCal URL and parses out assignments, creating an Assignment object for each of them and adding them to a master list. 
-    Updates/appends the google spreadsheet with those assignments """
+    """Creates Assignment objects using data pulled from a downloaded iCal file, and reads/writes them to a spreadsheet
+    """
     def __init__(self,inURL,outFile=None,):
         self.inURL = inURL
         self.outFile = outFile
@@ -23,18 +23,26 @@ class Reader():
         title.titleinator(self.outFile,4,14,False,False,["Course","Assignment","Status","Days Left", "Due Date", "Assignment ID"])
     
     def _import(self):
-        """Downloads the iCal file"""
+        """Download the iCal file
+           Attributes Used: self.inURL
+           Creates: Schedule.ical
+           Raises: URLError if download fails"""
         try:
             urlretrieve(self.inURL,"Schedule.ical")
             print("Calendar downloaded!")
 
         except Exception as e:
-            print("Error downloading file:" + e)
+            raise e
         self.parse("Schedule.ical")
 
     def append_to_sheet(self,assignment, _ignored):
-        """Called by compare() when an assignment in the masterlist does NOT have a match in the current spreadsheet,
-        appends that assignment to the end of it."""
+        """Append the data in an Assignment object to the spreadsheet as a new row
+
+        Args:
+            assignment (Assignment): An assignment in the masterlist that does not have a match in the spreadsheet. 
+                passed from compare().
+            _ignored (Assignment): Placeholder for uniform call structure in compare()
+        """
         sheets_append_values.append_values(
             self.outFile,
             "A5:F",
@@ -50,8 +58,12 @@ class Reader():
         )
 
     def update_sheet(self,assignment, _ignored):
-        """Called by compare() when an assignment in the masterlist DOES have a match in the current spreadsheet, 
-        updates that entry with the lastest data."""
+        """Updates a row in the spreadsheet with the latest version of the assignment
+
+        Args:
+            assignment (Assignment): An Assignment present in the masterlist AND the spreadsheet. Passed from compare()
+            _ignored (Assignment): Placeholder for uniform call structure in compare()
+        """
         print(f"Updating assignment {assignment.uid}")
         row = 5
         while True:
@@ -81,13 +93,8 @@ class Reader():
         )
 
     def export(self):
-        """Gets each assignment in the masterlist and asks compare() what to do with it"""
-        for each in self.masterList:
-            try:
-                each.upDate()
-            except Exception as e:
-                print(f"Warning, could not update days left for assignment {each.uid}: {e}")
-            print(f"Now exporting {each.name, each.uid} date {each.dueDate}. {each.daysLeft} days until due.")
+        """Call compare to determine correct action for each assignment in masterlist.
+        """
 
         sheet_rows = self.readToEnd()
         self.compare(self.masterList,sheet_rows,"uid","uid",True,self.update_sheet)
@@ -97,7 +104,12 @@ class Reader():
 
 
     def add_from_sheet(self,sheet_assignment, _match):
-        """Called by compare() when an assignment is found in the spreadsheet but NOT the internal masterlist, eg, when the program restarts"""
+        """Add assignment from sheet to masterlist
+
+        Args:
+            sheet_assignment (Assignment): An Assignment object generated from the sheet. Passed from compare()
+            _match (Assignment): Placeholder for uniform call structure in compare()
+        """
         try:
             sheet_assignment.upDate()
         except Exception as e:
@@ -106,7 +118,8 @@ class Reader():
 
     
     def sync(self):
-        """Wrapper for import and export, plus a compare() call controlling add_from_sheet()"""
+        """Synchronize google spreadsheet and masterlist
+        """
         rows = self.readToEnd()
         self.compare(rows,self.masterList,"uid","uid",False,self.add_from_sheet)
         self._import()
@@ -115,7 +128,9 @@ class Reader():
 
 
     def readToEnd(self):
-        """Reads the spreadsheet until a blank row is found, then returns the list of entries to export()"""
+        """
+        Read spreadsheet (starting at row 5) until a blank row. Create Assignment objects for each and return them in a list.
+        """
         results = []
         row = 5  
 
@@ -155,7 +170,16 @@ class Reader():
     
 
     def compare(self, list1, list2, attrone, attrtwo, want, func):
-        """Calls a function when a match is/is not found between two lists. Used to ensure the spreadsheet and masterlist stay in sync"""
+        """Compares lists according to given attributes, calls function when given condition is met.
+
+        Args:
+            list1 (list): The list to compare against
+            list2 (list): The list being compared
+            attrone (any): The attribute to compare for each object in list1
+            attrtwo (any): The attribute to compare for each object in list2
+            want (bool): The condition on which func() executes. If set to false, function will execute when comparison test fails
+            func (function): The function called when the match test returns a bool matching want
+        """
         for each1 in list1:
             match = None
             for each2 in list2:
@@ -169,7 +193,8 @@ class Reader():
 
 
     def deduplicate(self):
-            """For assignments with multiple entries in the calendar. Deletes dupes past a user-defined limit"""
+            """Locate duplicate assignments above a user defined threshold. Keep those with later due dates and delete the rest
+            """
             todelete =[]
             groups = [list(g) for _, g in groupby(self.masterList, key=lambda x: x.uid)]
             for each in groups:
@@ -184,7 +209,12 @@ class Reader():
                 del(self.masterList[ind])
                 
     def parse(self,file):
-        """The core function of the CPwACA. Reads the iCal file and creates an Assignment object for each valid assignment"""
+        """Read iCal file and parse out events and their attributes. Creates Assignment objects.
+            If any attributes known to occur in assignments are missing, object creation is aborted.
+
+        Args:
+            file (str): The path to an iCal file, passed from _import()
+        """
         foundEv = False
         with open(file, 'r') as f:
             rows = f.readlines()
@@ -277,12 +307,17 @@ class Assignment():
         self.status = status
 
     def alert(self):
-        """Called by the gui's dateCheck function. Returns the assignment's name and daysLeft if more than x days overdue"""
+        """Check daysLeft against globals.threshold. If the difference is within |threshold|, return name and daysLeft
+
+        Returns:
+            tuple: (self.name,self.daysleft)
+        """
         if (self.daysLeft <= globals.threshold and self.daysLeft >= -(globals.threshold) and self.status != "Done"): 
             return self.name,self.daysLeft
         else:
             return None
 
     def upDate(self):
-        """Called by multiple functions in the gui. Updates the days left until the due date."""
+        """Subtract globals.today from self.dueDate
+        """
         self.daysLeft = (self.dueDate - globals.today).days
