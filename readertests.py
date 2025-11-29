@@ -43,11 +43,12 @@ class testReader(unittest.TestCase):
         Wyatt.append_to_sheet(Bob)
         Bob.daysLeft = 4
         Wyatt.update_sheet(Bob)
+        self.assertEqual(Bob.daysLeft,4)
 
     def test_compare(self):
 
         def CheckSame(thing1,thing2):
-            self.assertEquals(thing1,thing2)
+            self.assertEqual(thing1,thing2)
 
         def CheckDiff(thing1, thing2):
             self.assertNotEqual(thing1,thing2)
@@ -197,7 +198,21 @@ class testReader(unittest.TestCase):
                     Equal = False
         self.assertTrue(Equal)
                
+    def test_deduplicate(self):
+        Wyatt = Reader("https://suu.instructure.com/feeds/calendars/user_MY3O6WwP5ysxV4URUoOTK03GYdmmfe4BVSOjhZcg.ics","1IY3A-mZwVB94UFqShO-QZuYDGYZaYPLcLbVfHv7Txt8")
+        Bob = Assignment("Standing Up Class","Stand Up for 5 Seconds","Not Started",5,(datetime.datetime.date.today()+datetime.timedelta(days=5)),random.randint(10000000,99999999))
+        Alice = Assignment("Standing Up Class","Stand Up for 5 Seconds","Not Started",6,(datetime.datetime.date.today()+datetime.timedelta(days=6)),Bob.uid)
+        Jane = Assignment("Standing Up Class","Stand Up for 5 Seconds","Not Started",7,(datetime.datetime.date.today()+datetime.timedelta(days=7)),Bob.uid)
+        Wyatt.masterList.append(Bob)
+        Wyatt.masterList.append(Alice)
+        Wyatt.masterList.append(Jane)
+        Wyatt.deduplicate()
 
+        
+
+
+    def test_parse(self):
+        pass
 
 
 

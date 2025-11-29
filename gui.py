@@ -126,12 +126,14 @@ class Window:
         if command == "write":
             self.iniBot("write","settings.ini","settings","alarm",globals.Alarm)
             self.iniBot("write", "settings.ini", "settings", "threshold", globals.threshold)
+            self.iniBot("write", "settings.ini", "settings", "tooMany", globals.tooMany)
             self.iniBot("write", "settings.ini", "keys", "cURL", self.reader.inURL)
             self.iniBot("write", "settings.ini", "keys", "DriveFile", self.reader.outFile)
 
         elif command == "read":
             Alarm = self.iniBot("read","settings.ini","settings","Alarm")
             threshold = self.iniBot("read", "settings.ini", "settings", "threshold")
+            tooMany = self.iniBot("read","Settings.ini","settings","tooMany")
             cURL      = self.iniBot("read", "settings.ini", "keys", "cURL")
             DriveFile = self.iniBot("read", "settings.ini", "keys", "DriveFile")
             if Alarm:
@@ -139,6 +141,9 @@ class Window:
                 
             if threshold is not None:
                 globals.threshold = int(threshold)
+
+            if tooMany:
+                globals.tooMany = int(tooMany)
 
             if cURL:
                 self.reader.inURL = cURL

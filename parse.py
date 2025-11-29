@@ -107,8 +107,6 @@ class Reader():
         self.compare(self.masterList,sheet_rows,"uid","uid",False,self.append_to_sheet)
         
 
-
-
     def add_from_sheet(self,sheet_assignment, _match):
         """Add assignment from sheet to masterlist
 
@@ -130,7 +128,6 @@ class Reader():
         self.compare(rows,self.masterList,"uid","uid",False,self.add_from_sheet)
         self._import()
         self.export()
-
 
 
     def readToEnd(self):
