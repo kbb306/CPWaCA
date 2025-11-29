@@ -54,12 +54,13 @@ class Reader():
         print(f"Updating assignment {assignment.uid}")
         row = 5
         while True:
-            result = sheets_get_values.get_values(self.outFile,f"F{row}:F{row}")
+            result = sheets_get_values.get_values(self.outFile,f"C{row}:F{row}")
             rows = result.get("values",[])
 
             if not rows:
                 return
-            uid = rows[0][0]
+            status = rows[0][0]
+            uid = rows[0][3]
             if uid == assignment.uid:
                 break
             row += 1
@@ -71,7 +72,7 @@ class Reader():
             [[
                 assignment.course,
                 assignment.name,
-                assignment.status,
+                status,
                 assignment.daysLeft,
                 assignment.dueDate.isoformat() if hasattr(assignment.dueDate, "isoformat") else assignment.dueDate,
                 str(assignment.uid),
@@ -105,9 +106,9 @@ class Reader():
     
     def sync(self):
         """Wrapper for import and export, plus a compare() call controlling add_from_sheet()"""
-        self._import()
         rows = self.readToEnd()
         self.compare(rows,self.masterList,"uid","uid",False,self.add_from_sheet)
+        self._import()
         self.export()
 
 
