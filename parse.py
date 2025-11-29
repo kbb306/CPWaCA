@@ -227,6 +227,8 @@ class Reader():
                                 print("Adding assignment!")
                                 thing = Assignment(course,assignment,status,daysLeft,date,uid)
                                 self.masterList.append(thing)
+                            else:
+                                print("Assignment already in masterlist")
                             foundEv = False
                             skip = False
                         
