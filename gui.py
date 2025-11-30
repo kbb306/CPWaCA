@@ -26,7 +26,10 @@ class Window:
         self.root.grid_columnconfigure(0, weight=1)
         self.root.grid_rowconfigure(1, weight=1)
         self.root.grid_columnconfigure(1, weight=1)
-        pygame.mixer.init()
+        try:
+            pygame.mixer.init()
+        except:
+            sound = None
 
         self.keybutton = tk.Button(root,text="Connect Accounts",command=self.connwindow)
         self.keybutton.grid(row=0, column=0, sticky="nsew", padx=5, pady=5)
