@@ -20,10 +20,11 @@ class testReader(unittest.TestCase):
         self.assertTrue(os.path.exists("Schedule.ical"))
 
     def test_append_to_sheet(self):
-        Bob = Assignment("Standing Up Class","Stand Up for 5 Seconds","Not Started",5,(datetime.datetime.date.today()+datetime.timedelta(days=5)),random.randint(10000000,99999999))
+        Bob = Assignment("Standing Up Class","Stand Up for 5 Seconds","Not Started",5,(datetime.date.today()+datetime.timedelta(days=5)),random.randint(10000000,99999999))
         Wyatt = Reader("https://suu.instructure.com/feeds/calendars/user_MY3O6WwP5ysxV4URUoOTK03GYdmmfe4BVSOjhZcg.ics","1IY3A-mZwVB94UFqShO-QZuYDGYZaYPLcLbVfHv7Txt8")
         Wyatt.append_to_sheet(Bob)
         result = sheets_get_values(Wyatt.outFile,"A5:F")
+        assert isinstance(result,dict)
         rows = result.get("values",[])
         row = rows[0]
         course, assignment, status, daysleft, date, uid = row[:6] 
@@ -39,7 +40,7 @@ class testReader(unittest.TestCase):
 
     def test_update_sheet(self):
         Wyatt = Reader("https://suu.instructure.com/feeds/calendars/user_MY3O6WwP5ysxV4URUoOTK03GYdmmfe4BVSOjhZcg.ics","1IY3A-mZwVB94UFqShO-QZuYDGYZaYPLcLbVfHv7Txt8")
-        Bob = Assignment("Standing Up Class","Stand Up for 5 Seconds","Not Started",5,(datetime.datetime.date.today()+datetime.timedelta(days=5)),random.randint(10000000,99999999))
+        Bob = Assignment("Standing Up Class","Stand Up for 5 Seconds","Not Started",5,(datetime.date.today()+datetime.timedelta(days=5)),random.randint(10000000,99999999))
         Wyatt.append_to_sheet(Bob)
         Bob.daysLeft = 4
         Wyatt.update_sheet(Bob)
@@ -58,6 +59,11 @@ class testReader(unittest.TestCase):
             def __init__(self,foo,bar):
                 self.foo = foo
                 self.bar = bar
+
+            def __eq__(self, other):
+                if not isinstance(other, Dummy):
+                    return NotImplemented
+                return self.foo == other.foo and self.bar == other.bar
 
         Wyatt = Reader("https://suu.instructure.com/feeds/calendars/user_MY3O6WwP5ysxV4URUoOTK03GYdmmfe4BVSOjhZcg.ics","1IY3A-mZwVB94UFqShO-QZuYDGYZaYPLcLbVfHv7Txt8")
         
@@ -142,13 +148,14 @@ class testReader(unittest.TestCase):
 
     def test_readToEnd(self):
         Wyatt = Reader("https://suu.instructure.com/feeds/calendars/user_MY3O6WwP5ysxV4URUoOTK03GYdmmfe4BVSOjhZcg.ics","1IY3A-mZwVB94UFqShO-QZuYDGYZaYPLcLbVfHv7Txt8")
-        Bob = Assignment("Standing Up Class","Stand Up for 5 Seconds","Not Started",5,(datetime.datetime.date.today()+datetime.timedelta(days=5)),random.randint(10000000,99999999))
-        Alice = Assignment("Breathing 101","Breathe In","Not Started",5,(datetime.datetime.date.today()+datetime.timedelta(days=5)),random.randint(10000000,99999999))
+        Bob = Assignment("Standing Up Class","Stand Up for 5 Seconds","Not Started",5,(datetime.date.today()+datetime.timedelta(days=5)),random.randint(10000000,99999999))
+        Alice = Assignment("Breathing 101","Breathe In","Not Started",5,(datetime.date.today()+datetime.timedelta(days=5)),random.randint(10000000,99999999))
 
         Wyatt.append_to_sheet(Bob)
         Wyatt.append_to_sheet(Alice)
         toTest = Wyatt.readToEnd()
         result = sheets_get_values.get_values(Wyatt.outFile,"A5:F6")
+        assert isinstance(result,dict)
         rows = result.get("values",[])
         for i in len(rows):
             row = rows[i]
@@ -167,8 +174,8 @@ class testReader(unittest.TestCase):
 
     def test_export(self):
         Wyatt = Reader("https://suu.instructure.com/feeds/calendars/user_MY3O6WwP5ysxV4URUoOTK03GYdmmfe4BVSOjhZcg.ics","1IY3A-mZwVB94UFqShO-QZuYDGYZaYPLcLbVfHv7Txt8")
-        Bob = Assignment("Standing Up Class","Stand Up for 5 Seconds","Not Started",5,(datetime.datetime.date.today()+datetime.timedelta(days=5)),random.randint(10000000,99999999))
-        Alice = Assignment("Breathing 101","Breathe In","Not Started",7,(datetime.datetime.date.today()+datetime.timedelta(days=7)))
+        Bob = Assignment("Standing Up Class","Stand Up for 5 Seconds","Not Started",5,(datetime.date.today()+datetime.timedelta(days=5)),random.randint(10000000,99999999))
+        Alice = Assignment("Breathing 101","Breathe In","Not Started",7,(datetime.date.today()+datetime.timedelta(days=7)))
         Wyatt.masterList.append(Bob)
         Wyatt.masterList.append(Alice)
         Wyatt.export()
@@ -176,8 +183,8 @@ class testReader(unittest.TestCase):
     
     def test_add_from_sheet(self):
         Wyatt = Reader("https://suu.instructure.com/feeds/calendars/user_MY3O6WwP5ysxV4URUoOTK03GYdmmfe4BVSOjhZcg.ics","1IY3A-mZwVB94UFqShO-QZuYDGYZaYPLcLbVfHv7Txt8")
-        Bob = Assignment("Standing Up Class","Stand Up for 5 Seconds","Not Started",5,(datetime.datetime.date.today()+datetime.timedelta(days=5)),random.randint(10000000,99999999))
-        Alice = Assignment("Breathing 101","Breathe In","Not Started",7,(datetime.datetime.date.today()+datetime.timedelta(days=7)))
+        Bob = Assignment("Standing Up Class","Stand Up for 5 Seconds","Not Started",5,(datetime.date.today()+datetime.timedelta(days=5)),random.randint(10000000,99999999))
+        Alice = Assignment("Breathing 101","Breathe In","Not Started",7,(datetime.date.today()+datetime.timedelta(days=7)))
         Wyatt.masterList.append(Bob)
         Wyatt.masterList.append(Alice)
         Wyatt.export()
@@ -200,16 +207,18 @@ class testReader(unittest.TestCase):
                
     def test_deduplicate(self):
         Wyatt = Reader("https://suu.instructure.com/feeds/calendars/user_MY3O6WwP5ysxV4URUoOTK03GYdmmfe4BVSOjhZcg.ics","1IY3A-mZwVB94UFqShO-QZuYDGYZaYPLcLbVfHv7Txt8")
-        Bob = Assignment("Standing Up Class","Stand Up for 5 Seconds","Not Started",5,(datetime.datetime.date.today()+datetime.timedelta(days=5)),random.randint(10000000,99999999))
-        Alice = Assignment("Standing Up Class","Stand Up for 5 Seconds","Not Started",6,(datetime.datetime.date.today()+datetime.timedelta(days=6)),Bob.uid)
-        Jane = Assignment("Standing Up Class","Stand Up for 5 Seconds","Not Started",7,(datetime.datetime.date.today()+datetime.timedelta(days=7)),Bob.uid)
-        Janet = Assignment("Standing Up Class","Stand Up for 5 Seconds","Not Started",8,(datetime.datetime.date.today()+datetime.timedelta(days=8)),Bob.uid)
-        Judy = Assignment("Standing Up Class","Stand Up for 5 Seconds","Not Started",9,(datetime.datetime.date.today()+datetime.timedelta(days=9)),Bob.uid)
+        Bob = Assignment("Standing Up Class","Stand Up for 5 Seconds","Not Started",5,(datetime.date.today()+datetime.timedelta(days=5)),random.randint(10000000,99999999))
+        Alice = Assignment("Standing Up Class","Stand Up for 5 Seconds","Not Started",6,(datetime.date.today()+datetime.timedelta(days=6)),Bob.uid)
+        Jane = Assignment("Standing Up Class","Stand Up for 5 Seconds","Not Started",7,(datetime.date.today()+datetime.timedelta(days=7)),Bob.uid)
+        Janet = Assignment("Standing Up Class","Stand Up for 5 Seconds","Not Started",8,(datetime.date.today()+datetime.timedelta(days=8)),Bob.uid)
+        Judy = Assignment("Standing Up Class","Stand Up for 5 Seconds","Not Started",9,(datetime.date.today()+datetime.timedelta(days=9)),Bob.uid)
 
 
         Wyatt.masterList.append(Bob)
         Wyatt.masterList.append(Alice)
         Wyatt.masterList.append(Jane)
+        Wyatt.masterList.append(Janet)
+        Wyatt.masterList.append(Judy)
         Wyatt.deduplicate()
         for each in Wyatt.masterList:
             if each.daysLeft == 9:
@@ -226,3 +235,5 @@ class testReader(unittest.TestCase):
 
 
 
+if __name__ == '__main__':
+    unittest.main()

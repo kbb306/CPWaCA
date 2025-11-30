@@ -6,30 +6,6 @@ METHOD:PUBLISH
 X-WR-CALNAME:Kyler Belshaw Calendar (Canvas)
 X-WR-CALDESC:Calendar events for the user\, Kyler Belshaw
 BEGIN:VEVENT
-DTSTAMP:20251117T042400Z
-UID:event-assignment-17104474
-DTSTART;VALUE=DATE;VALUE=DATE:20251030
-CLASS:PUBLIC
-DESCRIPTION:[Requirements and Design.pdf] (https://suu.instructure.com/cour
- ses/1192010/files/187302721?wrap=1)\n\nYou may work individually or in a t
- eam of up to two members.
-SEQUENCE:0
-SUMMARY:Final Project Stage 1: Requirements & Design [Software Engineering]
-URL;VALUE=URI:https://suu.instructure.com/calendar?include_contexts=course_
- 1192010&month=10&year=2025#assignment_17104474
-X-ALT-DESC;FMTTYPE=text/html:<link rel="stylesheet" href="https://instructu
- re-uploads-2.s3.amazonaws.com/account_20000000000019/attachments/149326035
- /dp_app.css"><p><a class="instructure_file_link instructure_scribd_file in
- line_disabled" title="Requirements and Design.pdf" href="https://suu.instr
- ucture.com/courses/1192010/files/187302721?wrap=1" target="_blank" data-ca
- nvas-previewable="false" data-api-endpoint="https://suu.instructure.com/ap
- i/v1/courses/1192010/files/187302721" data-api-returntype="File">Requireme
- nts and Design.pdf</a></p>\n<p><strong>You may work individually or in a t
- eam of up to two members.</strong></p><script src="https://instructure-upl
- oads-2.s3.amazonaws.com/account_20000000000019/attachments/149326034/dp_ap
- p.js"></script>
-END:VEVENT
-BEGIN:VEVENT
 DTSTAMP:20251107T214700Z
 UID:event-assignment-16775598
 DTSTART;VALUE=DATE;VALUE=DATE:20251031
