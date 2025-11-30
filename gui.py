@@ -136,7 +136,7 @@ class Window:
         elif command == "read":
             Alarm = self.iniBot("read","settings.ini","settings","Alarm")
             threshold = self.iniBot("read", "settings.ini", "settings", "threshold")
-            tooMany = self.iniBot("read","Settings.ini","settings","tooMany")
+            tooMany = self.iniBot("read","Settings.ini","settings","toomany")
             cURL      = self.iniBot("read", "settings.ini", "keys", "cURL")
             DriveFile = self.iniBot("read", "settings.ini", "keys", "DriveFile")
             if Alarm:
