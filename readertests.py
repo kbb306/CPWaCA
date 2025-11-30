@@ -203,10 +203,20 @@ class testReader(unittest.TestCase):
         Bob = Assignment("Standing Up Class","Stand Up for 5 Seconds","Not Started",5,(datetime.datetime.date.today()+datetime.timedelta(days=5)),random.randint(10000000,99999999))
         Alice = Assignment("Standing Up Class","Stand Up for 5 Seconds","Not Started",6,(datetime.datetime.date.today()+datetime.timedelta(days=6)),Bob.uid)
         Jane = Assignment("Standing Up Class","Stand Up for 5 Seconds","Not Started",7,(datetime.datetime.date.today()+datetime.timedelta(days=7)),Bob.uid)
+        Janet = Assignment("Standing Up Class","Stand Up for 5 Seconds","Not Started",8,(datetime.datetime.date.today()+datetime.timedelta(days=8)),Bob.uid)
+        Judy = Assignment("Standing Up Class","Stand Up for 5 Seconds","Not Started",9,(datetime.datetime.date.today()+datetime.timedelta(days=9)),Bob.uid)
+
+
         Wyatt.masterList.append(Bob)
         Wyatt.masterList.append(Alice)
         Wyatt.masterList.append(Jane)
         Wyatt.deduplicate()
+        for each in Wyatt.masterList:
+            if each.daysLeft == 9:
+                check = True
+            else:
+                check = False
+        self.assertTrue(check)
 
         
 
