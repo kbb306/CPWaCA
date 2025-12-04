@@ -102,7 +102,7 @@ class Window:
             string: The varible you requested (read mode only)
         """
          config = configparser.ConfigParser()
-         config.read(f"../data/{file}")
+         config.read(f"/data/{file}")
          if section not in config:
              config.add_section(section)
          if command == "read":
