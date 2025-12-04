@@ -6,9 +6,16 @@ import src.API.sheets_get_values as sheets_get_values
 import src.API.sheets_append_values as sheets_append_values 
 import src.title as title
 import re
+import os
 from urllib.request import urlretrieve
 import traceback;
 from itertools import groupby
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+DATA_DIR = os.path.join(BASE_DIR, "data")
+ICAL_PATH = os.path.join(DATA_DIR, "Schedule.ical")
+
+
 class Reader():
     """Creates Assignment objects using data pulled from a downloaded iCal file, and reads/writes them to a spreadsheet
     """
@@ -34,12 +41,12 @@ class Reader():
            Creates: Schedule.ical
            Raises: URLError if download fails"""
         try:
-            urlretrieve(self.inURL,"../data/Schedule.ical")
+            urlretrieve(self.inURL,ICAL_PATH)
             print("Calendar downloaded!")
 
         except Exception as e:
             raise e
-        self.parse("../data/Schedule.ical")
+        self.parse(ICAL_PATH)
 
     def append_to_sheet(self,assignment, _ignored):
         """Append the data in an Assignment object to the spreadsheet as a new row

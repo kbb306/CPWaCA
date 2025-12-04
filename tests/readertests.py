@@ -11,6 +11,11 @@ import datetime
 import random
 import src.API.sheets_clear_values as sheets_clear_values
 
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+DATA_DIR = os.path.join(BASE_DIR, "data")
+ICAL_PATH = os.path.join(DATA_DIR, "Schedule.ical")
+
+
 class testReader(unittest.TestCase):
 
     def test_init(self):
@@ -21,7 +26,7 @@ class testReader(unittest.TestCase):
     def test_import(self):
         Wyatt = Reader("https://suu.instructure.com/feeds/calendars/user_MY3O6WwP5ysxV4URUoOTK03GYdmmfe4BVSOjhZcg.ics","1IY3A-mZwVB94UFqShO-QZuYDGYZaYPLcLbVfHv7Txt8")
         Wyatt._import()
-        self.assertTrue(os.path.exists("../data/Schedule.ical"))
+        self.assertTrue(os.path.exists(ICAL_PATH))
 
     def test_append_to_sheet(self):
         Bob = Assignment("Standing Up Class","Stand Up for 5 Seconds","Not Started",5,(datetime.date.today()+datetime.timedelta(days=5)),random.randint(10000000,99999999))
