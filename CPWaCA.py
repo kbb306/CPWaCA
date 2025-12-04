@@ -115,7 +115,7 @@ class Window:
              return result
          elif command == "write":
              config[section][lookfor] = str(changeTo)
-             with open(file,'w') as f:
+             with open(path,'w') as f:
                  config.write(f)
 
     def shutdown(self):
@@ -297,13 +297,18 @@ class Window:
         except:
             cURL = ""
             DriveFile = ""
-        if not cURL or not DriveFile:
+        if not cURL:
             try: 
                  cURL = self.iniBot("read","settings.ini","keys","cURL")
                  DriveFile = self.iniBot("read","settings.ini","keys","DriveFile")
             except:
                 self.connwindow()
-        fileid = DriveFile or None
+                return
+        if not DriveFile:
+            fileid = None
+        else:
+            fileid = DriveFile     
+        
         self.reader = parse.Reader(cURL,fileid)
         DriveFile = self.reader.outFile
         self.iniBot("write","settings.ini","keys","cURL",cURL)
