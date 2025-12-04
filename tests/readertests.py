@@ -1,3 +1,7 @@
+"""These tests are UNFINISHED and NONFUNCTIONAL"""
+
+
+
 import unittest
 from src.parse import Reader, Assignment, sheets_get_values
 from io import StringIO
@@ -17,7 +21,7 @@ class testReader(unittest.TestCase):
     def test_import(self):
         Wyatt = Reader("https://suu.instructure.com/feeds/calendars/user_MY3O6WwP5ysxV4URUoOTK03GYdmmfe4BVSOjhZcg.ics","1IY3A-mZwVB94UFqShO-QZuYDGYZaYPLcLbVfHv7Txt8")
         Wyatt._import()
-        self.assertTrue(os.path.exists("Schedule.ical"))
+        self.assertTrue(os.path.exists("../data/Schedule.ical"))
 
     def test_append_to_sheet(self):
         Bob = Assignment("Standing Up Class","Stand Up for 5 Seconds","Not Started",5,(datetime.date.today()+datetime.timedelta(days=5)),random.randint(10000000,99999999))
