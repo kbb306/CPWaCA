@@ -289,32 +289,39 @@ class Window:
 
     
     def APIin(self):
-        """Create Reader() object using available cURL and DriveFile settings
-        """
-        try: 
+        """Create Reader() object using available cURL and DriveFile settings."""
+        
+        cURL = ""
+        DriveFile = ""
+
+        try:
             cURL = (self.cURL.get() or "").strip()
             DriveFile = (self.DriveFile.get() or "").strip()
-        except:
-            cURL = ""
-            DriveFile = ""
+        except Exception:
+            pass
+
         if not cURL:
-            try: 
-                 cURL = self.iniBot("read","settings.ini","keys","cURL")
-                 DriveFile = self.iniBot("read","settings.ini","keys","DriveFile")
-            except:
+            try:
+                cURL = (self.iniBot("read", "settings.ini", "keys", "cURL") or "").strip()
+                DriveFile = (self.iniBot("read", "settings.ini", "keys", "DriveFile") or "").strip()
+            except Exception:
                 self.connwindow()
                 return
-        if not DriveFile:
-            fileid = None
-        else:
-            fileid = DriveFile     
-        
-        self.reader = parse.Reader(cURL,fileid)
+
+        if not cURL:
+            self.connwindow()
+            return
+
+        fileid = DriveFile or None
+
+        self.reader = parse.Reader(cURL, fileid)
+
         DriveFile = self.reader.outFile
-        self.iniBot("write","settings.ini","keys","cURL",cURL)
-        self.iniBot("write","settings.ini","keys","DriveFile",DriveFile)
+
+        self.iniBot("write", "settings.ini", "keys", "cURL", cURL)
+        self.iniBot("write", "settings.ini", "keys", "DriveFile", DriveFile)
         return
-    
+
     def on_thres_change(self, *args):
         """Update globals.threshold on change to threshold entry box in alarm settings
         """
