@@ -1,11 +1,11 @@
 import unittest
-from parse import Reader, Assignment, sheets_get_values
+from src.parse import Reader, Assignment, sheets_get_values
 from io import StringIO
 import sys
 import os
 import datetime
 import random
-import sheets_clear_values
+import src.API.sheets_clear_values as sheets_clear_values
 
 class testReader(unittest.TestCase):
 

@@ -1,9 +1,9 @@
-import globals
-import sheets_update_values
-import sheets_conditional_formatting
-import sheets_misc
+import src.globals as globals
+import src.API.sheets_update_values as sheets_update_values
+import src.API.sheets_conditional_formatting as sheets_conditional_formatting
+import src.API.sheets_misc as sheets_misc
 import json
-import customizer
+import src.customizer as customizer
 def titleinator(driveFile,row,fontsize,merge,bold,data):
         """Create title or subtitle on given row with given formatting
 

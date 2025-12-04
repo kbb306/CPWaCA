@@ -1,10 +1,10 @@
-import globals
+import src.globals as globals
 import datetime
-import sheets_update_values
-import sheets_create
-import sheets_get_values
-import sheets_append_values 
-import title
+import src.API.sheets_update_values as sheets_update_values
+import src.API.sheets_create as sheets_create
+import src.API.sheets_get_values as sheets_get_values
+import src.API.sheets_append_values as sheets_append_values 
+import src.title as title
 import re
 from urllib.request import urlretrieve
 import traceback;
@@ -34,12 +34,12 @@ class Reader():
            Creates: Schedule.ical
            Raises: URLError if download fails"""
         try:
-            urlretrieve(self.inURL,"Schedule.ical")
+            urlretrieve(self.inURL,"../data/Schedule.ical")
             print("Calendar downloaded!")
 
         except Exception as e:
             raise e
-        self.parse("Schedule.ical")
+        self.parse("../data/Schedule.ical")
 
     def append_to_sheet(self,assignment, _ignored):
         """Append the data in an Assignment object to the spreadsheet as a new row

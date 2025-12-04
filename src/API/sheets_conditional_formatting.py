@@ -12,39 +12,55 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
+
+
 """
 
-# [START sheets_create]
-import authorize
+# [START sheets_conditional_formatting]
+import src.authorize as authorize
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 
 
-def create(title):
+def conditional_formatting(spreadsheet_id,rule):
   """
-  Creates the Sheet the user has access to.
+  Creates the batch_update the user has access to.
   Load pre-authorized user credentials from the environment.
   TODO(developer) - See https://developers.google.com/identity
   for guides on implementing OAuth2 for the application.
+
+  Reference for range:
+
+   my_range = {
+        "sheetId": 0,
+        "startRowIndex": 1,
+        "endRowIndex": 11,
+        "startColumnIndex": 0,
+        "endColumnIndex": 4,
+    }
   """
   creds = authorize.authcheck()
   # pylint: disable=maybe-no-member
   try:
     service = build("sheets", "v4", credentials=creds)
-    spreadsheet = {"properties": {"title": title}}
-    spreadsheet = (
+
+    
+    requests = [rule]
+    body = {"requests": requests}
+    response = (
         service.spreadsheets()
-        .create(body=spreadsheet, fields="spreadsheetId")
+        .batchUpdate(spreadsheetId=spreadsheet_id, body=body)
         .execute()
     )
-    print(f"Spreadsheet ID: {(spreadsheet.get('spreadsheetId'))}")
-    return spreadsheet.get("spreadsheetId")
+    print(f"{(len(response.get('replies')))} cells updated.")
+    return response
+
   except HttpError as error:
     print(f"An error occurred: {error}")
     return error
 
 
 if __name__ == "__main__":
-  # Pass: title
-  create("mysheet1")
-  # [END sheets_create]
+  # Pass: spreadsheet_id
+  conditional_formatting("1CM29gwKIzeXsAppeNwrc8lbYaVMmUclprLuLYuHog4k")
+  # [END sheets_conditional_formatting]

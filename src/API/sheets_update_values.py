@@ -14,13 +14,13 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 
-# [START sheets_append_values]
-import google.auth
+# [START sheets_update_values]
+import src.authorize as authorize
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
-import authorize
 
-def append_values(spreadsheet_id, range_name, value_input_option, _values):
+
+def update_values(spreadsheet_id, range_name, value_input_option, _values):
   """
   Creates the batch_update the user has access to.
   Load pre-authorized user credentials from the environment.
@@ -28,10 +28,10 @@ def append_values(spreadsheet_id, range_name, value_input_option, _values):
   for guides on implementing OAuth2 for the application.
   """
   creds = authorize.authcheck()
+
   # pylint: disable=maybe-no-member
   try:
     service = build("sheets", "v4", credentials=creds)
-
     values = [
         [
             # Cell values ...
@@ -45,7 +45,7 @@ def append_values(spreadsheet_id, range_name, value_input_option, _values):
     result = (
         service.spreadsheets()
         .values()
-        .append(
+        .update(
             spreadsheetId=spreadsheet_id,
             range=range_name,
             valueInputOption=value_input_option,
@@ -53,20 +53,12 @@ def append_values(spreadsheet_id, range_name, value_input_option, _values):
         )
         .execute()
     )
-    print(f"{(result.get('updates').get('updatedCells'))} cells appended.")
+    print(f"{result.get('updatedCells')} cells updated.")
     return result
-
   except HttpError as error:
     print(f"An error occurred: {error}")
     return error
 
 
-if __name__ == "__main__":
-  # Pass: spreadsheet_id, range_name value_input_option and _values)
-  append_values(
-      "1CM29gwKIzeXsAppeNwrc8lbYaVMmUclprLuLYuHog4k",
-      "A1:C2",
-      "USER_ENTERED",
-      [["F", "B"], ["C", "D"]],
-  )
-  # [END sheets_append_values]
+
+  # [END sheets_update_values]

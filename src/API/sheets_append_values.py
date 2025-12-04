@@ -14,13 +14,13 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 
-# [START sheets_get_values]
-import authorize
+# [START sheets_append_values]
+import google.auth
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
+import src.authorize as authorize
 
-
-def get_values(spreadsheet_id, range_name):
+def append_values(spreadsheet_id, range_name, value_input_option, _values):
   """
   Creates the batch_update the user has access to.
   Load pre-authorized user credentials from the environment.
@@ -32,17 +32,41 @@ def get_values(spreadsheet_id, range_name):
   try:
     service = build("sheets", "v4", credentials=creds)
 
+    values = [
+        [
+            # Cell values ...
+        ],
+        # Additional rows ...
+    ]
+    # [START_EXCLUDE silent]
+    values = _values
+    # [END_EXCLUDE]
+    body = {"values": values}
     result = (
         service.spreadsheets()
         .values()
-        .get(spreadsheetId=spreadsheet_id, range=range_name)
+        .append(
+            spreadsheetId=spreadsheet_id,
+            range=range_name,
+            valueInputOption=value_input_option,
+            body=body,
+        )
         .execute()
     )
-    rows = result.get("values", [])
-    print(f"{len(rows)} rows retrieved")
+    print(f"{(result.get('updates').get('updatedCells'))} cells appended.")
     return result
+
   except HttpError as error:
     print(f"An error occurred: {error}")
     return error
 
 
+if __name__ == "__main__":
+  # Pass: spreadsheet_id, range_name value_input_option and _values)
+  append_values(
+      "1CM29gwKIzeXsAppeNwrc8lbYaVMmUclprLuLYuHog4k",
+      "A1:C2",
+      "USER_ENTERED",
+      [["F", "B"], ["C", "D"]],
+  )
+  # [END sheets_append_values]

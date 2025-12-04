@@ -1,13 +1,13 @@
-import globals
+import src.globals as globals
 import tkinter as tk
 import tkinter.messagebox #Do not remove
-import parse
+import src.parse as parse
 import schedule
 import configparser
 import pygame
 import threading
-import sheets_conditional_formatting
-import customizer
+import src.API.sheets_conditional_formatting as sheets_conditional_formatting
+import src.customizer as customizer
 
 class Window:
     """The GUI
@@ -102,7 +102,7 @@ class Window:
             string: The varible you requested (read mode only)
         """
          config = configparser.ConfigParser()
-         config.read(file)
+         config.read(f"../data/{file}")
          if section not in config:
              config.add_section(section)
          if command == "read":
@@ -240,7 +240,7 @@ class Window:
         label.pack()
 
         try:
-            sound = pygame.mixer.Sound("alarm.wav")
+            sound = pygame.mixer.Sound("../data/alarm.wav")
         except Exception as e:
             print(f"Error loading alarm.wav: {e}")
             sound = None
