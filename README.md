@@ -11,7 +11,7 @@ The first time the program runs, you will be prompted for the iCal download URL 
 <img width="470" height="502" alt="Screenshot 2025-12-04 201415" src="https://github.com/user-attachments/assets/99e0df58-4665-4bd2-943d-ceababe82bc0" />
 
 
-The Spreadsheet ID is the portion of the spreadsheet URL between d/ and /edit. If you leave this field blank when clicking submit, the program will automatically create one.
+The Spreadsheet ID is the portion of the spreadsheet URL between d/ and /edit. If you leave this field blank when clicking submit, the program will automatically create a new spreadsheet.
 
 
 Please note that the customization button is currently non-functional.
