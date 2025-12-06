@@ -32,3 +32,5 @@ Please note that the customization button is currently non-functional.
   <li>Forget you are responsible for setting the status of assignments in the spreadsheet.</li>
   <li>Shut down the program while a sync is happening. This may result in malformed rows.</li>
 </ul>
+
+A demonstration of this program can be found in the docs folder.
