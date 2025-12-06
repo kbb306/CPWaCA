@@ -31,7 +31,10 @@ Design Decisions:
     This project was originally designed as an abstract factory pattern. The gui functions as the abstract factory, creating the Reader object. The Reader object then creates Assignment objects as needed. However, the Model View Controller pattern also fits given the responsibilities of the GUI in practice (Calling upDate, handling settings files, etc). This would counterintuitively make the GUI the Controller, with the Reader as the View, collating and returning the Models of assignments.
 
 Things Learned:
+    The easiest way to work with Canvas and its calendar was to pull from its built in ical file. Logging in was not necessary as long as the user can copy and paste in the shareable link. Canvas/Instructure have very detailed documentation making it easy to work with. Google was not the same. While tkinter buttons are customizable, they are not as customizable visually as we hoped. 
 
 Challenges Faced:
+    Google API was not easy to work with or to find information on. There were issues with credential files working with Google as well. Python versions sometimes conflicted with our goals. There were also issues between things working on Windows and not macOS usually due to Python versions.  
  
 Future Improvements:
+    Future customization options for the spreadsheet would be a good addition. More settings for alerts (such as an option for a silent notification) would be appreciated by some users. Visually updating the program to look nice would also be a goal. 
